@@ -1,0 +1,116 @@
+/* ----------------------------------------------------------------------------------------------------------------- *\
+    Grid Table Style
+\* ----------------------------------------------------------------------------------------------------------------- */
+@import "../../../../../assets/vendor/bootstrap-sass/assets/stylesheets/bootstrap/mixins/_nav-vertical-align.scss";
+
+.grid-table {
+
+    .navbar {
+        margin-bottom: 0;
+        border:0;
+    }
+
+    @media (min-width: $screen-sm-min) {
+        .navbar {
+            .container-fluid {
+                padding-left: 0;
+            }
+
+            .navbar-collapse {
+                padding-left: 0;
+            }
+        }
+    }
+
+    @media (min-width: $screen-sm-min) and (max-width: $screen-md) {
+        ul.pagination li:not(.prev):not(.next):not(.active) {
+            display: none
+        }
+    }
+
+    table th.row-action {
+        width: 32px;
+    }
+
+    table td.row-action {
+        text-align: center;
+    }
+
+    table td.row-action a {
+        color: darkgrey;
+    }
+
+    table.table {
+        th > a {
+            color: $text-color;
+
+            > i {
+                float: right;
+                margin-top: 3px;
+            }
+        }
+
+    }
+
+   nav.navbar  {
+     .pagination {
+       @include navbar-vertical-align($input-height-base);
+     }
+
+     .pagination-sm {
+       margin-top: 10px;
+     }
+
+   }
+}
+
+
+/* ----------------------------------------------------------------------------------------------------------------- *\
+    Dropdown Submenu
+\* ----------------------------------------------------------------------------------------------------------------- */
+
+.dropdown-submenu {
+    position: relative;
+}
+
+.dropdown-submenu > .dropdown-menu {
+    top: 0;
+    left: 100%;
+    margin-top: -6px;
+    margin-left: -1px;
+    -webkit-border-radius: 0 6px 6px 6px;
+    -moz-border-radius: 0 6px 6px 6px;
+    border-radius: 0 6px 6px 6px;
+}
+
+.dropdown-submenu:hover > .dropdown-menu {
+    display: block;
+}
+
+.dropdown-submenu > a:after {
+    display: block;
+    content: " ";
+    float: right;
+    width: 0;
+    height: 0;
+    border-color: transparent;
+    border-style: solid;
+    border-width: 5px 0 5px 5px;
+    border-left-color: #cccccc;
+    margin-top: 5px;
+    margin-right: -10px;
+}
+
+.dropdown-submenu.pull-left {
+    float: none;
+}
+
+.dropdown-submenu.pull-left > .dropdown-menu {
+    left: -100%;
+    margin-left: 10px;
+    -webkit-border-radius: 6px 0 6px 6px;
+    -moz-border-radius: 6px 0 6px 6px;
+    border-radius: 6px 0 6px 6px;
+}
+
+

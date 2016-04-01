@@ -1,0 +1,24 @@
+{
+    "name": "cawaphp/bootstrap",
+    "description": "Сáша bootstrap",
+    "keywords": ["cawa", "bootstrap"],
+    "minimum-stability": "dev",
+    "prefer-stable" : true,
+    "license": "GPL-3.0",
+    "authors": [
+        {
+            "name": "tchiotludo"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Cawa\\Bootstrap\\": "src"
+        }
+    },
+    "require": {
+        "php": "~7.0",
+        "cawaphp/cawa" : "dev-master",
+        "cawaphp/html" : "dev-master",
+        "myclabs/deep-copy": "^1.5"
+    }
+}

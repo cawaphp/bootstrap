@@ -1,0 +1,27 @@
+<?php
+/**
+ * @var $this \Cawa\Bootstrap\Components\Navbar
+ * @var string $id
+ * @var string $brand
+ * @var string $brandLink
+ * @var string $content
+ */
+?>
+<div class="container-fluid">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                data-target="#<?= $id ?>" aria-expanded="false">
+            <span class="sr-only"><?= $this->trans("bootstrap.navbar/toggle") ?></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <?php if (isset($brand)) : ?>
+        <a class="navbar-brand" <?= isset($brandLink) ? ' href="' . $brandLink . ' "' : '' ?>><?= $brand ?></a>
+        <?php endif; ?>
+    </div>
+
+    <div class="collapse navbar-collapse" id="<?= $id ?>">
+        <?= $content ?>
+    </div>
+</div>

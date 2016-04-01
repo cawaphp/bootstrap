@@ -1,0 +1,32 @@
+{
+    "name": "cawa-bootstrap",
+    "description": "",
+    "homepage": "https://github.com/cawaphp/bootstrap",
+    "authors": [
+        "tchiotludo"
+    ],
+    "main": [
+        "assets/fields/datetime/datetime.js",
+        "assets/fields/datetime/_datetime.scss",
+        "assets/grid/_grid.scss",
+        "assets/grid/grid.js",
+        "assets/form.js"
+    ],
+    "moduleType": [
+        "amd"
+    ],
+    "ignore": [
+        "**/.*",
+        "node_modules",
+        "bower_components",
+        "test",
+        "tests"
+    ],
+    "license": "GPL-3.0",
+    "dependencies": {
+        "bootstrap-sass": "^3.3.6",
+        "modernizr": "^3.3.1",
+        "eonasdan-bootstrap-datetimepicker": "^4.17.37",
+        "jquery-validation": "^1.15.0"
+    }
+}

@@ -1,0 +1,71 @@
+var $ = require("jquery");
+var moment = require("moment");
+var _ = require("lodash");
+
+$.widget("cawa.fields-datetime", $.cawa.widget, {
+
+    options: {
+        plugins: {
+            locale: moment.locale(),
+            // stepping: 15,
+            showClear: true,
+            showTodayButton: true,
+            showClose: true,
+            sideBySide: true
+        }
+    },
+
+    _create: function() {
+        // Disabled on touch & non supported device
+        if (Modernizr.touchevents) {
+            return;
+        }
+
+        var name = this.element.attr("name");
+        var inputHidden = $('<input />').attr('type', 'hidden').attr('name', name);
+
+        // input type date, reduce picker format to date
+        if (this.element.attr("type") == "date") {
+            this.options.plugins.format = moment().localeData().longDateFormat('L');
+        }
+
+        // default value
+        var datepickerOptions = $.extend(true, {}, this.options.plugins);
+
+        if (this.element.attr("value")) {
+            var defaultValue = moment(this.element.attr("value"), "YYYY-MM-DD hh:mm:ss");
+            datepickerOptions = $.extend(true, {}, datepickerOptions, {defaultDate: defaultValue});
+        }
+
+        // events
+        this.element.bind('dp.change', function (jqEvent)
+        {
+            var val = (jqEvent.date && !_.isNull(jqEvent.date) ? jqEvent.date.format('YYYY-MM-DD HH:mm:ss') : '');
+
+            inputHidden.val(val);
+        });
+
+        this.element.bind('dp.error', function ()
+        {
+            inputHidden.val('');
+        });
+
+        // input type hidden insert
+        var scriptOption = this.element.next('script[type="application/json"]').first(),
+            insertTarget = scriptOption;
+
+        if (scriptOption.length === 0) {
+            insertTarget = this.element;
+        }
+        inputHidden.insertAfter(insertTarget);
+
+        // input modification
+        this.element.attr("type", "text");
+        this.element.attr("name", "__" + name);
+        this.element.removeAttr("value");
+
+        /* Plugins */
+        this.element.datetimepicker(datepickerOptions);
+    }
+});
+
