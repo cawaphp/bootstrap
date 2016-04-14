@@ -65,6 +65,7 @@ $.widget("cawa.form", $.cawa.widget, {
         element.find(":input:enabled:visible:first").first().focus();
     },
 
+
     _submit: function (element)
     {
         var self = this;
@@ -81,6 +82,11 @@ $.widget("cawa.form", $.cawa.widget, {
 
         element.find(":submit").prop('disabled', 'disabled');
 
+        self._submitRequest(method, uri);
+    },
+
+    _submitRequest: function(method, uri)
+    {
         $.ajax({
                 url: uri,
                 type: method,
@@ -95,7 +101,7 @@ $.widget("cawa.form", $.cawa.widget, {
 
     _ajaxBeforeSend: function(xhr)
     {
-        $(self.element).find("div.widgetalert").remove();
+        $(this.element).find("div.widgetalert").remove();
     },
 
     _ajaxDone: function (result, textStatus, xhr)
