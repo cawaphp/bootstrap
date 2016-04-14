@@ -27,6 +27,8 @@
         "bootstrap-sass": "^3.3.6",
         "modernizr": "^3.3.1",
         "eonasdan-bootstrap-datetimepicker": "^4.17.37",
-        "jquery-validation": "^1.15.0"
+        "jquery-validation": "^1.15.0",
+        "intl-tel-input": "^8.4.9",
+        "jquery-mask-plugin": "^1.14.0"
     }
 }
