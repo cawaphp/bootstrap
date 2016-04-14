@@ -14,10 +14,10 @@ declare (strict_types=1);
 namespace Cawa\Bootstrap\Components;
 
 use Cawa\Bootstrap\Forms\Form;
-use Cawa\Core\Controller\Renderer\Container;
-use Cawa\Core\Controller\Renderer\HtmlElement;
-use Cawa\Core\Controller\Renderer\Phtml;
-use Cawa\Core\Controller\ViewData;
+use Cawa\App\Controller\Renderer\Container;
+use Cawa\App\Controller\Renderer\HtmlElement;
+use Cawa\App\Controller\Renderer\Phtml;
+use Cawa\App\Controller\ViewData;
 
 class Navbar extends HtmlElement
 {

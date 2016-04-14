@@ -13,7 +13,7 @@ declare (strict_types=1);
 
 namespace Cawa\Bootstrap\Components;
 
-use Cawa\Core\Controller\Renderer\HtmlElement;
+use Cawa\App\Controller\Renderer\HtmlElement;
 
 class Alert extends HtmlElement
 {

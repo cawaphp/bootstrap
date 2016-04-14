@@ -13,9 +13,9 @@ declare (strict_types=1);
 
 namespace Cawa\Bootstrap\Tables;
 
-use Cawa\Core\Controller\Renderer\HtmlContainer;
-use Cawa\Core\Controller\Renderer\HtmlElement;
-use Cawa\Core\Controller\ViewController;
+use Cawa\App\Controller\Renderer\HtmlContainer;
+use Cawa\App\Controller\Renderer\HtmlElement;
+use Cawa\App\Controller\ViewController;
 
 class Table extends \Cawa\Html\Tables\Table
 {

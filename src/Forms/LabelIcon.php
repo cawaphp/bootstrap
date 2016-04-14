@@ -13,8 +13,8 @@ declare (strict_types=1);
 
 namespace Cawa\Bootstrap\Forms;
 
-use Cawa\Core\Controller\Renderer\HtmlContainer;
-use Cawa\Core\Controller\Renderer\HtmlElement;
+use Cawa\App\Controller\Renderer\HtmlContainer;
+use Cawa\App\Controller\Renderer\HtmlElement;
 
 class LabelIcon extends HtmlContainer
 {

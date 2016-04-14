@@ -14,7 +14,7 @@ declare (strict_types=1);
 namespace Cawa\Bootstrap\Tables;
 
 
-use Cawa\Core\Controller\Renderer\HtmlElement;
+use Cawa\App\Controller\Renderer\HtmlElement;
 use Cawa\Uri\Uri;
 
 class Column extends \Cawa\Html\Tables\Column

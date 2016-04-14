@@ -40,6 +40,10 @@
         color: darkgrey;
     }
 
+    table tr.deleted {
+        color: $gray-light;
+    }
+
     table.table {
         th > a {
             color: $text-color;
@@ -51,6 +55,8 @@
         }
 
     }
+
+
 
    nav.navbar  {
      .pagination {

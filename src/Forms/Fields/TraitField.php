@@ -15,8 +15,8 @@ namespace Cawa\Bootstrap\Forms\Fields;
 
 use Cawa\Bootstrap\Forms\LabelIcon;
 use Cawa\Bootstrap\Forms\TraitBootstrapProperties;
-use Cawa\Core\Controller\Renderer\HtmlContainer;
-use Cawa\Core\Controller\Renderer\HtmlElement;
+use Cawa\App\Controller\Renderer\HtmlContainer;
+use Cawa\App\Controller\Renderer\HtmlElement;
 use Cawa\Html\Forms\Fields\AbstractField;
 
 /**
