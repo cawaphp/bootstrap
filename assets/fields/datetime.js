@@ -23,6 +23,7 @@ $.widget("cawa.fields-datetime", $.cawa.widget, {
 
         var name = this.element.attr("name");
         var inputHidden = $('<input />').attr('type', 'hidden').attr('name', name);
+        inputHidden.insertBefore(this.element);
 
         // input type date, reduce picker format to date
         if (this.element.attr("type") == "date") {
@@ -50,18 +51,11 @@ $.widget("cawa.fields-datetime", $.cawa.widget, {
             inputHidden.val('');
         });
 
-        // input type hidden insert
-        var scriptOption = this.element.next('script[type="application/json"]').first(),
-            insertTarget = scriptOption;
 
-        if (scriptOption.length === 0) {
-            insertTarget = this.element;
-        }
-        inputHidden.insertAfter(insertTarget);
 
         // input modification
         this.element.attr("type", "text");
-        this.element.attr("name", "__" + name);
+        this.element.attr("name", false);
         this.element.removeAttr("value");
 
         /* Plugins */
