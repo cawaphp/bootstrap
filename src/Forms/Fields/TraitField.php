@@ -13,10 +13,10 @@ declare (strict_types = 1);
 
 namespace Cawa\Bootstrap\Forms\Fields;
 
-use Cawa\Bootstrap\Forms\LabelIcon;
-use Cawa\Bootstrap\Forms\TraitBootstrapProperties;
 use Cawa\App\Controller\Renderer\HtmlContainer;
 use Cawa\App\Controller\Renderer\HtmlElement;
+use Cawa\Bootstrap\Forms\LabelIcon;
+use Cawa\Bootstrap\Forms\TraitBootstrapProperties;
 use Cawa\Html\Forms\Fields\AbstractField;
 
 /**

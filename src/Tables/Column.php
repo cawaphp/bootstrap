@@ -13,22 +13,21 @@ declare (strict_types=1);
 
 namespace Cawa\Bootstrap\Tables;
 
-
 use Cawa\App\Controller\Renderer\HtmlElement;
-use Cawa\Uri\Uri;
+use Cawa\Net\Uri;
 
 class Column extends \Cawa\Html\Tables\Column
 {
-    const QUERY_SORT = "sort";
+    const QUERY_SORT = 'sort';
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function __construct($id, $name)
     {
         parent::__construct($id, $name);
 
-        $this->argsCallback =  function(self $caller, string $sort = null) {
+        $this->argsCallback =  function (self $caller, string $sort = null) {
             if ($sort) {
                 return Uri::parse()->addQuery(self::QUERY_SORT, $sort)->get();
             } else {
@@ -40,7 +39,7 @@ class Column extends \Cawa\Html\Tables\Column
     /**
      * @var string
      */
-    private $argsCallback = "sort";
+    private $argsCallback = 'sort';
 
     /**
      * @param callable $argsCallback
@@ -86,20 +85,21 @@ class Column extends \Cawa\Html\Tables\Column
      */
     public static function getSort(string $sortString) : array
     {
-        $explode = explode("-", $sortString);
+        $explode = explode('-', $sortString);
 
         $currentOrder = array_pop($explode);
-        $currentCols = implode("-", $explode);
+        $currentCols = implode('-', $explode);
 
-        return [$currentCols, $currentOrder == "A" ? 1 : -1];
+        return [$currentCols, $currentOrder == 'A' ? 1 : -1];
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function render()
     {
         $clone = clone $this;
+
         return $clone->renderClone();
     }
 
@@ -116,27 +116,26 @@ class Column extends \Cawa\Html\Tables\Column
         }
 
         if ($this->isSortable()) {
-            $icon = new HtmlElement("<i>");
-            if (is_null($currentSort) || $currentCols != $this->getId() ) {
-                $icon->addClass(["fa", "fa-sort"]);
-                $href = call_user_func($this->argsCallback, $this, $this->getId() . "-A");
-            } else if ($currentCols == $this->getId() && $currentOrder > 0) {
-                $icon->addClass(["fa", "fa-sort-desc"]);
-                $href = call_user_func($this->argsCallback, $this, $this->getId() . "-D");
-            } else if ($currentCols == $this->getId()) {
-                $icon->addClass(["fa", "fa-sort-asc"]);
-                $href = call_user_func($this->argsCallback, $this, $this->getId() . "-A");
+            $icon = new HtmlElement('<i>');
+            if (is_null($currentSort) || $currentCols != $this->getId()) {
+                $icon->addClass(['fa', 'fa-sort']);
+                $href = call_user_func($this->argsCallback, $this, $this->getId() . '-A');
+            } elseif ($currentCols == $this->getId() && $currentOrder > 0) {
+                $icon->addClass(['fa', 'fa-sort-desc']);
+                $href = call_user_func($this->argsCallback, $this, $this->getId() . '-D');
+            } elseif ($currentCols == $this->getId()) {
+                $icon->addClass(['fa', 'fa-sort-asc']);
+                $href = call_user_func($this->argsCallback, $this, $this->getId() . '-A');
             }
 
             $this->setContent(
-                HtmlElement::create("<a>")
-                    ->addAttribute("href", $href)
-                    ->setContent($this->getContent() . " " . $icon->render())
+                HtmlElement::create('<a>')
+                    ->addAttribute('href', $href)
+                    ->setContent($this->getContent() . ' ' . $icon->render())
                     ->render()
             );
         }
 
         return parent::render();
     }
-
 }

@@ -1,2 +1,2 @@
 <?php
-return require "bootstrap.fr.php";
+return require 'bootstrap.fr.php';

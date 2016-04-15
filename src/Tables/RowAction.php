@@ -26,7 +26,7 @@ class RowAction extends Link
     {
         if ($icon) {
             $content = $icon ? '<i class="' . $icon . '"></i>' : $name;
-            $this->addAttribute("title", $name);
+            $this->addAttribute('title', $name);
         } else {
             $content = $name;
         }
@@ -39,7 +39,7 @@ class RowAction extends Link
      */
     public function isMain() : bool
     {
-        return is_null($this->getAttribute("data-main-action"));
+        return is_null($this->getAttribute('data-main-action'));
     }
 
     /**
@@ -50,9 +50,9 @@ class RowAction extends Link
     public function setMain(bool $main = true) : self
     {
         if ($main) {
-            return $this->addAttribute("data-main-action", "true");
+            return $this->addAttribute('data-main-action', 'true');
         } else {
-            return $this->removeAttribute("data-main-action");
+            return $this->removeAttribute('data-main-action');
         }
     }
 }

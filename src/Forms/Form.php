@@ -15,7 +15,7 @@ namespace Cawa\Bootstrap\Forms;
 
 use Cawa\Html\Forms\Fields\AbstractField;
 use Cawa\Html\Forms\Fields\Hidden;
-use Cawa\Uri\Uri;
+use Cawa\Net\Uri;
 use DeepCopy\DeepCopy;
 
 class Form extends \Cawa\Html\Forms\Form
@@ -104,7 +104,7 @@ class Form extends \Cawa\Html\Forms\Form
      */
     public function render()
     {
-        /** @var \Cawa\Bootstrap\Forms\Form $clone */
+        /* @var \Cawa\Bootstrap\Forms\Form $clone */
         $deepcopy = new DeepCopy();
         $clone = $deepcopy->copy($this);
 
@@ -117,13 +117,12 @@ class Form extends \Cawa\Html\Forms\Form
     public function renderClone()
     {
         // append all querystring
-        if ($this->getMethod() == "GET") {
+        if ($this->getMethod() == 'GET') {
             $uri = new Uri($this->getAction());
             if ($uri->getQueries()) {
                 foreach ($uri->getQueries() as $key => $value) {
-
                     if (isset($this->values[$key])) {
-                        continue; 
+                        continue;
                     }
 
                     $this->add(new Hidden($key, $value));

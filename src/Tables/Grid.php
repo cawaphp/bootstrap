@@ -13,21 +13,21 @@ declare (strict_types=1);
 
 namespace Cawa\Bootstrap\Tables;
 
+use Cawa\App\App;
+use Cawa\App\Controller\Renderer\HtmlContainer;
 use Cawa\Bootstrap\Components\Dropdown;
 use Cawa\Bootstrap\Components\Navbar;
 use Cawa\Bootstrap\Components\Pagination;
 use Cawa\Bootstrap\Forms\Fields\Submit;
 use Cawa\Bootstrap\Forms\Form;
-use Cawa\App\Controller\Renderer\HtmlContainer;
-use Cawa\App\App;
 use Cawa\Html\Forms\Fields\AbstractField;
 use Cawa\Html\Link;
-use Cawa\Uri\Uri;
+use Cawa\Net\Uri;
 use DeepCopy\DeepCopy;
 
 class Grid extends HtmlContainer
 {
-    const QUERY_PAGESIZE = "size";
+    const QUERY_PAGESIZE = 'size';
 
     /**
      * @param string $stateId
@@ -37,14 +37,14 @@ class Grid extends HtmlContainer
         $this->stateId = $stateId;
 
         // default callback to get query param
-        $this->argsCallback = function($item, $arg = null) {
-            $query = $this->stateId ? $this->stateId . "_" : '';
+        $this->argsCallback = function ($item, $arg = null) {
+            $query = $this->stateId ? $this->stateId . '_' : '';
 
             if ($item instanceof Pagination) {
                 $query .= Pagination::QUERY_PAGE;
-            } else if ($item instanceof Column) {
+            } elseif ($item instanceof Column) {
                 $query .= Table::QUERY_SORT;
-            } else if (is_string($item)) {
+            } elseif (is_string($item)) {
                 $query .= $item;
             }
 
@@ -55,15 +55,15 @@ class Grid extends HtmlContainer
             }
         };
 
-        parent::__construct("<div>");
-        $this->addClass("cawa-grid");
+        parent::__construct('<div>');
+        $this->addClass('cawa-grid');
 
-        $this->addClass("grid-table");
+        $this->addClass('grid-table');
         $this->addLocaleFile(__DIR__ . '/../../lang/global', 'bootstrap');
 
         $this->navbar = new Navbar();
 
-        $this->navbar->addClass("navbar-inverse");
+        $this->navbar->addClass('navbar-inverse');
         $this->add($this->navbar);
 
         $this->options = new Dropdown('<i class="fa fa-adjust"></i> ' . $this->trans('bootstrap.grid/options'));
@@ -76,7 +76,7 @@ class Grid extends HtmlContainer
 
         $this->options->add($this->getRowsPerPageDropdown());
 
-        $ul = new HtmlContainer("<ul>");
+        $ul = new HtmlContainer('<ul>');
         $ul->add($this->options->toNavbar());
 
         $this->navbar->add($ul);
@@ -103,20 +103,20 @@ class Grid extends HtmlContainer
      */
     private function getRowsPerPageDropdown() : HtmlContainer
     {
-        $subMenu = HtmlContainer::create("<ul>")->addClass("dropdown-menu");
+        $subMenu = HtmlContainer::create('<ul>')->addClass('dropdown-menu');
         foreach ([25, 50, 75, 100] as $count) {
             $href = call_user_func($this->argsCallback, self::QUERY_PAGESIZE, $count);
 
             $li = HtmlContainer::create('<li>')->add(Link::create($count, $href));
             if ($this->getPageSize() == $count) {
-                $li->addClass("active");
+                $li->addClass('active');
             }
 
             $subMenu->add($li);
         }
 
-        $rowsperpageLi = HtmlContainer::create("<li>")
-            ->addClass("dropdown-submenu")
+        $rowsperpageLi = HtmlContainer::create('<li>')
+            ->addClass('dropdown-submenu')
             ->add(Link::create('<i class="glyphicon glyphicon-plus"></i>  ' . $this->trans('bootstrap.grid/perpage')))
             ->add($subMenu)
         ;
@@ -136,18 +136,18 @@ class Grid extends HtmlContainer
             }
         }
 
-        $subMenu = HtmlContainer::create("<ul>")->addClass("dropdown-menu");
+        $subMenu = HtmlContainer::create('<ul>')->addClass('dropdown-menu');
         foreach ($this->getTable()->getColums() as $column) {
             if (!$column->isHideable()) {
                 continue;
             }
 
             if ($column->isVisible()) {
-                $icon = "fa fa-check-square-o";
-                $argsCallback = implode("|", array_diff($columnsVisible, [$column->getId()]));
+                $icon = 'fa fa-check-square-o';
+                $argsCallback = implode('|', array_diff($columnsVisible, [$column->getId()]));
             } else {
-                $icon = "fa fa-square-o";
-                $argsCallback = implode("|", array_merge($columnsVisible, [$column->getId()]));
+                $icon = 'fa fa-square-o';
+                $argsCallback = implode('|', array_merge($columnsVisible, [$column->getId()]));
             }
 
             $href = call_user_func($this->argsCallback, Table::QUERY_COLUMNS_VISIBLE, $argsCallback);
@@ -159,8 +159,8 @@ class Grid extends HtmlContainer
             $subMenu->add($li);
         }
 
-        $columsLi = HtmlContainer::create("<li>")
-            ->addClass("dropdown-submenu")
+        $columsLi = HtmlContainer::create('<li>')
+            ->addClass('dropdown-submenu')
             ->add(Link::create('<i class="fa fa-columns"></i> ' . $this->trans('bootstrap.grid/columns')))
             ->add($subMenu)
         ;
@@ -254,7 +254,7 @@ class Grid extends HtmlContainer
      */
     public function getArgs(string $name, string $type, $default)
     {
-        $var = ($this->stateId ? $this->stateId . "_"  : '') . $name;
+        $var = ($this->stateId ? $this->stateId . '_'  : '') . $name;
 
         return App::request()->getQuery($var, $type, $default);
     }
@@ -305,6 +305,7 @@ class Grid extends HtmlContainer
     public function addRowAction(RowAction $rowAction) : self
     {
         $this->rowActions[] = $rowAction;
+
         return $this;
     }
 
@@ -334,14 +335,14 @@ class Grid extends HtmlContainer
     {
         if (!$this->filtersForm) {
             $this->filtersForm = new Form();
-            $this->filtersForm->setMethod("GET")
+            $this->filtersForm->setMethod('GET')
                 ->setAction(App::request()->getUri()->get());
 
             $this->navbar->add($this->filtersForm);
         }
 
         if ($this->stateId) {
-            $filter->setName($this->stateId . "_" . $filter->getName());
+            $filter->setName($this->stateId . '_' . $filter->getName());
         }
 
         $this->filtersForm->add($filter);
@@ -351,7 +352,7 @@ class Grid extends HtmlContainer
         );
 
         if ($filter->getLabel()) {
-            $filter->getLabel()->addClass("sr-only");
+            $filter->getLabel()->addClass('sr-only');
         }
 
         return $this;
@@ -370,7 +371,7 @@ class Grid extends HtmlContainer
             $this->getTable()->setData(call_user_func($this->dataCallable, $this));
         }
 
-        /** @var Grid $clone */
+        /* @var Grid $clone */
         $deepcopy = new DeepCopy();
         $clone = $deepcopy->copy($this);
 
@@ -386,19 +387,17 @@ class Grid extends HtmlContainer
         $this->options->add($this->getColumnDropdown());
 
         if ($this->filtersForm) {
-            $this->filtersForm->add(Submit::create($this->trans("bootstrap.grid/filter")));
+            $this->filtersForm->add(Submit::create($this->trans('bootstrap.grid/filter')));
         }
 
         // append row actions
         foreach ($this->rowActions as $i => $rowAction) {
             $this->getTable()->add(
-                Column::create("row_action_" . $i, "")
-                    ->setRenderer(function($content, array $primaries) use ($rowAction)
-                    {
+                Column::create('row_action_' . $i, '')
+                    ->setRenderer(function ($content, array $primaries) use ($rowAction) {
                         foreach ($primaries as $key => $value) {
                             unset($primaries[$key]);
-                            $key = preg_replace_callback('/(?:[-_])(.?)/', function($match)
-                            {
+                            $key = preg_replace_callback('/(?:[-_])(.?)/', function ($match) {
                                 return strtoupper($match[1]);
                             }, $key);
                             $primaries[$key] = $value;
@@ -408,18 +407,18 @@ class Grid extends HtmlContainer
                             return $rowAction->setUri($rowAction->getUri()->addQueries($primaries))
                                 ->render();
                         } else {
-                            return $rowAction->addAttribute("data-ids", json_encode($primaries))
+                            return $rowAction->addAttribute('data-ids', json_encode($primaries))
                                 ->render();
                         }
                     })
-                    ->addClass("row-action")
+                    ->addClass('row-action')
                     ->setHideable(false)
             );
         }
 
         // add pagination
         if ($this->rowCount) {
-            $pagination = new Pagination((int) ceil($this->rowCount / $this->getPageSize()) , $this->argsCallback);
+            $pagination = new Pagination((int) ceil($this->rowCount / $this->getPageSize()), $this->argsCallback);
             $this->navbar->add($pagination, false);
         }
 

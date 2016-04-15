@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-declare (strict_types=1);
+declare (strict_types = 1);
 
 namespace Cawa\Bootstrap\Components;
 
@@ -20,11 +20,11 @@ class Button extends HtmlElement
     const TAG_BUTTON = '<button>';
     const TAG_A = '<a>';
 
-    const SIZE_LARGE = "btn-lg";
-    const SIZE_SMALL = "btn-sm";
-    const SIZE_XSMALL = "btn-xs";
+    const SIZE_LARGE = 'btn-lg';
+    const SIZE_SMALL = 'btn-sm';
+    const SIZE_XSMALL = 'btn-xs';
 
-    const DEFAULT = 'btn-default';
+    const default = 'btn-default';
     const PRIMARY = 'btn-primary';
     const SUCCESS = 'btn-success';
     const INFO = 'btn-info';
@@ -39,17 +39,16 @@ class Button extends HtmlElement
      */
     public function __construct(
         string $content,
-        string $type = self::DEFAULT,
+        string $type = self::default,
         string $size = null,
         string $tag = self::TAG_BUTTON
-
     ) {
         parent::__construct($tag, $content);
 
         $this->addClass(['btn', $type]);
 
         if ($tag == self::TAG_A) {
-            $this->addAttribute("role", "button");
+            $this->addAttribute('role', 'button');
         }
 
         if ($size) {

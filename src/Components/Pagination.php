@@ -13,20 +13,16 @@ declare (strict_types=1);
 
 namespace Cawa\Bootstrap\Components;
 
-use Cawa\Bootstrap\Forms\Form;
-use Cawa\App\Controller\Renderer\Container;
 use Cawa\App\Controller\Renderer\HtmlContainer;
 use Cawa\App\Controller\Renderer\HtmlElement;
-use Cawa\App\Controller\Renderer\Phtml;
-use Cawa\App\Controller\ViewData;
-use Cawa\Uri\Uri;
+use Cawa\Net\Uri;
 
 class Pagination extends HtmlElement
 {
-    const QUERY_PAGE = "page";
+    const QUERY_PAGE = 'page';
 
-    const SIZE_LARGE = "pagination-lg";
-    const SIZE_SMALL = "pagination-sm";
+    const SIZE_LARGE = 'pagination-lg';
+    const SIZE_SMALL = 'pagination-sm';
 
     /**
      * @param int $page
@@ -41,9 +37,9 @@ class Pagination extends HtmlElement
         if ($argsCallback) {
             $this->argsCallback = $argsCallback;
         } else {
-            $this->argsCallback = function(self $caller, int $page = null) {
+            $this->argsCallback = function (self $caller, int $page = null) {
                 if ($page) {
-                    return Uri::parse()->addQuery(self::QUERY_PAGE, (string)$page)->get();
+                    return Uri::parse()->addQuery(self::QUERY_PAGE, (string) $page)->get();
                 } else {
                     return (int) Uri::parse()->getQuery(self::QUERY_PAGE);
                 }
@@ -52,9 +48,8 @@ class Pagination extends HtmlElement
 
         $this->current = call_user_func($this->argsCallback, $this) ?? 1;
 
-        $this->ul = new HtmlContainer("<ul>");
-        $this->ul->addClass("pagination");
-
+        $this->ul = new HtmlContainer('<ul>');
+        $this->ul->addClass('pagination');
     }
 
     /**
@@ -100,7 +95,7 @@ class Pagination extends HtmlElement
         $li = new HtmlElement('<li>');
         $url = call_user_func($this->argsCallback, $this, $page);
         if ($page == $this->current) {
-            $li->addClass($display ? "disabled" : "active");
+            $li->addClass($display ? 'disabled' : 'active');
         }
 
         if ($this->current == $page) {
@@ -113,23 +108,22 @@ class Pagination extends HtmlElement
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function render()
     {
         $this->ul->clear();
 
-        $this->ul->add($this->getLi(max(1, $this->current-1), "&laquo;")->addClass("prev"));
+        $this->ul->add($this->getLi(max(1, $this->current-1), '&laquo;')->addClass('prev'));
 
-        for($i=1; $i<=$this->page; $i++) {
+        for ($i=1; $i<=$this->page; $i++) {
             $this->ul->add($this->getLi($i));
         }
 
-        $this->ul->add($this->getLi(min($this->page, $this->current+1), "&raquo;")->addClass("next"));
+        $this->ul->add($this->getLi(min($this->page, $this->current+1), '&raquo;')->addClass('next'));
 
         $this->setContent($this->ul->render());
 
         return parent::render();
     }
-
 }

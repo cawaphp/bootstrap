@@ -24,20 +24,20 @@ class Dropdown extends ViewController
      */
     public function __construct(string $title)
     {
-        $this->container = new HtmlContainer("<div>");
-        $this->container->addClass("dropdown");
+        $this->container = new HtmlContainer('<div>');
+        $this->container->addClass('dropdown');
 
         $this->button = new Button($title);
-        $this->button->addClass("dropdown-toggle");
+        $this->button->addClass('dropdown-toggle');
         $this->button->addAttributes([
-            "data-toggle" => "dropdown",
-            "aria-haspopup" => "true",
-            "aria-expanded" => "false",
+            'data-toggle' => 'dropdown',
+            'aria-haspopup' => 'true',
+            'aria-expanded' => 'false',
         ]);
         $this->container->add($this->button);
 
-        $this->ul = new HtmlContainer("<ul>");
-        $this->ul->addClass("dropdown-menu");
+        $this->ul = new HtmlContainer('<ul>');
+        $this->ul->addClass('dropdown-menu');
         $this->container->add($this->ul);
 
         parent::__construct();
@@ -85,20 +85,21 @@ class Dropdown extends ViewController
      */
     public function add($element) : self
     {
-        if (is_string($element) && $element == "---") {
-            $element = HtmlElement::create("<li>")
-                ->addAttribute("role", "separator")
-                ->addClass("divider");
-        } else if (is_string($element)) {
-            $element = HtmlElement::create("<li>")
+        if (is_string($element) && $element == '---') {
+            $element = HtmlElement::create('<li>')
+                ->addAttribute('role', 'separator')
+                ->addClass('divider');
+        } elseif (is_string($element)) {
+            $element = HtmlElement::create('<li>')
                 ->setContent($element)
-                ->addClass("dropdown-header");
+                ->addClass('dropdown-header');
         } else {
-            $element = HtmlContainer::create("<li>")
+            $element = HtmlContainer::create('<li>')
                 ->add($element);
         }
 
         $this->ul->add($element);
+
         return $this;
     }
 
@@ -107,14 +108,14 @@ class Dropdown extends ViewController
      */
     public function toNavbar() : self
     {
-        $this->container->setTag("<li>");
+        $this->container->setTag('<li>');
         $this->button->setTag(Button::TAG_A);
 
         return $this;
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function render()
     {

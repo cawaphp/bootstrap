@@ -13,11 +13,11 @@ declare (strict_types=1);
 
 namespace Cawa\Bootstrap\Components;
 
-use Cawa\Bootstrap\Forms\Form;
 use Cawa\App\Controller\Renderer\Container;
 use Cawa\App\Controller\Renderer\HtmlElement;
 use Cawa\App\Controller\Renderer\Phtml;
 use Cawa\App\Controller\ViewData;
+use Cawa\Bootstrap\Forms\Form;
 
 class Navbar extends HtmlElement
 {
@@ -32,7 +32,7 @@ class Navbar extends HtmlElement
     public function __construct()
     {
         parent::__construct('<nav>');
-        $this->addClass(["navbar", "navbar-default"]);
+        $this->addClass(['navbar', 'navbar-default']);
 
         $this->elements = new Container();
 
@@ -53,17 +53,17 @@ class Navbar extends HtmlElement
     public function add(HtmlElement $element, bool $left = true) : self
     {
         if ($element instanceof Button) {
-            $element->addClass("navbar-btn");
-        } else if ($element instanceof Form) {
-            $element->addClass("navbar-form");
+            $element->addClass('navbar-btn');
+        } elseif ($element instanceof Form) {
+            $element->addClass('navbar-form');
             $element->setInline();
-        } else if ($element instanceof HtmlElement && $element->getTag() == "<p>") {
-            $element->addClass("navbar-text");
-        } else if ($element instanceof HtmlElement && $element->getTag() == "<ul>") {
-            $element->addClass(["nav", "navbar-nav"]);
+        } elseif ($element instanceof HtmlElement && $element->getTag() == '<p>') {
+            $element->addClass('navbar-text');
+        } elseif ($element instanceof HtmlElement && $element->getTag() == '<ul>') {
+            $element->addClass(['nav', 'navbar-nav']);
         }
 
-        $element->addClass($left ? "navbar-left" : "navbar-right");
+        $element->addClass($left ? 'navbar-left' : 'navbar-right');
 
         $this->elements->add($element);
 
@@ -71,19 +71,19 @@ class Navbar extends HtmlElement
     }
 
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     public function getId()
     {
-        return $this->data["id"] ?? null;
+        return $this->data['id'] ?? null;
     }
 
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     public function setId(string $value) : parent
     {
-        $this->data["id"] = $value;
+        $this->data['id'] = $value;
 
         return $this;
     }
@@ -139,7 +139,6 @@ class Navbar extends HtmlElement
 
         return $this;
     }
-
 
     /**
      * @return bool
@@ -198,17 +197,17 @@ class Navbar extends HtmlElement
      */
     public function render()
     {
-        if (!isset($this->data["id"])) {
+        if (!isset($this->data['id'])) {
             $this->generateId();
         }
 
-        $this->data["content"] = $this->elements->render();
+        $this->data['content'] = $this->elements->render();
 
         $phtml = $this->phtmlRender();
 
         if ($this->isStaticToTop()) {
-            $phtml = HtmlElement::create("<div>")
-                ->addClass("container")
+            $phtml = HtmlElement::create('<div>')
+                ->addClass('container')
                 ->setContent($phtml)
                 ->render();
         }

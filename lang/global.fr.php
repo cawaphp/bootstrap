@@ -1,11 +1,11 @@
 <?php
 return [
-    "pagination" => [
-        "next" => "Next",
-        "previouq" => "Previous",
+    'pagination' => [
+        'next' => 'Next',
+        'previouq' => 'Previous',
     ],
-    "navbar" => [
-        "toggle" => "Toggle navigation",
+    'navbar' => [
+        'toggle' => 'Toggle navigation',
     ],
     'grid' => [
         'options' => 'Options',

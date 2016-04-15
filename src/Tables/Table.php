@@ -13,14 +13,13 @@ declare (strict_types=1);
 
 namespace Cawa\Bootstrap\Tables;
 
-use Cawa\App\Controller\Renderer\HtmlContainer;
 use Cawa\App\Controller\Renderer\HtmlElement;
 use Cawa\App\Controller\ViewController;
 
 class Table extends \Cawa\Html\Tables\Table
 {
-    const QUERY_SORT = "sort";
-    const QUERY_COLUMNS_VISIBLE = "cols";
+    const QUERY_SORT = 'sort';
+    const QUERY_COLUMNS_VISIBLE = 'cols';
 
     /**
      * {@inheritdoc}
@@ -35,7 +34,6 @@ class Table extends \Cawa\Html\Tables\Table
             'table-hover',
         ]);
     }
-
 
     /**
      * @var callable
@@ -56,6 +54,7 @@ class Table extends \Cawa\Html\Tables\Table
 
     /**
      * @param Column $column
+     *
      * @return void
      */
     private function configureColumns(Column $column)
@@ -90,7 +89,7 @@ class Table extends \Cawa\Html\Tables\Table
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function add(ViewController $element)
     {
@@ -101,7 +100,7 @@ class Table extends \Cawa\Html\Tables\Table
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function addFirst(ViewController $element)
     {
@@ -233,13 +232,13 @@ class Table extends \Cawa\Html\Tables\Table
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function render()
     {
         if ($this->responsive) {
-            $div = new HtmlElement("<div>");
-            $div->addClass("table-responsive");
+            $div = new HtmlElement('<div>');
+            $div->addClass('table-responsive');
             $div->setContent(parent::render());
 
             return $div->render();
