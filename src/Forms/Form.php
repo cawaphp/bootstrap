@@ -20,7 +20,7 @@ use DeepCopy\DeepCopy;
 
 class Form extends \Cawa\Html\Forms\Form
 {
-    use TraitBootstrapProperties;
+    use BootstrapPropertiesTrait;
 
     /**
      * @see http://getbootstrap.com/css/#forms-example

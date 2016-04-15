@@ -15,7 +15,7 @@ namespace Cawa\Bootstrap\Forms\Fields;
 
 class Text extends \Cawa\Html\Forms\Fields\Text
 {
-    use TraitField;
+    use FieldTrait;
 
     /**
      * {@inheritdoc}

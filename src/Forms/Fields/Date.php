@@ -15,7 +15,7 @@ namespace Cawa\Bootstrap\Forms\Fields;
 
 class Date extends \Cawa\Html\Forms\Fields\Date
 {
-    use TraitField;
+    use FieldTrait;
 
     /**
      * {@inheritdoc}

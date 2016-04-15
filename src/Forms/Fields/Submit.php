@@ -15,7 +15,7 @@ namespace Cawa\Bootstrap\Forms\Fields;
 
 class Submit extends \Cawa\Html\Forms\Fields\Submit
 {
-    use TraitField;
+    use FieldTrait;
 
     /**
      * {@inheritdoc}

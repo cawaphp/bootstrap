@@ -15,7 +15,7 @@ namespace Cawa\Bootstrap\Forms\Fields;
 
 class Select extends \Cawa\Html\Forms\Fields\Select
 {
-    use TraitField;
+    use FieldTrait;
 
     /**
      * {@inheritdoc}

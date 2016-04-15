@@ -15,7 +15,7 @@ namespace Cawa\Bootstrap\Forms\Fields;
 
 class Radio extends \Cawa\Html\Forms\Fields\Radio
 {
-    use TraitField;
+    use FieldTrait;
 
     /**
      * {@inheritdoc}

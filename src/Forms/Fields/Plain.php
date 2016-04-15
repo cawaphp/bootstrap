@@ -15,7 +15,7 @@ namespace Cawa\Bootstrap\Forms\Fields;
 
 class Plain extends \Cawa\Html\Forms\Fields\Plain
 {
-    use TraitField;
+    use FieldTrait;
 
     /**
      * {@inheritdoc}

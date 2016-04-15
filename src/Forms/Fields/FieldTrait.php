@@ -16,15 +16,15 @@ namespace Cawa\Bootstrap\Forms\Fields;
 use Cawa\Renderer\HtmlContainer;
 use Cawa\Renderer\HtmlElement;
 use Cawa\Bootstrap\Forms\LabelIcon;
-use Cawa\Bootstrap\Forms\TraitBootstrapProperties;
+use Cawa\Bootstrap\Forms\BootstrapPropertiesTrait;
 use Cawa\Html\Forms\Fields\AbstractField;
 
 /**
  * @mixin AbstractField
  */
-trait TraitField
+trait FieldTrait
 {
-    use TraitBootstrapProperties;
+    use BootstrapPropertiesTrait;
 
     /**
      * {@inheritdoc}

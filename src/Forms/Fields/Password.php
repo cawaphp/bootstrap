@@ -15,7 +15,7 @@ namespace Cawa\Bootstrap\Forms\Fields;
 
 class Password extends \Cawa\Html\Forms\Fields\Password
 {
-    use TraitField;
+    use FieldTrait;
 
     /**
      * {@inheritdoc}

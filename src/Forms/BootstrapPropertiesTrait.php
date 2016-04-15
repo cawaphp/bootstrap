@@ -13,7 +13,7 @@ declare (strict_types=1);
 
 namespace Cawa\Bootstrap\Forms;
 
-trait TraitBootstrapProperties
+trait BootstrapPropertiesTrait
 {
     /**
      * @var int

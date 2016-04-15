@@ -15,7 +15,7 @@ namespace Cawa\Bootstrap\Forms\Fields;
 
 class Phone extends \Cawa\Html\Forms\Fields\Phone
 {
-    use TraitField;
+    use FieldTrait;
 
     /**
      * {@inheritdoc}

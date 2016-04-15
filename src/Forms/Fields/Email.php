@@ -15,7 +15,7 @@ namespace Cawa\Bootstrap\Forms\Fields;
 
 class Email extends \Cawa\Html\Forms\Fields\Email
 {
-    use TraitField;
+    use FieldTrait;
 
     /**
      * {@inheritdoc}

@@ -15,7 +15,7 @@ namespace Cawa\Bootstrap\Forms\Fields;
 
 class Checkbox extends \Cawa\Html\Forms\Fields\Checkbox
 {
-    use TraitField;
+    use FieldTrait;
 
     /**
      * {@inheritdoc}
