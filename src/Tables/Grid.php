@@ -14,6 +14,7 @@ declare (strict_types=1);
 namespace Cawa\Bootstrap\Tables;
 
 use Cawa\App\App;
+use Cawa\Intl\TranslatorFactory;
 use Cawa\Renderer\HtmlContainer;
 use Cawa\Bootstrap\Components\Dropdown;
 use Cawa\Bootstrap\Components\Navbar;
@@ -27,6 +28,8 @@ use DeepCopy\DeepCopy;
 
 class Grid extends HtmlContainer
 {
+    use TranslatorFactory;
+
     const QUERY_PAGESIZE = 'size';
 
     /**
@@ -59,18 +62,18 @@ class Grid extends HtmlContainer
         $this->addClass('cawa-grid');
 
         $this->addClass('grid-table');
-        $this->addLocaleFile(__DIR__ . '/../../lang/global', 'bootstrap');
+        $this->translator()->addFile(__DIR__ . '/../../lang/global', 'bootstrap');
 
         $this->navbar = new Navbar();
 
         $this->navbar->addClass('navbar-inverse');
         $this->add($this->navbar);
 
-        $this->options = new Dropdown('<i class="fa fa-adjust"></i> ' . $this->trans('bootstrap.grid/options'));
+        $this->options = new Dropdown('<i class="fa fa-adjust"></i> ' . $this->translator()->trans('bootstrap.grid/options'));
 
         // refresh
         $this->options->add(Link::create(
-            '<i class="glyphicon glyphicon-refresh"></i> ' . $this->trans('bootstrap.grid/refresh'),
+            '<i class="glyphicon glyphicon-refresh"></i> ' . $this->translator()->trans('bootstrap.grid/refresh'),
             App::request()->getUri()->get()
         ));
 
@@ -117,7 +120,7 @@ class Grid extends HtmlContainer
 
         $rowsperpageLi = HtmlContainer::create('<li>')
             ->addClass('dropdown-submenu')
-            ->add(Link::create('<i class="glyphicon glyphicon-plus"></i>  ' . $this->trans('bootstrap.grid/perpage')))
+            ->add(Link::create('<i class="glyphicon glyphicon-plus"></i>  ' . $this->translator()->trans('bootstrap.grid/perpage')))
             ->add($subMenu)
         ;
 
@@ -161,7 +164,7 @@ class Grid extends HtmlContainer
 
         $columsLi = HtmlContainer::create('<li>')
             ->addClass('dropdown-submenu')
-            ->add(Link::create('<i class="fa fa-columns"></i> ' . $this->trans('bootstrap.grid/columns')))
+            ->add(Link::create('<i class="fa fa-columns"></i> ' . $this->translator()->trans('bootstrap.grid/columns')))
             ->add($subMenu)
         ;
 
@@ -387,7 +390,7 @@ class Grid extends HtmlContainer
         $this->options->add($this->getColumnDropdown());
 
         if ($this->filtersForm) {
-            $this->filtersForm->add(Submit::create($this->trans('bootstrap.grid/filter')));
+            $this->filtersForm->add(Submit::create($this->translator()->trans('bootstrap.grid/filter')));
         }
 
         // append row actions

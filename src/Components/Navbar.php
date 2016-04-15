@@ -13,6 +13,7 @@ declare (strict_types=1);
 
 namespace Cawa\Bootstrap\Components;
 
+use Cawa\Intl\TranslatorFactory;
 use Cawa\Renderer\Container;
 use Cawa\Renderer\HtmlElement;
 use Cawa\Renderer\Phtml;
@@ -21,6 +22,7 @@ use Cawa\Bootstrap\Forms\Form;
 
 class Navbar extends HtmlElement
 {
+    use TranslatorFactory;
     use ViewData;
     use Phtml {
         Phtml::render as private phtmlRender;
@@ -36,7 +38,7 @@ class Navbar extends HtmlElement
 
         $this->elements = new Container();
 
-        $this->addLocaleFile('../../lang/global', 'bootstrap');
+        $this->translator()->addFile(__DIR__ . '/../../lang/global', 'bootstrap');
     }
 
     /**
