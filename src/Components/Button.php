@@ -13,7 +13,7 @@ declare (strict_types = 1);
 
 namespace Cawa\Bootstrap\Components;
 
-use Cawa\App\Controller\Renderer\HtmlElement;
+use Cawa\Renderer\HtmlElement;
 
 class Button extends HtmlElement
 {

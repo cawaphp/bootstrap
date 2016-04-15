@@ -14,7 +14,7 @@ declare (strict_types=1);
 namespace Cawa\Bootstrap\Tables;
 
 use Cawa\App\App;
-use Cawa\App\Controller\Renderer\HtmlContainer;
+use Cawa\Renderer\HtmlContainer;
 use Cawa\Bootstrap\Components\Dropdown;
 use Cawa\Bootstrap\Components\Navbar;
 use Cawa\Bootstrap\Components\Pagination;

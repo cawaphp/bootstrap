@@ -13,7 +13,7 @@ declare (strict_types=1);
 
 namespace Cawa\Bootstrap\Tables;
 
-use Cawa\App\Controller\Renderer\HtmlElement;
+use Cawa\Renderer\HtmlElement;
 use Cawa\Net\Uri;
 
 class Column extends \Cawa\Html\Tables\Column
