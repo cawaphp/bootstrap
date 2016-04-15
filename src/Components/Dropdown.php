@@ -39,8 +39,6 @@ class Dropdown extends ViewController
         $this->ul = new HtmlContainer('<ul>');
         $this->ul->addClass('dropdown-menu');
         $this->container->add($this->ul);
-
-        parent::__construct();
     }
 
     /**
