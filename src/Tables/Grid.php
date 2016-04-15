@@ -13,7 +13,7 @@ declare (strict_types=1);
 
 namespace Cawa\Bootstrap\Tables;
 
-use Cawa\App\App;
+use Cawa\App\HttpApp;
 use Cawa\Intl\TranslatorFactory;
 use Cawa\Renderer\HtmlContainer;
 use Cawa\Bootstrap\Components\Dropdown;
@@ -52,9 +52,9 @@ class Grid extends HtmlContainer
             }
 
             if ($arg) {
-                return App::request()->getUri()->addQuery($query, (string) $arg)->get();
+                return HttpApp::request()->getUri()->addQuery($query, (string) $arg)->get();
             } else {
-                return App::request()->getUri()->getQuery($query);
+                return HttpApp::request()->getUri()->getQuery($query);
             }
         };
 
@@ -74,7 +74,7 @@ class Grid extends HtmlContainer
         // refresh
         $this->options->add(Link::create(
             '<i class="glyphicon glyphicon-refresh"></i> ' . $this->translator()->trans('bootstrap.grid/refresh'),
-            App::request()->getUri()->get()
+            HttpApp::request()->getUri()->get()
         ));
 
         $this->options->add($this->getRowsPerPageDropdown());
@@ -259,7 +259,7 @@ class Grid extends HtmlContainer
     {
         $var = ($this->stateId ? $this->stateId . '_'  : '') . $name;
 
-        return App::request()->getQuery($var, $type, $default);
+        return HttpApp::request()->getQuery($var, $type, $default);
     }
 
     /**
@@ -339,7 +339,7 @@ class Grid extends HtmlContainer
         if (!$this->filtersForm) {
             $this->filtersForm = new Form();
             $this->filtersForm->setMethod('GET')
-                ->setAction(App::request()->getUri()->get());
+                ->setAction(HttpApp::request()->getUri()->get());
 
             $this->navbar->add($this->filtersForm);
         }
