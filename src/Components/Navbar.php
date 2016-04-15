@@ -16,16 +16,16 @@ namespace Cawa\Bootstrap\Components;
 use Cawa\Intl\TranslatorFactory;
 use Cawa\Renderer\Container;
 use Cawa\Renderer\HtmlElement;
-use Cawa\Renderer\Phtml;
-use Cawa\Controller\ViewData;
+use Cawa\Renderer\PhtmlTrait;
+use Cawa\Controller\ViewDataTrait;
 use Cawa\Bootstrap\Forms\Form;
 
 class Navbar extends HtmlElement
 {
     use TranslatorFactory;
-    use ViewData;
-    use Phtml {
-        Phtml::render as private phtmlRender;
+    use ViewDataTrait;
+    use PhtmlTrait {
+        PhtmlTrait::render as private phtmlRender;
     }
 
     /**
