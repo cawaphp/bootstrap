@@ -13,7 +13,7 @@ declare (strict_types=1);
 
 namespace Cawa\Bootstrap\Tables;
 
-use Cawa\App\HttpApp;
+use Cawa\App\HttpFactory;
 use Cawa\Intl\TranslatorFactory;
 use Cawa\Renderer\HtmlContainer;
 use Cawa\Bootstrap\Components\Dropdown;
@@ -28,6 +28,7 @@ use DeepCopy\DeepCopy;
 
 class Grid extends HtmlContainer
 {
+    use HttpFactory;
     use TranslatorFactory;
 
     const QUERY_PAGESIZE = 'size';
@@ -52,9 +53,9 @@ class Grid extends HtmlContainer
             }
 
             if ($arg) {
-                return HttpApp::request()->getUri()->addQuery($query, (string) $arg)->get();
+                return $this->request()->getUri()->addQuery($query, (string) $arg)->get();
             } else {
-                return HttpApp::request()->getUri()->getQuery($query);
+                return $this->request()->getUri()->getQuery($query);
             }
         };
 
@@ -74,7 +75,7 @@ class Grid extends HtmlContainer
         // refresh
         $this->options->add(Link::create(
             '<i class="glyphicon glyphicon-refresh"></i> ' . $this->translator()->trans('bootstrap.grid/refresh'),
-            HttpApp::request()->getUri()->get()
+            $this->request()->getUri()->get()
         ));
 
         $this->options->add($this->getRowsPerPageDropdown());
@@ -259,7 +260,7 @@ class Grid extends HtmlContainer
     {
         $var = ($this->stateId ? $this->stateId . '_'  : '') . $name;
 
-        return HttpApp::request()->getQuery($var, $type, $default);
+        return $this->request()->getQuery($var, $type, $default);
     }
 
     /**
@@ -339,7 +340,7 @@ class Grid extends HtmlContainer
         if (!$this->filtersForm) {
             $this->filtersForm = new Form();
             $this->filtersForm->setMethod('GET')
-                ->setAction(HttpApp::request()->getUri()->get());
+                ->setAction($this->request()->getUri()->get());
 
             $this->navbar->add($this->filtersForm);
         }
