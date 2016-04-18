@@ -13,8 +13,8 @@ declare (strict_types=1);
 
 namespace Cawa\Bootstrap\Tables;
 
-use Cawa\Renderer\HtmlElement;
 use Cawa\Net\Uri;
+use Cawa\Renderer\HtmlElement;
 
 class Column extends \Cawa\Html\Tables\Column
 {

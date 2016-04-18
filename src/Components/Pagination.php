@@ -13,9 +13,9 @@ declare (strict_types=1);
 
 namespace Cawa\Bootstrap\Components;
 
+use Cawa\Net\Uri;
 use Cawa\Renderer\HtmlContainer;
 use Cawa\Renderer\HtmlElement;
-use Cawa\Net\Uri;
 
 class Pagination extends HtmlElement
 {

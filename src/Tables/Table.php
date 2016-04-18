@@ -13,8 +13,8 @@ declare (strict_types=1);
 
 namespace Cawa\Bootstrap\Tables;
 
-use Cawa\Renderer\HtmlElement;
 use Cawa\Controller\ViewController;
+use Cawa\Renderer\HtmlElement;
 
 class Table extends \Cawa\Html\Tables\Table
 {

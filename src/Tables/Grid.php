@@ -14,8 +14,6 @@ declare (strict_types=1);
 namespace Cawa\Bootstrap\Tables;
 
 use Cawa\App\HttpFactory;
-use Cawa\Intl\TranslatorFactory;
-use Cawa\Renderer\HtmlContainer;
 use Cawa\Bootstrap\Components\Dropdown;
 use Cawa\Bootstrap\Components\Navbar;
 use Cawa\Bootstrap\Components\Pagination;
@@ -23,7 +21,9 @@ use Cawa\Bootstrap\Forms\Fields\Submit;
 use Cawa\Bootstrap\Forms\Form;
 use Cawa\Html\Forms\Fields\AbstractField;
 use Cawa\Html\Link;
+use Cawa\Intl\TranslatorFactory;
 use Cawa\Net\Uri;
+use Cawa\Renderer\HtmlContainer;
 use DeepCopy\DeepCopy;
 
 class Grid extends HtmlContainer

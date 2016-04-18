@@ -13,9 +13,9 @@ declare (strict_types=1);
 
 namespace Cawa\Bootstrap\Components;
 
+use Cawa\Controller\ViewController;
 use Cawa\Renderer\HtmlContainer;
 use Cawa\Renderer\HtmlElement;
-use Cawa\Controller\ViewController;
 
 class Dropdown extends ViewController
 {

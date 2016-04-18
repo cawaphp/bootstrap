@@ -13,11 +13,11 @@ declare (strict_types = 1);
 
 namespace Cawa\Bootstrap\Forms\Fields;
 
+use Cawa\Bootstrap\Forms\BootstrapPropertiesTrait;
+use Cawa\Bootstrap\Forms\LabelIcon;
+use Cawa\Html\Forms\Fields\AbstractField;
 use Cawa\Renderer\HtmlContainer;
 use Cawa\Renderer\HtmlElement;
-use Cawa\Bootstrap\Forms\LabelIcon;
-use Cawa\Bootstrap\Forms\BootstrapPropertiesTrait;
-use Cawa\Html\Forms\Fields\AbstractField;
 
 /**
  * @mixin AbstractField

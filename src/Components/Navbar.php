@@ -13,12 +13,12 @@ declare (strict_types=1);
 
 namespace Cawa\Bootstrap\Components;
 
+use Cawa\Bootstrap\Forms\Form;
+use Cawa\Controller\ViewDataTrait;
 use Cawa\Intl\TranslatorFactory;
 use Cawa\Renderer\Container;
 use Cawa\Renderer\HtmlElement;
 use Cawa\Renderer\PhtmlTrait;
-use Cawa\Controller\ViewDataTrait;
-use Cawa\Bootstrap\Forms\Form;
 
 class Navbar extends HtmlElement
 {
