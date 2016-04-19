@@ -62,7 +62,12 @@ $.widget("cawa.form", $.cawa.widget, {
         element.validate(this.options.plugins);
         this.validator = this.element.data('validator');
 
-        element.find(":input:enabled:visible:first").first().focus();
+        var first = element.find(":input:enabled:visible:first").first();
+        var type = first.attr("data-type") ? first.attr("data-type") : first.attr("type");
+
+        if (type != "time" && type != "date" && type != "datetime-local") {
+            first.focus();
+        }
     },
 
 
