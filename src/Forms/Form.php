@@ -108,13 +108,67 @@ class Form extends \Cawa\Html\Forms\Form
         $deepcopy = new DeepCopy();
         $clone = $deepcopy->copy($this);
 
+        $clone->alterBeforeRender();
+
         return $clone->renderClone();
+    }
+
+    /**
+     * @return string
+     */
+    private function renderClone()
+    {
+        return parent::render();
+    }
+
+    /**
+     * @return array
+     */
+    public function renderOuter() : array
+    {
+        /* @var \Cawa\Bootstrap\Forms\Form $clone */
+        $deepcopy = new DeepCopy();
+        $clone = $deepcopy->copy($this);
+
+        $clone->alterBeforeRender();
+
+        return $clone->renderOuterClone();
+    }
+
+    /**
+     * @return array
+     */
+    private function renderOuterClone() : array
+    {
+        return parent::renderOuter();
     }
 
     /**
      * {@inheritdoc}
      */
-    public function renderClone()
+    public function export() : array
+    {
+        /* @var \Cawa\Bootstrap\Forms\Form $clone */
+        $deepcopy = new DeepCopy();
+        $clone = $deepcopy->copy($this);
+
+        $clone->alterBeforeRender();
+
+        return $clone->exportClone();
+    }
+
+    /**
+     * @return array
+     */
+    private function exportClone() : array
+    {
+        return parent::export();
+    }
+
+    /**
+     *
+     */
+    private function alterBeforeRender()
     {
         // append all querystring
         if ($this->getMethod() == 'GET') {
@@ -154,8 +208,6 @@ class Form extends \Cawa\Html\Forms\Form
                     }
                 }
         }
-
-        return parent::render();
     }
 
     /**
