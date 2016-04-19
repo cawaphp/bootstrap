@@ -24,7 +24,7 @@ class Button extends HtmlElement
     const SIZE_SMALL = 'btn-sm';
     const SIZE_XSMALL = 'btn-xs';
 
-    const default = 'btn-default';
+    const DEFAULT = 'btn-default';
     const PRIMARY = 'btn-primary';
     const SUCCESS = 'btn-success';
     const INFO = 'btn-info';
@@ -39,7 +39,7 @@ class Button extends HtmlElement
      */
     public function __construct(
         string $content,
-        string $type = self::default,
+        string $type = self::DEFAULT,
         string $size = null,
         string $tag = self::TAG_BUTTON
     ) {
