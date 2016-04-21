@@ -24,12 +24,12 @@ class Button extends HtmlElement
     const SIZE_SMALL = 'btn-sm';
     const SIZE_XSMALL = 'btn-xs';
 
-    const DEFAULT = 'btn-default';
-    const PRIMARY = 'btn-primary';
-    const SUCCESS = 'btn-success';
-    const INFO = 'btn-info';
-    const WARNING = 'btn-warning';
-    const DANGER = 'btn-danger';
+    const TYPE_DEFAULT = 'btn-default';
+    const TYPE_PRIMARY = 'btn-primary';
+    const TYPE_SUCCESS = 'btn-success';
+    const TYPE_INFO = 'btn-info';
+    const TYPE_WARNING = 'btn-warning';
+    const TYPE_DANGER = 'btn-danger';
 
     /**
      * @param string $content
@@ -39,11 +39,10 @@ class Button extends HtmlElement
      */
     public function __construct(
         string $content,
-        string $type = self::DEFAULT,
+        string $type = self::TYPE_DEFAULT,
         string $size = null,
         string $tag = self::TAG_BUTTON
-    )
-    {
+    ) {
         parent::__construct($tag, $content);
 
         $this->addClass(['btn', $type]);
