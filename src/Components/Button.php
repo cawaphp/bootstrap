@@ -42,7 +42,8 @@ class Button extends HtmlElement
         string $type = self::DEFAULT,
         string $size = null,
         string $tag = self::TAG_BUTTON
-    ) {
+    )
+    {
         parent::__construct($tag, $content);
 
         $this->addClass(['btn', $type]);
@@ -69,7 +70,7 @@ class Button extends HtmlElement
      *
      * @return $this
      */
-    public function setActive(bool $active = true)
+    public function setActive(bool $active = true) : self
     {
         if ($active) {
             $this->addClass('active');
@@ -97,7 +98,7 @@ class Button extends HtmlElement
      *
      * @return $this
      */
-    public function setDisabled(bool $disabled = true)
+    public function setDisabled(bool $disabled = true) : self
     {
         if ($this->getTag() == self::TAG_A) {
             if ($disabled) {
@@ -129,7 +130,7 @@ class Button extends HtmlElement
      *
      * @return $this
      */
-    public function setBlock(bool $block = true)
+    public function setBlock(bool $block = true) : self
     {
         if ($block) {
             $this->addClass('btn-block');
