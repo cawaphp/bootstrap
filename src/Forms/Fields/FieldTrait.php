@@ -148,7 +148,6 @@ trait FieldTrait
             $this->setHelpText($helpWrapper);
         }
 
-        /* @noinspection Php[...]Inspection */
         $render = parent::render();
 
         // restore default value
