@@ -32,7 +32,7 @@ $.widget("cawa.grid", $.cawa.widget, {
             .find("a[data-main-action='true']");
 
         if (link.attr("href")) {
-            $.goto(link.attr("href"))
+            link.trigger("click");
         }
     }
 });

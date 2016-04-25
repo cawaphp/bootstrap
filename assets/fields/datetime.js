@@ -5,7 +5,7 @@ var _ = require("lodash");
 $.widget("cawa.fields-datetime", $.cawa.widget, {
 
     options: {
-        plugins: {
+        plugin: {
             locale: moment.locale(),
             // stepping: 15,
             showTodayButton: true,
@@ -28,24 +28,24 @@ $.widget("cawa.fields-datetime", $.cawa.widget, {
 
         // input type date, reduce picker format to date
         if (this.element.attr("type") == "date") {
-            this.options.plugins.format = moment().localeData().longDateFormat('L');
+            this.options.plugin.format = moment().localeData().longDateFormat('L');
 
             type = "date";
         } else if (this.element.attr("type") == "time") {
-            this.options.plugins.format = moment().localeData().longDateFormat('LT');
-            this.options.plugins.showTodayButton = false;
+            this.options.plugin.format = moment().localeData().longDateFormat('LT');
+            this.options.plugin.showTodayButton = false;
 
             type = "time";
         }
 
         // required
         if (!this.element.prop("required")) {
-            this.options.plugins.showClear = true;
+            this.options.plugin.showClear = true;
         }
 
 
         // default value
-        var datepickerOptions = $.extend(true, {}, this.options.plugins);
+        var datepickerOptions = $.extend(true, {}, this.options.plugin);
 
         if (this.element.attr("value")) {
             var defaultValue;
@@ -88,7 +88,7 @@ $.widget("cawa.fields-datetime", $.cawa.widget, {
         this.element.removeAttr("name");
         this.element.removeAttr("value");
 
-        /* Plugins */
+        /* plugin */
         this.element.datetimepicker(datepickerOptions);
     }
 });
