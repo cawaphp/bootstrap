@@ -25,10 +25,10 @@ class Image extends File
     public function __construct(string $name, string $label = null)
     {
         parent::__construct($name, $label);
-        $this->getField()->addClass("cawa-fields-image");
+        $this->getField()->addClass('cawa-fields-image');
 
-        $this->widgetOptions["plugin"]["allowedFileTypes"] = ["image"];
-        $this->widgetOptions["plugin"]["allowedPreviewTypes"] = ["image"];
+        $this->widgetOptions['plugin']['allowedFileTypes'] = ['image'];
+        $this->widgetOptions['plugin']['allowedPreviewTypes'] = ['image'];
     }
 
     /**
@@ -67,8 +67,8 @@ class Image extends File
      */
     public function setAllowedExtensions(array $extensions) : self
     {
-        $this->widgetOptions["plugin"]["allowedFileExtensions"] = $extensions;
-        unset($this->widgetOptions["plugin"]["allowedFileTypes"]);
+        $this->widgetOptions['plugin']['allowedFileExtensions'] = $extensions;
+        unset($this->widgetOptions['plugin']['allowedFileTypes']);
 
         return $this;
     }
@@ -84,19 +84,18 @@ class Image extends File
             $url = [$url];
         }
 
-        $this->widgetOptions["images"] = $url;
+        $this->widgetOptions['images'] = $url;
 
         return $this;
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function render()
     {
         if ($this->widgetOptions) {
-
-            $container = new HtmlContainer("<div>");
+            $container = new HtmlContainer('<div>');
             $container->add($this->getField());
             $container->add(new WidgetOption($this->widgetOptions));
             $this->setField($container);
@@ -104,5 +103,4 @@ class Image extends File
 
         return parent::render();
     }
-
 }
