@@ -73,59 +73,17 @@ $.widget("cawa.form", $.cawa.widget, {
 
     _submit: function (element)
     {
-        var self = this;
         element = $(element);
-        var uri = element.attr('action');
-        if (!uri) {
-            uri = document.location.href;
-        }
-
-        var method = element.attr('method');
-        if (!method) {
-            method = "POST";
-        }
+        var self = this;
 
         element.find(":submit").prop('disabled', 'disabled');
 
-        self._submitRequest(method, uri);
+        return $.proxy(self._submitRequest, self)();
     },
 
-    _submitRequest: function(method, uri)
+    _submitRequest: function()
     {
-        $.ajax({
-                url: uri,
-                type: method,
-                data: element.serialize(),
-                dataType: "json",
-                beforeSend: $.proxy(self._ajaxBeforeSend, self)
-            })
-            .done(self._ajaxDone)
-            .fail($.proxy(self._ajaxFail, self))
-            .always($.proxy(self._ajaxEnd, self));
-    },
-
-    _ajaxBeforeSend: function(xhr)
-    {
-        $(this.element).find("div.widgetalert").remove();
-    },
-
-    _ajaxDone: function (result, textStatus, xhr)
-    {
-        throw new Error("This widget must be override in order to handle success");
-    },
-
-    _ajaxFail: function (xhr, textStatus, errorThrown)
-    {
-        var alert = $('<div class="widgetalert alert alert-danger" role="alert"></div>');
-        alert.html(xhr.responseText);
-        $(this.element).prepend(alert);
-    },
-
-    _ajaxEnd: function ()
-    {
-        $(document).trigger("cw.refresh");
-
-        $(this.element).find(":submit").prop('disabled', false);
+        return true;
     },
 
     _highlightSuccess: function (element, errorClass, validClass)

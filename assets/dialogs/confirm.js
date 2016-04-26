@@ -10,6 +10,7 @@ $.widget("cawa.dialog-confirm", $.cawa.widget, {
             title: locale[$.locale()]['title'],
             message: locale[$.locale()]['message'],
             animate: false,
+            closable: true,
             type: BootstrapDialog.TYPE_WARNING
         }
     },
