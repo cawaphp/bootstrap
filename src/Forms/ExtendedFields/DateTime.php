@@ -24,4 +24,16 @@ class DateTime extends \Cawa\Bootstrap\Forms\Fields\DateTime
         $this->getField()->addClass('cawa-fields-datetime');
         $this->addClass('cawa-fields-datetime-group');
     }
+
+    /**
+     * @param string $selector
+     *
+     * @return $this
+     */
+    public function setLinkedTo(string $selector) : self
+    {
+        $this->getField()->addAttribute("data-linked", $selector);
+
+        return $this;
+    }
 }

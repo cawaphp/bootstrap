@@ -10,7 +10,7 @@ $.widget("cawa.fields-datetime", $.cawa.widget, {
             // stepping: 15,
             showTodayButton: true,
             showClose: true,
-            sideBySide: true
+            sideBySide: false
         }
     },
 
@@ -43,6 +43,10 @@ $.widget("cawa.fields-datetime", $.cawa.widget, {
             this.options.plugin.showClear = true;
         }
 
+        // linked
+        if (this.options.linked) {
+            this.options.plugin.useCurrent = false;
+        }
 
         // default value
         var datepickerOptions = $.extend(true, {}, this.options.plugin);
@@ -90,6 +94,21 @@ $.widget("cawa.fields-datetime", $.cawa.widget, {
 
         /* plugin */
         this.element.datetimepicker(datepickerOptions);
+
+        // linked events
+        if (this.options.linked) {
+
+            var min = $(this.options.linked);
+            var max = this.element;
+
+            min.on("dp.change", function (e) {
+                max.data("DateTimePicker").minDate(e.date);
+            });
+
+            max.on("dp.change", function (e) {
+                min.data("DateTimePicker").maxDate(e.date);
+            });
+        }
     }
 });
 
