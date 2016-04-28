@@ -213,7 +213,7 @@ class Form extends \Cawa\Html\Forms\Form
     /**
      * {@inheritdoc}
      */
-    protected function populateValue(AbstractField $element) : bool
+    protected function populateValue($element) : bool
     {
         $return = parent::populateValue($element);
         if (!$return && $this->isSubmit() && $element->isRequired()) {

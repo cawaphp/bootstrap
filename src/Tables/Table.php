@@ -91,23 +91,27 @@ class Table extends \Cawa\Html\Tables\Table
     /**
      * {@inheritdoc}
      */
-    public function add(ViewController $element)
+    public function add(ViewController $elements)
     {
-        /* @var $element Column */
-        $this->configureColumns($element);
+        foreach ($elements as $element) {
+            /* @var $element Column */
+            $this->configureColumns($element);
+        }
 
-        return parent::add($element);
+        return parent::add(...$elements);
     }
 
     /**
      * {@inheritdoc}
      */
-    public function addFirst(ViewController $element)
+    public function addFirst(ViewController ...$elements)
     {
-        /* @var $element Column */
-        $this->configureColumns($element);
+        foreach ($elements as $element) {
+            /* @var $element Column */
+            $this->configureColumns($element);
+        }
 
-        return parent::addFirst($element);
+        return parent::addFirst(...$elements);
     }
 
     /**

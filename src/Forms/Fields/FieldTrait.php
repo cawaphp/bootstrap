@@ -113,7 +113,6 @@ trait FieldTrait
     protected function wrap() : string
     {
         // field wrap
-        $field = $this->getField();
         $fieldWrapper = new HtmlContainer('<div>');
         $fieldWrapper->addClass('col-sm-' . (12 - $this->getGridSize()))
             ->add($this->getField());
@@ -138,7 +137,6 @@ trait FieldTrait
 
         // help wrap
         if ($this->helpText) {
-            $helpText = $this->helpText;
             $helpWrapper = new HtmlContainer('<div>');
             $helpWrapper
                 ->addClass(['col-sm-' . (12 - $this->getGridSize()), 'col-sm-offset-' . $this->getGridSize()])
@@ -148,20 +146,6 @@ trait FieldTrait
             $this->setHelpText($helpWrapper);
         }
 
-        $render = parent::render();
-
-        // restore default value
-
-        $this->setField($field);
-
-        if (isset($label)) {
-            $this->setLabel($label);
-        }
-
-        if (isset($helpText)) {
-            $this->setHelpText($helpText);
-        }
-
-        return $render;
+        return parent::render();
     }
 }
