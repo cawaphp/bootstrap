@@ -28,7 +28,8 @@ $.widget("cawa.form", $.cawa.widget, {
                 highlight: self._highlightError,
                 unhighlight: self._unhighlightError,
                 success: self._highlightSuccess,
-                errorPlacement: self._errorPlacement,
+                showErrors: $.proxy(self._showErrors, self),
+                errorPlacement: $.proxy(self._errorPlacement, self),
                 submitHandler: $.proxy(self._submit, self)
             }
         };
@@ -46,15 +47,15 @@ $.widget("cawa.form", $.cawa.widget, {
 
     _elementKeyUp: function (element, event)
     {
-        if (event.keyCode === 9 && this.validator.elementValue(element) === "")
-        {
-          return false;
+        if (event.keyCode === 9 && this.validator.elementValue(element) === "") {
+            return false;
         }
 
         $.validator.defaults.onkeyup.apply(this.validator, arguments);
     },
 
     validator : null,
+    isErrorInit : false,
 
     _create: function()
     {
@@ -129,14 +130,56 @@ $.widget("cawa.form", $.cawa.widget, {
         $("#" + element.id + "-error").remove();
     },
 
+    _showErrors: function (errorMap, errorList)
+    {
+        if (
+            (!this.element.hasClass('form-inline') && this.isErrorInit == false) ||
+            this.element.hasClass('form-inline')
+        ) {
+            this.validator.defaultShowErrors();
+        }
+        
+        if (this.element.hasClass('form-inline')) {
+            // popover for inline form
+            $.each(this.validator.successList, function (index, value)
+            {
+                return $(value).popover("hide");
+            });
+
+            return $.each(errorList, function (index, value)
+            {
+                var popover;
+                popover = $(value.element).popover({
+                    trigger: "manual",
+                    placement: "top",
+                    animation: false,
+                    content: value.message,
+                    template: "<div class=\"popover\">" +
+                        "<div class=\"arrow\"></div>" +
+                        "<div class=\"popover-inner\">" +
+                        "<div class=\"popover-content has-error\"><p></p></div>" +
+                        "</div></div>"
+                });
+                popover.data("bs.popover").options.content = value.message;
+
+                return $(value.element).popover("show");
+            });
+        }
+    },
+
     _errorPlacement: function (error, element)
     {
         var errorSpan = null;
 
-        if (element.parent('.input-group').length || element.prop('type') === 'checkbox' || element.prop('type') === 'radio') {
-            errorSpan = error.insertAfter(element.parent());
-        } else {
-            errorSpan = error.insertAfter(element);
+        if (!this.element.hasClass('form-inline')) {
+            if (element.parent('.input-group').length ||
+                element.prop('type') === 'checkbox' ||
+                element.prop('type') === 'radio'
+            ) {
+                errorSpan = error.insertAfter(element.parent());
+            } else {
+                errorSpan = error.insertAfter(element);
+            }
         }
     }
 });
