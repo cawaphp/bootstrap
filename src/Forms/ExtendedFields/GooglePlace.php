@@ -28,8 +28,10 @@ class GooglePlace extends Text
         parent::__construct($name . "[text]", $label);
         $this->getField()->addClass("cawa-fields-googleplace");
 
+        $this->widgetOption = new WidgetOption(["key" => DI::config()->get("googlemaps/apikey")]);
+
         $this
-            ->add(new WidgetOption(["key" => DI::config()->get("googlemaps/apikey")]))
+            ->add($this->widgetOption)
             ->add(Hidden::create($name . "[number]"))
             ->add(Hidden::create($name . "[street]"))
             ->add(Hidden::create($name . "[zipcode]"))
@@ -39,6 +41,22 @@ class GooglePlace extends Text
             ->add(Hidden::create($name . "[long]"))
 
         ;
+    }
 
+    /**
+     * @var WidgetOption
+     */
+    private $widgetOption;
+
+    /**
+     * @param bool $geolocate
+     *
+     * @return $this
+     */
+    public function setGeolocate(bool $geolocate) : self
+    {
+        $this->widgetOption->addData("geolocate", $geolocate);
+
+        return $this;
     }
 }

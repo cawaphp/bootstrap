@@ -5,6 +5,10 @@ var log = require("log").getLogger("Cawa Field Google Place");
 
 $.widget("cawa.fields-googleplace", $.cawa.widget, {
 
+    options: {
+        geolocate: false
+    },
+
     _forms : {
         street_number: ["number", 'short_name'],
         route: ["street", 'long_name'],
@@ -30,7 +34,9 @@ $.widget("cawa.fields-googleplace", $.cawa.widget, {
         GoogleMapsLoader.load(function(google) {
             self._google = google;
             self._initAutocomplete();
-            self.element.on("focus", $.proxy(self._geolocate, self));
+            if (self.options.geolocate) {
+                self.element.on("focus", $.proxy(self._geolocate, self));
+            }
         });
     },
 
@@ -128,6 +134,10 @@ $.widget("cawa.fields-googleplace", $.cawa.widget, {
                 });
 
                 self._autocomplete.setBounds(circle.getBounds());
+
+                self._getField("lat").val(geolocation.lat);
+                self._getField("long").val(geolocation.lng);
+                self._getField("text").val(locale[$.locale()]["myPosition"]);
             });
         }
     }

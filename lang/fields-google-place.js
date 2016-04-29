@@ -1,5 +1,6 @@
 module.exports = {
     "fr" : {
-        "invalid": "Veuillez fournir une adresse valide."
+        "invalid": "Veuillez fournir une adresse valide.",
+        "myPosition": "Ma position actuelle"
     }
 };
