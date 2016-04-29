@@ -16,10 +16,13 @@ namespace Cawa\Bootstrap\Forms;
 
 use Cawa\Bootstrap\Forms\Fields\FieldTrait;
 use Cawa\Html\Forms\Fields\AbstractField;
+use Cawa\Html\Forms\Fields\Hidden;
+use Cawa\Html\Forms\Fields\Submit;
 
 class Group extends \Cawa\Html\Forms\Group
 {
     use FieldTrait;
+
     /**
      * @inheritdoc
      */
@@ -30,13 +33,59 @@ class Group extends \Cawa\Html\Forms\Group
         $this->container->addClass("row");
     }
 
-    public function render()
+    /**
+     * @inheritdoc
+     */
+    protected function renderBootstrapProperties()
     {
-        /** @var AbstractField $element */
-        foreach ($this->container->elements as $element) {
-            $element->addClass("col-sm-" .  12 / sizeof($this->container->elements));
+        if ($this->size) {
+
+            /** @var AbstractField $element */
+            foreach ($this->container->elements as $element) {
+                if ($element instanceof Hidden) {
+                    continue;
+                }
+
+                if ($element instanceof Submit) {
+                    $element->addClass($this->size == Form::SIZE_LARGE ? "btn-lg" : "btn-sm");
+                } else {
+                    if ($this->horizontal) {
+                        $this->addClass($this->size == Form::SIZE_LARGE ? "form-group-lg" : "form-group-sm");
+                    } else {
+                        $element->getField()->addClass($this->size == Form::SIZE_LARGE ? "input-lg" : "input-sm");
+                    }
+                }
+            }
         }
 
-        return $this->renderWrap();
+        if ($this->getGridSize()) {
+            $render = $this->wrap();
+        } else {
+            $render = parent::render();
+        }
+
+        return $render;
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function render()
+    {
+        $count = 0;
+        /** @var AbstractField $element */
+        foreach ($this->container->elements as $element) {
+            if (!$element instanceof Hidden) {
+                $count ++;
+            }
+        }
+
+        if ($count > 1) {
+            foreach ($this->container->elements as $element) {
+                $element->addClass("col-sm-" . floor(12 / $count));
+            }
+        }
+
+        return $this->renderBootstrapProperties();
     }
 }

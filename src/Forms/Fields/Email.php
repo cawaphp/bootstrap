@@ -40,6 +40,6 @@ class Email extends \Cawa\Html\Forms\Fields\Email
      */
     public function render()
     {
-        return $this->renderWrap();
+        return $this->renderBootstrapProperties();
     }
 }

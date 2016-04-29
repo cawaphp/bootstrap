@@ -32,6 +32,6 @@ class Plain extends \Cawa\Html\Forms\Fields\Plain
      */
     public function render()
     {
-        return $this->renderWrap();
+        return $this->renderBootstrapProperties();
     }
 }

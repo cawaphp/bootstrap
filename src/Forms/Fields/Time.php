@@ -32,6 +32,6 @@ class Time extends \Cawa\Html\Forms\Fields\Time
      */
     public function render()
     {
-        return $this->renderWrap();
+        return $this->renderBootstrapProperties();
     }
 }

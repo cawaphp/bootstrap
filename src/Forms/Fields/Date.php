@@ -32,6 +32,6 @@ class Date extends \Cawa\Html\Forms\Fields\Date
      */
     public function render()
     {
-        return $this->renderWrap();
+        return $this->renderBootstrapProperties();
     }
 }

@@ -33,6 +33,6 @@ class Phone extends \Cawa\Html\Forms\Fields\Phone
      */
     public function render()
     {
-        return $this->renderWrap();
+        return $this->renderBootstrapProperties();
     }
 }

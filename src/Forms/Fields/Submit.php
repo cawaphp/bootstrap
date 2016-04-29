@@ -32,6 +32,6 @@ class Submit extends \Cawa\Html\Forms\Fields\Submit
      */
     public function render()
     {
-        return $this->renderWrap();
+        return $this->renderBootstrapProperties();
     }
 }

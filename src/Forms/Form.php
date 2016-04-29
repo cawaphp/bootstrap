@@ -38,6 +38,12 @@ class Form extends \Cawa\Html\Forms\Form
     const TYPE_INLINE = 'INLINE';
 
     /**
+     * @see http://getbootstrap.com/css/#forms-control-sizes
+     */
+    const SIZE_SMALL = "SMALL";
+    const SIZE_LARGE = "LARGE";
+
+    /**
      * @var string
      */
     private $type = self::TYPE_BASIC;
@@ -186,6 +192,15 @@ class Form extends \Cawa\Html\Forms\Form
             }
         }
 
+        // size
+        if ($this->size) {
+            foreach ($this->elements as $i => $element) {
+                if (method_exists($element, 'setSize')) {
+                    $element->setSize($this->size);
+                }
+            }
+        }
+
         // transform child
         switch ($this->type) {
             case self::TYPE_INLINE:
@@ -205,6 +220,10 @@ class Form extends \Cawa\Html\Forms\Form
                 foreach ($this->elements as $i => $element) {
                     if (method_exists($element, 'setGridSize')) {
                         $element->setGridSize($this->getGridSize());
+                    }
+
+                    if (method_exists($element, 'setHorizontal')) {
+                        $element->setHorizontal(true);
                     }
                 }
         }

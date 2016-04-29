@@ -32,6 +32,6 @@ class Textarea extends \Cawa\Html\Forms\Fields\Textarea
      */
     public function render()
     {
-        return $this->renderWrap();
+        return $this->renderBootstrapProperties();
     }
 }

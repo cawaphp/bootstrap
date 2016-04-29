@@ -32,6 +32,6 @@ class File extends \Cawa\Html\Forms\Fields\File
      */
     public function render()
     {
-        return $this->renderWrap();
+        return $this->renderBootstrapProperties();
     }
 }

@@ -32,6 +32,6 @@ class DateTime extends \Cawa\Html\Forms\Fields\DateTime
      */
     public function render()
     {
-        return $this->renderWrap();
+        return $this->renderBootstrapProperties();
     }
 }

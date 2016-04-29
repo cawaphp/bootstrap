@@ -64,4 +64,55 @@ trait BootstrapPropertiesTrait
 
         return $this;
     }
+
+    /**
+     * @var bool
+     */
+    private $horizontal = false;
+
+    /**
+     * @return bool
+     */
+    public function getHorizontal() : bool
+    {
+        return $this->horizontal;
+    }
+
+    /**
+     * @param bool $horizontal
+     *
+     * @return $this
+     */
+    public function setHorizontal(bool $horizontal) : self
+    {
+        $this->horizontal = $horizontal;
+
+        return $this;
+    }
+    
+    /**
+     * @var string
+     */
+    private $size;
+
+    /**
+     * @return string
+     */
+    public function getSize()
+    {
+        return $this->size;
+    }
+    
+    /**
+     * @param string $size
+     *
+     * @return $this
+     */
+    public function setSize(string $size) : self
+    {
+        $this->size = $size;
+
+        return $this;
+    }
+
 }

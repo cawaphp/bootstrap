@@ -36,7 +36,7 @@ class Checkbox extends \Cawa\Html\Forms\Fields\Checkbox
                 ->removeClass('checkbox');
         }
 
-        $return = $this->renderWrap();
+        $return = $this->renderBootstrapProperties();
 
         if ($this->getInline()) {
             $this->getLabel()->removeClass('checkbox-inline')

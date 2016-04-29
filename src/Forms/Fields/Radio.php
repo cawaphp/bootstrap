@@ -36,7 +36,7 @@ class Radio extends \Cawa\Html\Forms\Fields\Radio
                 ->removeClass('radio');
         }
 
-        $return = $this->renderWrap();
+        $return = $this->renderBootstrapProperties();
 
         if ($this->getInline()) {
             $this->getLabel()->removeClass('radio-inline')

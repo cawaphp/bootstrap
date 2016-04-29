@@ -32,6 +32,6 @@ class Password extends \Cawa\Html\Forms\Fields\Password
      */
     public function render()
     {
-        return $this->renderWrap();
+        return $this->renderBootstrapProperties();
     }
 }

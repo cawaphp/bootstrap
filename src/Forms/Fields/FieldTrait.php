@@ -14,6 +14,7 @@ declare (strict_types = 1);
 namespace Cawa\Bootstrap\Forms\Fields;
 
 use Cawa\Bootstrap\Forms\BootstrapPropertiesTrait;
+use Cawa\Bootstrap\Forms\Form;
 use Cawa\Bootstrap\Forms\LabelIcon;
 use Cawa\Html\Forms\Fields\AbstractField;
 use Cawa\Renderer\HtmlContainer;
@@ -96,8 +97,18 @@ trait FieldTrait
     /**
      * @return string
      */
-    protected function renderWrap()
+    protected function renderBootstrapProperties()
     {
+        if ($this instanceof Submit && $this->size) {
+            $this->getField()->addClass($this->size == Form::SIZE_LARGE ? "btn-lg" : "btn-sm");
+        } else {
+            if ($this->horizontal && $this->size) {
+                $this->addClass($this->size == Form::SIZE_LARGE ? "form-group-lg" : "form-group-sm");
+            } else if ($this->size) {
+                $this->getField()->addClass($this->size == Form::SIZE_LARGE ? "input-lg" : "input-sm");
+            }
+        }
+
         if ($this->getGridSize()) {
             $render = $this->wrap();
         } else {

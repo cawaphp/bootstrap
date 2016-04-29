@@ -91,7 +91,7 @@ class Table extends \Cawa\Html\Tables\Table
     /**
      * {@inheritdoc}
      */
-    public function add(ViewController $elements)
+    public function add(ViewController ...$elements)
     {
         foreach ($elements as $element) {
             /* @var $element Column */

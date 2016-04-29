@@ -32,6 +32,6 @@ class Select extends \Cawa\Html\Forms\Fields\Select
      */
     public function render()
     {
-        return $this->renderWrap();
+        return $this->renderBootstrapProperties();
     }
 }

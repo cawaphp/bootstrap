@@ -32,6 +32,6 @@ class Text extends \Cawa\Html\Forms\Fields\Text
      */
     public function render()
     {
-        return $this->renderWrap();
+        return $this->renderBootstrapProperties();
     }
 }
