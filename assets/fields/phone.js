@@ -41,6 +41,7 @@ $.widget("cawa.fields-phone", $.cawa.widget, {
         });
 
         self._updateMask();
+        self._updateHidden();
     },
 
     _updateHidden: function()
