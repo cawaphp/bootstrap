@@ -107,6 +107,9 @@ class MultipleGroup extends Group
 
             $input = $this->container->first();
             if (is_array($value)) {
+                if (!$input instanceof Group) {
+                    throw new \InvalidArgumentException(sprintf("Unexpexted '%s' with array value", get_class($input)));
+                }
                 /* @var Group $input */
                 foreach ($value as $pos => $current) {
                     $input->getFields()[$pos]->setValue($current);
