@@ -62,12 +62,7 @@ trait FieldTrait
      */
     public function setHelpText($helpText) : self
     {
-        $index = null;
-        foreach ($this->elements as $i => $element) {
-            if ($element === $this->helpText) {
-                $index = $i;
-            }
-        }
+        $index = $this->getIndex($this->helpText);
 
         if (!$helpText instanceof HtmlElement) {
             $helpText = new HtmlElement('<span>', $helpText);
@@ -95,19 +90,31 @@ trait FieldTrait
     }
 
     /**
+     * @param AbstractField|FieldTrait $element
+     */
+    protected function applySize(AbstractField $element)
+    {
+        if (!$element->getSize()) {
+            return;
+        }
+
+        if ($this instanceof Submit) {
+            $this->getField()->addClass($element->getSize() == Form::SIZE_LARGE ? "btn-lg" : "btn-sm");
+        } else {
+            if ($this->horizontal) {
+                $this->addClass($element->getSize() == Form::SIZE_LARGE ? "form-group-lg" : "form-group-sm");
+            } else {
+                $this->getField()->addClass($element->getSize() == Form::SIZE_LARGE ? "input-lg" : "input-sm");
+            }
+        }
+    }
+
+    /**
      * @return string
      */
     protected function renderBootstrapProperties()
     {
-        if ($this instanceof Submit && $this->size) {
-            $this->getField()->addClass($this->size == Form::SIZE_LARGE ? "btn-lg" : "btn-sm");
-        } else {
-            if ($this->horizontal && $this->size) {
-                $this->addClass($this->size == Form::SIZE_LARGE ? "form-group-lg" : "form-group-sm");
-            } else if ($this->size) {
-                $this->getField()->addClass($this->size == Form::SIZE_LARGE ? "input-lg" : "input-sm");
-            }
-        }
+        $this->applySize($this);
 
         if ($this->getGridSize()) {
             $render = $this->wrap();

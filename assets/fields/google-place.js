@@ -137,7 +137,7 @@ $.widget("cawa.fields-googleplace", $.cawa.widget, {
 
                 self._getField("lat").val(geolocation.lat);
                 self._getField("long").val(geolocation.lng);
-                self._getField("text").val(locale[$.locale()]["myPosition"]);
+                self._getField("text").attr("placeholder", locale[$.locale()]["myPosition"]);
             });
         }
     }

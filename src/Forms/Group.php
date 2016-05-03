@@ -17,7 +17,6 @@ namespace Cawa\Bootstrap\Forms;
 use Cawa\Bootstrap\Forms\Fields\FieldTrait;
 use Cawa\Html\Forms\Fields\AbstractField;
 use Cawa\Html\Forms\Fields\Hidden;
-use Cawa\Html\Forms\Fields\Submit;
 
 class Group extends \Cawa\Html\Forms\Group
 {
@@ -34,43 +33,9 @@ class Group extends \Cawa\Html\Forms\Group
     }
 
     /**
-     * @inheritdoc
+     * @return void
      */
-    protected function renderBootstrapProperties()
-    {
-        if ($this->size) {
-
-            /** @var AbstractField $element */
-            foreach ($this->container->elements as $element) {
-                if ($element instanceof Hidden) {
-                    continue;
-                }
-
-                if ($element instanceof Submit) {
-                    $element->addClass($this->size == Form::SIZE_LARGE ? "btn-lg" : "btn-sm");
-                } else {
-                    if ($this->horizontal) {
-                        $this->addClass($this->size == Form::SIZE_LARGE ? "form-group-lg" : "form-group-sm");
-                    } else {
-                        $element->getField()->addClass($this->size == Form::SIZE_LARGE ? "input-lg" : "input-sm");
-                    }
-                }
-            }
-        }
-
-        if ($this->getGridSize()) {
-            $render = $this->wrap();
-        } else {
-            $render = parent::render();
-        }
-
-        return $render;
-    }
-
-    /**
-     * @inheritdoc
-     */
-    public function render()
+    protected function applyContainerSize()
     {
         $count = 0;
         /** @var AbstractField $element */
@@ -86,6 +51,41 @@ class Group extends \Cawa\Html\Forms\Group
             }
         }
 
+        if ($this->size) {
+            /** @var AbstractField $element */
+            foreach ($this->container->elements as $element) {
+                if ($element instanceof Hidden) {
+                    continue;
+                }
+
+                $this->applySize($element);
+            }
+        }
+    }
+
+    /**
+     * @inheritdoc
+     */
+    protected function renderBootstrapProperties()
+    {
+        $this->applyContainerSize();
+
+        if ($this->getGridSize()) {
+            $render = $this->wrap();
+        } else {
+            $render = parent::render();
+        }
+
+        return $render;
+    }
+
+
+
+    /**
+     * @inheritdoc
+     */
+    public function render()
+    {
         return $this->renderBootstrapProperties();
     }
 }
