@@ -13,6 +13,8 @@ declare (strict_types=1);
 
 namespace Cawa\Bootstrap\Forms\Fields;
 
+use Cawa\Renderer\HtmlElement;
+
 class Checkbox extends \Cawa\Html\Forms\Fields\Checkbox
 {
     use FieldTrait;
@@ -36,24 +38,19 @@ class Checkbox extends \Cawa\Html\Forms\Fields\Checkbox
                 ->removeClass('checkbox');
         }
 
-        $return = $this->renderBootstrapProperties();
-
-        if ($this->getInline()) {
-            $this->getLabel()->removeClass('checkbox-inline')
-                ->addClass('checkbox');
-        }
-
-        return $return;
+        return $this->renderBootstrapProperties();
     }
 
     /**
-     * @return string
+     * @inheritdoc
      */
     protected function wrap()
     {
-        $this->addClass('col-sm-offset-' . $this->getGridSize());
-        $render = parent::render();
-
-        return $render;
+        return HtmlElement::create('<div>',
+            HtmlElement::create('<div>', parent::render())
+                ->addClass('col-sm-' . (12-$this->getGridSize()) . ' col-sm-offset-' . $this->getGridSize())
+                ->render()
+        )->addClass("form-group")
+            ->render();
     }
 }

@@ -13,6 +13,8 @@ declare (strict_types=1);
 
 namespace Cawa\Bootstrap\Forms\Fields;
 
+use Cawa\Renderer\HtmlElement;
+
 class Radio extends \Cawa\Html\Forms\Fields\Radio
 {
     use FieldTrait;
@@ -36,21 +38,19 @@ class Radio extends \Cawa\Html\Forms\Fields\Radio
                 ->removeClass('radio');
         }
 
-        $return = $this->renderBootstrapProperties();
-
-        if ($this->getInline()) {
-            $this->getLabel()->removeClass('radio-inline')
-                ->addClass('radio');
-        }
-
-        return $return;
+        return $this->renderBootstrapProperties();
     }
 
+    /**
+     * @inheritdoc
+     */
     protected function wrap()
     {
-        $this->addClass('col-sm-offset-' . $this->getGridSize());
-        $render = parent::render();
-
-        return $render;
+        return HtmlElement::create('<div>',
+            HtmlElement::create('<div>', parent::render())
+                ->addClass('col-sm-' . (12-$this->getGridSize()) . ' col-sm-offset-' . $this->getGridSize())
+                ->render()
+        )->addClass("form-group")
+            ->render();
     }
 }
