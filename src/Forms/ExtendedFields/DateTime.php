@@ -32,7 +32,7 @@ class DateTime extends \Cawa\Bootstrap\Forms\Fields\DateTime
      */
     public function setLinkedTo(string $selector) : self
     {
-        $this->getField()->addAttribute("data-linked", $selector);
+        $this->getField()->addAttribute('data-linked', $selector);
 
         return $this;
     }

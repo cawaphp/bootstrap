@@ -13,7 +13,6 @@ declare (strict_types=1);
 
 namespace Cawa\Bootstrap\Forms;
 
-use Cawa\Html\Forms\Fields\AbstractField;
 use Cawa\Html\Forms\Fields\Hidden;
 use Cawa\Net\Uri;
 use DeepCopy\DeepCopy;
@@ -40,8 +39,8 @@ class Form extends \Cawa\Html\Forms\Form
     /**
      * @see http://getbootstrap.com/css/#forms-control-sizes
      */
-    const SIZE_SMALL = "SMALL";
-    const SIZE_LARGE = "LARGE";
+    const SIZE_SMALL = 'SMALL';
+    const SIZE_LARGE = 'LARGE';
 
     /**
      * @var string

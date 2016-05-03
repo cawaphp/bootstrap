@@ -89,7 +89,7 @@ trait BootstrapPropertiesTrait
 
         return $this;
     }
-    
+
     /**
      * @var string
      */
@@ -102,7 +102,7 @@ trait BootstrapPropertiesTrait
     {
         return $this->size;
     }
-    
+
     /**
      * @param string $size
      *
@@ -114,5 +114,4 @@ trait BootstrapPropertiesTrait
 
         return $this;
     }
-
 }

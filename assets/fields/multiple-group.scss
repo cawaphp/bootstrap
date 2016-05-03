@@ -1,0 +1,22 @@
+.cawa-fields-multiple-group {
+
+    .form-group {
+        margin-bottom: 0;
+    }
+
+    .input-group {
+        margin-bottom: $form-group-margin-bottom;
+    }
+
+    .input-group:last-child {
+        margin-bottom: 0;
+    }
+
+    .input-group-btn {
+        padding-left: $grid-gutter-width;
+
+        button {
+            height: $input-height-base;
+        }
+    }
+}

@@ -13,7 +13,6 @@ declare (strict_types=1);
 
 namespace Cawa\Bootstrap\Forms;
 
-
 use Cawa\Bootstrap\Forms\Fields\FieldTrait;
 use Cawa\Html\Forms\Fields\AbstractField;
 use Cawa\Html\Forms\Fields\Hidden;
@@ -23,13 +22,13 @@ class Group extends \Cawa\Html\Forms\Group
     use FieldTrait;
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function __construct(string $label = null)
     {
         parent::__construct($label);
         $this->addClass('form-group');
-        $this->container->addClass("row");
+        $this->container->addClass('row');
     }
 
     /**
@@ -47,7 +46,7 @@ class Group extends \Cawa\Html\Forms\Group
 
         if ($count > 1) {
             foreach ($this->container->elements as $element) {
-                $element->addClass("col-sm-" . floor(12 / $count));
+                $element->addClass('col-sm-' . floor(12 / $count));
             }
         }
 
@@ -64,7 +63,7 @@ class Group extends \Cawa\Html\Forms\Group
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     protected function renderBootstrapProperties()
     {
@@ -79,10 +78,8 @@ class Group extends \Cawa\Html\Forms\Group
         return $render;
     }
 
-
-
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function render()
     {

@@ -13,9 +13,9 @@ declare (strict_types=1);
 
 namespace Cawa\Bootstrap\Forms\ExtendedFields;
 
+use Cawa\Bootstrap\Forms\Fields\Text;
 use Cawa\Core\DI;
 use Cawa\Html\Forms\Fields\Hidden;
-use Cawa\Bootstrap\Forms\Fields\Text;
 use Cawa\Renderer\WidgetOption;
 
 class GooglePlace extends Text
@@ -25,20 +25,20 @@ class GooglePlace extends Text
      */
     public function __construct(string $name, string $label = null)
     {
-        parent::__construct($name . "[text]", $label);
-        $this->getField()->addClass("cawa-fields-googleplace");
+        parent::__construct($name . '[text]', $label);
+        $this->getField()->addClass('cawa-fields-googleplace');
 
-        $this->widgetOption = new WidgetOption(["key" => DI::config()->get("googlemaps/apikey")]);
+        $this->widgetOption = new WidgetOption(['key' => DI::config()->get('googlemaps/apikey')]);
 
         $this
             ->add($this->widgetOption)
-            ->add(Hidden::create($name . "[number]"))
-            ->add(Hidden::create($name . "[street]"))
-            ->add(Hidden::create($name . "[zipcode]"))
-            ->add(Hidden::create($name . "[state]"))
-            ->add(Hidden::create($name . "[country]"))
-            ->add(Hidden::create($name . "[lat]"))
-            ->add(Hidden::create($name . "[long]"))
+            ->add(Hidden::create($name . '[number]'))
+            ->add(Hidden::create($name . '[street]'))
+            ->add(Hidden::create($name . '[zipcode]'))
+            ->add(Hidden::create($name . '[state]'))
+            ->add(Hidden::create($name . '[country]'))
+            ->add(Hidden::create($name . '[lat]'))
+            ->add(Hidden::create($name . '[long]'))
 
         ;
     }
@@ -55,7 +55,7 @@ class GooglePlace extends Text
      */
     public function setGeolocate(bool $geolocate) : self
     {
-        $this->widgetOption->addData("geolocate", $geolocate);
+        $this->widgetOption->addData('geolocate', $geolocate);
 
         return $this;
     }

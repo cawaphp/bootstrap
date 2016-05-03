@@ -99,12 +99,12 @@ trait FieldTrait
         }
 
         if ($this instanceof Submit) {
-            $this->getField()->addClass($element->getSize() == Form::SIZE_LARGE ? "btn-lg" : "btn-sm");
+            $this->getField()->addClass($element->getSize() == Form::SIZE_LARGE ? 'btn-lg' : 'btn-sm');
         } else {
             if ($this->horizontal) {
-                $this->addClass($element->getSize() == Form::SIZE_LARGE ? "form-group-lg" : "form-group-sm");
+                $this->addClass($element->getSize() == Form::SIZE_LARGE ? 'form-group-lg' : 'form-group-sm');
             } else {
-                $this->getField()->addClass($element->getSize() == Form::SIZE_LARGE ? "input-lg" : "input-sm");
+                $this->getField()->addClass($element->getSize() == Form::SIZE_LARGE ? 'input-lg' : 'input-sm');
             }
         }
     }
