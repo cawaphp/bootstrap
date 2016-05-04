@@ -68,8 +68,9 @@ class Table extends \Cawa\Html\Tables\Table
 
             if ($column->isHideable()) {
                 $visible = call_user_func($this->argsCallback, self::QUERY_COLUMNS_VISIBLE);
-                if ($visible && !in_array($column->getId(), explode('|', $visible))) {
-                    $column->setVisible();
+
+                if ($visible) {
+                    $column->setVisible(in_array($column->getId(), explode('|', $visible)));
                 }
             }
         }

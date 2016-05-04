@@ -78,8 +78,6 @@ class Grid extends HtmlContainer
             $this->request()->getUri()->get()
         ));
 
-        $this->options->add($this->getRowsPerPageDropdown());
-
         $ul = new HtmlContainer('<ul>');
         $ul->add($this->options->toNavbar());
 
@@ -404,7 +402,7 @@ class Grid extends HtmlContainer
                             $key = preg_replace_callback('/(?:[-_])(.?)/', function ($match) {
                                 return strtoupper($match[1]);
                             }, $key);
-                            $primaries[$key] = $value;
+                            $primaries[$key] = (string)$value;
                         }
 
                         if ($rowAction->getUri()) {
@@ -422,6 +420,8 @@ class Grid extends HtmlContainer
 
         // add pagination
         if ($this->rowCount) {
+            $this->options->add($this->getRowsPerPageDropdown());
+
             $pagination = new Pagination((int) ceil($this->rowCount / $this->getPageSize()), $this->argsCallback);
             $this->navbar->add($pagination, false);
         }
