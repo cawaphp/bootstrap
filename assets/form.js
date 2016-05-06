@@ -138,7 +138,7 @@ $.widget("cawa.form", $.cawa.widget, {
         ) {
             this.validator.defaultShowErrors();
         }
-        
+
         if (this.element.hasClass('form-inline')) {
             // popover for inline form
             $.each(this.validator.successList, function (index, value)
@@ -177,6 +177,8 @@ $.widget("cawa.form", $.cawa.widget, {
                 element.prop('type') === 'radio'
             ) {
                 errorSpan = error.insertAfter(element.parent());
+            } else if (element.hasClass("cawa-fields-combo")){
+                errorSpan = error.insertAfter(element.parent().find("span.select2"));
             } else {
                 errorSpan = error.insertAfter(element);
             }
