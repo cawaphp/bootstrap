@@ -1,5 +1,15 @@
 var $ = require("jquery");
 
+
+/*
+if ($.fn.modal) {
+    console.log("sdfsd");
+    $.fn.modal.Constructor.prototype.enforceFocus = function () {};
+}
+*/
+
+
+
 $.widget("cawa.fields-combo", $.cawa.widget, {
 
     options: {
@@ -42,6 +52,16 @@ $.widget("cawa.fields-combo", $.cawa.widget, {
             if (!options.ajax.delay) {
                 options.ajax.delay = 250;
             }
+        }
+
+        /*
+         * @see http://stackoverflow.com/a/33884094/1590168
+         * @see https://github.com/select2/select2/issues/1645
+         * @see https://github.com/twbs/bootstrap/pull/12142
+         */
+        var bootstrapDialog = element.closest(".bootstrap-dialog");
+        if (bootstrapDialog.length) {
+            options.dropdownParent = bootstrapDialog;
         }
 
         element.select2(options);
