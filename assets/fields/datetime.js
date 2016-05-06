@@ -6,7 +6,7 @@ $.widget("cawa.fields-datetime", $.cawa.widget, {
 
     options: {
         plugin: {
-            locale: moment.locale(),
+            locale: $.locale(),
             // stepping: 15,
             showTodayButton: true,
             showClose: true,

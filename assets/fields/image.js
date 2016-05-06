@@ -4,7 +4,7 @@ $.widget("cawa.fields-image", $.cawa.widget, {
 
     options: {
         plugin: {
-            language: moment.locale()
+            language: $.locale()
         }
     },
 
