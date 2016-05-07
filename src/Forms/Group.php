@@ -14,12 +14,14 @@ declare (strict_types=1);
 namespace Cawa\Bootstrap\Forms;
 
 use Cawa\Bootstrap\Forms\Fields\FieldTrait;
-use Cawa\Html\Forms\Fields\AbstractField;
 use Cawa\Html\Forms\Fields\Hidden;
 
 class Group extends \Cawa\Html\Forms\Group
 {
-    use FieldTrait;
+    use FieldTrait {
+        FieldTrait::applyContainerSize as private applyContainerSizeTrait;
+        FieldTrait::setSize as private setSizeTrait;
+    }
 
     /**
      * {@inheritdoc}
@@ -32,34 +34,40 @@ class Group extends \Cawa\Html\Forms\Group
     }
 
     /**
-     * @return void
+     * * @inheritdoc
      */
-    protected function applyContainerSize()
+    public function setSize(string $size) : self
+    {
+        $this->setSizeTrait($size);
+
+        foreach ($this->container->elements as $element) {
+            if (method_exists($element, 'setSize')) {
+                $element->setSize($this->size);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @inheritdoc
+     */
+    protected function applyContainerSize(array $elements)
     {
         $count = 0;
-        /** @var AbstractField $element */
-        foreach ($this->container->elements as $element) {
+        foreach ($elements as $element) {
             if (!$element instanceof Hidden) {
                 $count ++;
             }
         }
 
         if ($count > 1) {
-            foreach ($this->container->elements as $element) {
+            foreach ($elements as $element) {
                 $element->addClass('col-sm-' . floor(12 / $count));
             }
         }
 
-        if ($this->size) {
-            /** @var AbstractField $element */
-            foreach ($this->container->elements as $element) {
-                if ($element instanceof Hidden) {
-                    continue;
-                }
-
-                $this->applySize($element);
-            }
-        }
+        $this->applyContainerSizeTrait($elements);
     }
 
     /**
@@ -67,7 +75,7 @@ class Group extends \Cawa\Html\Forms\Group
      */
     protected function renderBootstrapProperties()
     {
-        $this->applyContainerSize();
+        $this->applyContainerSize($this->container->elements);
 
         if ($this->getGridSize()) {
             $render = $this->wrap();

@@ -13,6 +13,10 @@ declare (strict_types=1);
 
 namespace Cawa\Bootstrap\Forms;
 
+use Cawa\Bootstrap\Forms\Fields\Submit;
+use Cawa\Html\Forms\Fields\AbstractField;
+use Cawa\Html\Forms\Fields\Hidden;
+
 trait BootstrapPropertiesTrait
 {
     /**
@@ -113,5 +117,42 @@ trait BootstrapPropertiesTrait
         $this->size = $size;
 
         return $this;
+    }
+
+    /**
+     * @param AbstractField[] $elements
+     */
+    protected function applyContainerSize(array $elements)
+    {
+        if ($this->size) {
+            /** @var AbstractField $element */
+            foreach ($elements as $element) {
+                if ($element instanceof Hidden) {
+                    continue;
+                }
+
+                $this->applySize($element);
+            }
+        }
+    }
+
+    /**
+     * @param AbstractField|BootstrapPropertiesTrait $element
+     */
+    protected function applySize($element)
+    {
+        if (!$element->getSize()) {
+            return;
+        }
+
+        if ($this instanceof Submit) {
+            $this->getField()->addClass($element->getSize() == Form::SIZE_LARGE ? 'btn-lg' : 'btn-sm');
+        } else {
+            if ($this->horizontal) {
+                $this->addClass($element->getSize() == Form::SIZE_LARGE ? 'form-group-lg' : 'form-group-sm');
+            } else {
+                $this->getField()->addClass($element->getSize() == Form::SIZE_LARGE ? 'input-lg' : 'input-sm');
+            }
+        }
     }
 }

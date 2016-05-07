@@ -170,7 +170,7 @@ class MultipleGroup extends Group
     private function addRow()
     {
         $this->row++;
-        $this->applyContainerSize();
+        $this->applyContainerSize($this->container->elements);
 
         $this->container = HtmlContainer::create('<div>')
             ->addClass('row');
