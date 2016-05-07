@@ -13,7 +13,6 @@ declare (strict_types=1);
 
 namespace Cawa\Bootstrap\Forms;
 
-
 class Fieldset extends \Cawa\Html\Forms\Fieldset
 {
     use BootstrapPropertiesTrait {
@@ -31,7 +30,7 @@ class Fieldset extends \Cawa\Html\Forms\Fieldset
     public function setGridSize(int $gridSize) : self
     {
         $this->setGridSizeTrait($gridSize);
-        $this->applyToElements("setGridSize", func_get_args());
+        $this->applyToElements('setGridSize', func_get_args());
 
         return $this;
     }
@@ -44,7 +43,7 @@ class Fieldset extends \Cawa\Html\Forms\Fieldset
     public function setInline(bool $inline) : self
     {
         $this->setInlineTrait($inline);
-        $this->applyToElements("setInline", func_get_args());
+        $this->applyToElements('setInline', func_get_args());
 
         return $this;
     }
@@ -57,20 +56,18 @@ class Fieldset extends \Cawa\Html\Forms\Fieldset
     public function setHorizontal(bool $horizontal) : self
     {
         $this->setHorizontalTrait($horizontal);
-        $this->applyToElements("setHorizontal", func_get_args());
-
+        $this->applyToElements('setHorizontal', func_get_args());
 
         return $this;
     }
 
-
     /**
-     * * @inheritdoc
+     * * {@inheritdoc}
      */
     public function setSize(string $size) : self
     {
         $this->setSizeTrait($size);
-        $this->applyToElements("setSize", func_get_args());
+        $this->applyToElements('setSize', func_get_args());
 
         return $this;
     }
@@ -79,14 +76,13 @@ class Fieldset extends \Cawa\Html\Forms\Fieldset
      * @param string $method
      * @param array $args
      */
-    private  function applyToElements(string $method, $args)
+    private function applyToElements(string $method, $args)
     {
         foreach ($this->elements as $element) {
             if (method_exists($element, $method)) {
                 call_user_func_array([$element, $method], $args);
             }
         }
-
     }
 
     /**
@@ -107,4 +103,3 @@ class Fieldset extends \Cawa\Html\Forms\Fieldset
         return $this->renderBootstrapProperties();
     }
 }
-

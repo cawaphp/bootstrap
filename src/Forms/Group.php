@@ -34,7 +34,7 @@ class Group extends \Cawa\Html\Forms\Group
     }
 
     /**
-     * * @inheritdoc
+     * * {@inheritdoc}
      */
     public function setSize(string $size) : self
     {
@@ -50,7 +50,7 @@ class Group extends \Cawa\Html\Forms\Group
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     protected function applyContainerSize(array $elements)
     {

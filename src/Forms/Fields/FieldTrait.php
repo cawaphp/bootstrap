@@ -89,8 +89,6 @@ trait FieldTrait
         return $this;
     }
 
-
-
     /**
      * @return string
      */

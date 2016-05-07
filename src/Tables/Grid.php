@@ -70,7 +70,9 @@ class Grid extends HtmlContainer
         $this->navbar->addClass('navbar-inverse');
         $this->add($this->navbar);
 
-        $this->options = new Dropdown('<i class="fa fa-adjust"></i> ' . $this->translator()->trans('bootstrap.grid/options'));
+        $this->options = new Dropdown(
+            '<i class="fa fa-adjust"></i> ' . $this->translator()->trans('bootstrap.grid/options')
+        );
 
         // refresh
         $this->options->add(Link::create(
@@ -119,7 +121,9 @@ class Grid extends HtmlContainer
 
         $rowsperpageLi = HtmlContainer::create('<li>')
             ->addClass('dropdown-submenu')
-            ->add(Link::create('<i class="glyphicon glyphicon-plus"></i>  ' . $this->translator()->trans('bootstrap.grid/perpage')))
+            ->add(Link::create(
+                '<i class="glyphicon glyphicon-plus"></i> ' .$this->translator()->trans('bootstrap.grid/perpage')
+            ))
             ->add($subMenu)
         ;
 
@@ -402,7 +406,7 @@ class Grid extends HtmlContainer
                             $key = preg_replace_callback('/(?:[-_])(.?)/', function ($match) {
                                 return strtoupper($match[1]);
                             }, $key);
-                            $primaries[$key] = (string)$value;
+                            $primaries[$key] = (string) $value;
                         }
 
                         if ($rowAction->getUri()) {

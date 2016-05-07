@@ -29,7 +29,6 @@ class Combo extends Select
         $this->getField()->addClass('cawa-fields-combo');
     }
 
-
     /**
      * @var WidgetOption
      */
@@ -42,7 +41,7 @@ class Combo extends Select
      */
     public function setPlaceholder(string $name = null) : parent
     {
-        $this->widgetOptions->addData("plugin", ["placeholder" => $name]);
+        $this->widgetOptions->addData('plugin', ['placeholder' => $name]);
 
         return parent::setPlaceholder($name);
     }
@@ -54,7 +53,7 @@ class Combo extends Select
      */
     public function setSearchBox(bool $searchBox = false) : self
     {
-        $this->widgetOptions->addData("searchBox", $searchBox);
+        $this->widgetOptions->addData('searchBox', $searchBox);
 
         return $this;
     }
@@ -66,7 +65,7 @@ class Combo extends Select
      */
     public function setMinimunFilterLength(int $length) : self
     {
-        $this->widgetOptions->addData("plugin", ["minimumInputLength" => $length]);
+        $this->widgetOptions->addData('plugin', ['minimumInputLength' => $length]);
 
         return $this;
     }
@@ -78,7 +77,7 @@ class Combo extends Select
      */
     public function setMaximumFilterLength(int $length) : self
     {
-        $this->widgetOptions->addData("plugin", ["maximumInputLength" => $length]);
+        $this->widgetOptions->addData('plugin', ['maximumInputLength' => $length]);
 
         return $this;
     }
@@ -90,7 +89,7 @@ class Combo extends Select
      */
     public function setRemoteUrl(string $url) : self
     {
-        $this->widgetOptions->addData("plugin", ["ajax" => ["url" => $url]]);
+        $this->widgetOptions->addData('plugin', ['ajax' => ['url' => $url]]);
 
         return $this;
     }
@@ -102,7 +101,7 @@ class Combo extends Select
      */
     public function setRemoteHtml(bool $html = true) : self
     {
-        $this->widgetOptions->addData("remoteHtml", $html);
+        $this->widgetOptions->addData('remoteHtml', $html);
 
         return $this;
     }
@@ -114,7 +113,7 @@ class Combo extends Select
      */
     public function setTagTyping(bool $tag = true) : self
     {
-        $this->widgetOptions->addData("plugin", ["tags" => $tag]);
+        $this->widgetOptions->addData('plugin', ['tags' => $tag]);
 
         return $this;
     }
@@ -125,11 +124,11 @@ class Combo extends Select
     public function render()
     {
         if ($this->isRequired() == false) {
-            $this->widgetOptions->addData("plugin", ["allowClear" => true]);
+            $this->widgetOptions->addData('plugin', ['allowClear' => true]);
         }
 
         if ($this->widgetOptions->count()) {
-            $container = new HtmlContainer("<div>");
+            $container = new HtmlContainer('<div>');
             $container->add($this->getField());
             $container->add($this->widgetOptions);
             $this->setField($container);
