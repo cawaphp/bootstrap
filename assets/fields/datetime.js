@@ -94,6 +94,7 @@ $.widget("cawa.fields-datetime", $.cawa.widget, {
 
         /* plugin */
         this.element.datetimepicker(datepickerOptions);
+        this.element.closest(".cawa-fields-datetime-group").addClass("init");
 
         // linked events
         if (this.options.linked) {

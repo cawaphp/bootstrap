@@ -1,3 +1,8 @@
 .cawa-fields-datetime-group {
     position: relative;
+    visibility: hidden;
+
+    &.init {
+        visibility: inherit;
+    }
 }
