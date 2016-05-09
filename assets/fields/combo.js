@@ -13,6 +13,7 @@ $.widget("cawa.fields-combo", $.cawa.widget, {
     },
 
     _select2: null,
+    _hasValue: false,
     _create: function() {
         var self = this;
         var element = this.element;
@@ -34,7 +35,8 @@ $.widget("cawa.fields-combo", $.cawa.widget, {
 
             $(document).on("keyup", ".select2-search__field", function(event)
             {
-                if (event.which == 13 && !element.val()) {
+                if (event.which == 13 && (!element.val() || self._hasValue)) {
+                    element.val(null).trigger('change');
                     self.options.noResultCreate.call(self, event, $(event.target).val());
                 }
             });
@@ -78,6 +80,11 @@ $.widget("cawa.fields-combo", $.cawa.widget, {
         }
 
         self._select2 = element.select2(options);
+        self._hasValue = element.val() !== "";
+        self._select2.on("change", function()
+        {
+            self._hasValue = true;
+        });
 
         // open menu on keypress
         $(self._select2).parent().find(".select2-selection").on("keydown", function(event)
