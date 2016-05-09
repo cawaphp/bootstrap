@@ -1,33 +1,46 @@
 var $ = require("jquery");
-
-
-/*
-if ($.fn.modal) {
-    console.log("sdfsd");
-    $.fn.modal.Constructor.prototype.enforceFocus = function () {};
-}
-*/
-
+var locale = require("../../lang/fields-combo");
 
 
 $.widget("cawa.fields-combo", $.cawa.widget, {
 
     options: {
         plugin: {
+            width: '100%',
             theme: "bootstrap",
             language: $.locale()
         }
     },
 
+    _select2: null,
     _create: function() {
         var self = this;
         var element = this.element;
         var options = self.options.plugin;
 
-        if (options.searchBox !== undefined && options.searchBox == false) {
+        // hide searchbox
+        if (self.options.searchBox !== undefined && self.options.searchBox == false) {
             options.minimumResultsForSearch = Infinity;
         }
 
+        // no result event
+        if (self.options.noResultCreate) {
+            options.language = {
+                noResults: function (term)
+                {
+                    return locale[$.locale()]["noResult"];
+                }
+            };
+
+            $(document).on("keyup", ".select2-search__field", function(event)
+            {
+                if (event.which == 13 && !element.val()) {
+                    self.options.noResultCreate.call(self, event, $(event.target).val());
+                }
+            });
+        }
+
+        // remote ajax data sources
         if (options.ajax) {
             options.ajax.dataType = 'json';
             options.ajax.data = $.proxy(self._processParam, self);
@@ -64,7 +77,16 @@ $.widget("cawa.fields-combo", $.cawa.widget, {
             options.dropdownParent = bootstrapDialog;
         }
 
-        element.select2(options);
+        self._select2 = element.select2(options);
+
+        // open menu on keypress
+        $(self._select2).parent().find(".select2-selection").on("keydown", function(event)
+        {
+            var input = String.fromCharCode(event.which || event.keyCode);
+            if (/[a-zA-Z0-9-_ ]/.test(input)) {
+                self.element.select2("open");
+            }
+        });
     },
 
     _processParam: function (params)

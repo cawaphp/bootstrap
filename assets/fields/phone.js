@@ -26,7 +26,7 @@ $.widget("cawa.fields-phone", $.cawa.widget, {
         var name = element.attr("name");
         self._inputHidden = $('<input />').attr('type', 'hidden').attr('name', name);
         self._inputHidden.insertBefore(this.element);
-        element.attr("name", false);
+        element.attr("name", "");
 
         element.attr("data-rule-phone", "true");
 
@@ -42,6 +42,18 @@ $.widget("cawa.fields-phone", $.cawa.widget, {
 
         self._updateMask();
         self._updateHidden();
+    },
+
+    setNumber : function(number)
+    {
+        var self = this;
+
+        if (number) {
+            var element = $(this.element);
+            element.intlTelInput("setNumber", number);
+            self._updateMask(self._country);
+            self._updateHidden();
+        }
     },
 
     _updateHidden: function()
