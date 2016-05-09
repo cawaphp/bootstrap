@@ -28,14 +28,6 @@ class Email extends \Cawa\Html\Forms\Fields\Email
     }
 
     /**
-     * @return bool
-     */
-    public function isValid() : bool
-    {
-        return filter_var($this->getValue(), FILTER_VALIDATE_EMAIL) !== false;
-    }
-
-    /**
      * {@inheritdoc}
      */
     public function render()
