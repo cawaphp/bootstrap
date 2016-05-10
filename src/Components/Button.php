@@ -17,9 +17,6 @@ use Cawa\Renderer\HtmlElement;
 
 class Button extends HtmlElement
 {
-    const TAG_BUTTON = '<button>';
-    const TAG_A = '<a>';
-
     const SIZE_LARGE = 'btn-lg';
     const SIZE_SMALL = 'btn-sm';
     const SIZE_XSMALL = 'btn-xs';
@@ -35,21 +32,18 @@ class Button extends HtmlElement
      * @param string $content
      * @param string $type
      * @param string $size
-     * @param string $tag
      */
     public function __construct(
         string $content,
         string $type = self::TYPE_DEFAULT,
-        string $size = null,
-        string $tag = self::TAG_BUTTON
+        string $size = null
     ) {
-        parent::__construct($tag, $content);
+        if (!$this->tag) {
+            $this->tag = '<button>';
+        }
+        parent::__construct(null, $content);
 
         $this->addClass(['btn', $type]);
-
-        if ($tag == self::TAG_A) {
-            $this->addAttribute('role', 'button');
-        }
 
         if ($size) {
             $this->addClass($size);

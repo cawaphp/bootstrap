@@ -27,7 +27,7 @@ class Dropdown extends ViewController
         $this->container = new HtmlContainer('<div>');
         $this->container->addClass('dropdown');
 
-        $this->button = new Button($title);
+        $this->button = new ButtonLink($title);
         $this->button->addClass('dropdown-toggle');
         $this->button->addAttributes([
             'data-toggle' => 'dropdown',
@@ -107,7 +107,6 @@ class Dropdown extends ViewController
     public function toNavbar() : self
     {
         $this->container->setTag('<li>');
-        $this->button->setTag(Button::TAG_A);
 
         return $this;
     }
