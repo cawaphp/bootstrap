@@ -122,7 +122,7 @@ class Grid extends HtmlContainer
         $rowsperpageLi = HtmlContainer::create('<li>')
             ->addClass('dropdown-submenu')
             ->add(Link::create(
-                '<i class="glyphicon glyphicon-plus"></i> ' .$this->translator()->trans('bootstrap.grid/perpage')
+                '<i class="glyphicon glyphicon-plus"></i> ' . $this->translator()->trans('bootstrap.grid/perpage')
             ))
             ->add($subMenu)
         ;
