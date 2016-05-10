@@ -1,5 +1,5 @@
 var $ = require("jquery");
-var locale = require("../../lang/fields-google-place");
+var locale = require("../../../lang/fields-google-place");
 var GoogleMapsLoader = require('google-maps');
 var log = require("log").getLogger("Cawa Field Google Place");
 

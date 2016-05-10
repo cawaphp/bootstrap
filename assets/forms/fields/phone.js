@@ -1,5 +1,5 @@
 var $ = require("jquery");
-var locale = require("../../lang/fields-phone");
+var locale = require("../../../lang/fields-phone");
 var _ = require('lodash');
 
 $.widget("cawa.fields-phone", $.cawa.widget, {

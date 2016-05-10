@@ -1,5 +1,5 @@
 var $ = require("jquery");
-var locale = require("../../lang/fields-combo");
+var locale = require("../../../lang/fields-combo");
 
 
 $.widget("cawa.fields-combo", $.cawa.widget, {
