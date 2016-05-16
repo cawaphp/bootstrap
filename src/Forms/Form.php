@@ -13,8 +13,6 @@ declare (strict_types=1);
 
 namespace Cawa\Bootstrap\Forms;
 
-use Cawa\Html\Forms\Fields\Hidden;
-use Cawa\Net\Uri;
 use DeepCopy\DeepCopy;
 
 class Form extends \Cawa\Html\Forms\Form

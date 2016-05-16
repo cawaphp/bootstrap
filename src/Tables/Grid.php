@@ -65,9 +65,9 @@ class Grid extends HtmlContainer
         $this->addClass('grid-table');
         $this->translator()->addFile(__DIR__ . '/../../lang/global', 'bootstrap');
 
-        $this->navbar = new Navbar();
+        $this->navbar = Navbar::create()
+            ->setInverse();
 
-        $this->navbar->addClass('navbar-inverse');
         $this->add($this->navbar);
 
         $this->options = new Dropdown(

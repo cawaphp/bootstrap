@@ -21,16 +21,16 @@ class TabContainer extends HtmlElement
 {
     public function __construct()
     {
-        parent::__construct("<div>");
+        parent::__construct('<div>');
         $this->addClass('tab-container');
 
-        $this->header = HtmlContainer::create("<ul>")
-            ->addClass("nav nav-tabs")
-            ->addAttribute("data-tabs", "tabs")
+        $this->header = HtmlContainer::create('<ul>')
+            ->addClass('nav nav-tabs')
+            ->addAttribute('data-tabs', 'tabs')
         ;
 
-        $this->body = HtmlContainer::create("<div>")
-            ->addClass("tab-content");
+        $this->body = HtmlContainer::create('<div>')
+            ->addClass('tab-content');
     }
 
     /**
@@ -48,7 +48,7 @@ class TabContainer extends HtmlElement
      */
     public function isPills() : bool
     {
-        return $this->header->hasClass("nav-pills");
+        return $this->header->hasClass('nav-pills');
     }
 
     /**
@@ -59,11 +59,11 @@ class TabContainer extends HtmlElement
     public function setPills(bool $justified = true) : self
     {
         if ($justified) {
-            $this->header->addClass("nav-pills");
-            $this->header->removeClass("nav-tabs");
+            $this->header->addClass('nav-pills');
+            $this->header->removeClass('nav-tabs');
         } else {
-            $this->header->removeClass("nav-pills");
-            $this->header->addClass("nav-tabs");
+            $this->header->removeClass('nav-pills');
+            $this->header->addClass('nav-tabs');
         }
 
         return $this;
@@ -74,7 +74,7 @@ class TabContainer extends HtmlElement
      */
     public function isStacked() : bool
     {
-        return $this->header->hasClass("nav-stacked");
+        return $this->header->hasClass('nav-stacked');
     }
 
     /**
@@ -85,9 +85,9 @@ class TabContainer extends HtmlElement
     public function setStacked(bool $stacked = true) : self
     {
         if ($stacked) {
-            $this->header->addClass("nav-stacked");
+            $this->header->addClass('nav-stacked');
         } else {
-            $this->header->removeClass("nav-stacked");
+            $this->header->removeClass('nav-stacked');
         }
 
         return $this;
@@ -98,7 +98,7 @@ class TabContainer extends HtmlElement
      */
     public function isJustified() : bool
     {
-        return $this->header->hasClass("nav-justified");
+        return $this->header->hasClass('nav-justified');
     }
 
     /**
@@ -109,9 +109,9 @@ class TabContainer extends HtmlElement
     public function setJustified(bool $justified = true) : self
     {
         if ($justified) {
-            $this->header->addClass("nav-justified");
+            $this->header->addClass('nav-justified');
         } else {
-            $this->header->removeClass("nav-justified");
+            $this->header->removeClass('nav-justified');
         }
 
         return $this;
@@ -130,7 +130,7 @@ class TabContainer extends HtmlElement
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function render()
     {
@@ -144,7 +144,7 @@ class TabContainer extends HtmlElement
 
             if (!$element->getHref()) {
                 $id = Transliterator::urlize($element->getTitle());
-                $element->setHref("#" . $id);
+                $element->setHref('#' . $id);
             }
         }
 

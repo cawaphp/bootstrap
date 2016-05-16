@@ -23,8 +23,8 @@ class Tab extends HtmlContainer
      */
     public function __construct(string $title)
     {
-        parent::__construct("<div>");
-        $this->addClass("tab-pane");
+        parent::__construct('<div>');
+        $this->addClass('tab-pane');
         $this->title = $title;
     }
 
@@ -83,7 +83,7 @@ class Tab extends HtmlContainer
      */
     public function isActive() : bool
     {
-        return $this->hasClass("active");
+        return $this->hasClass('active');
     }
 
     /**
@@ -94,9 +94,9 @@ class Tab extends HtmlContainer
     public function setActive(bool $active = true) : self
     {
         if ($active) {
-            $this->addClass("active");
+            $this->addClass('active');
         } else {
-            $this->removeClass("active");
+            $this->removeClass('active');
         }
 
         return $this;
@@ -149,7 +149,7 @@ class Tab extends HtmlContainer
     {
         $this->href = $href;
 
-        if (substr($this->href, 0, 1) == "#") {
+        if (substr($this->href, 0, 1) == '#') {
             $this->setId(substr($this->href, 1));
         }
 
@@ -161,28 +161,28 @@ class Tab extends HtmlContainer
      */
     public function getHeader() : HtmlContainer
     {
-        $title = ($this->icon ? HtmlElement::create("<i>")->addClass($this->icon)->render() : "") .
+        $title = ($this->icon ? HtmlElement::create('<i>')->addClass($this->icon)->render() : '') .
             $this->title;
 
-        $link = HtmlContainer::create("<a>", $title);
+        $link = HtmlContainer::create('<a>', $title);
         if ($this->href) {
-            $link->addAttribute("href", $this->href);
+            $link->addAttribute('href', $this->href);
         }
 
-        if (substr($this->href, 0, 1) == "#") {
-            $link->addAttribute("data-toggle", "tab");
+        if (substr($this->href, 0, 1) == '#') {
+            $link->addAttribute('data-toggle', 'tab');
         }
 
-        $li = HtmlContainer::create("<li>")
-            ->addAttribute("role", "presentation")
+        $li = HtmlContainer::create('<li>')
+            ->addAttribute('role', 'presentation')
             ->add($link);
 
         if ($this->isActive()) {
-            $li->addClass("active");
+            $li->addClass('active');
         }
 
         if ($this->isDisabled()) {
-            $li->addClass("disabled");
+            $li->addClass('disabled');
         }
 
         return $li;
