@@ -86,6 +86,8 @@ $.widget("cawa.fields-combo", $.cawa.widget, {
             self._hasValue = true;
         });
 
+        self._select2.removeClass("hidden");
+
         // open menu on keypress
         $(self._select2).parent().find(".select2-selection").on("keydown", function(event)
         {
