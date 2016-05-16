@@ -113,8 +113,6 @@ class Form extends \Cawa\Html\Forms\Form
         $deepcopy = new DeepCopy();
         $clone = $deepcopy->copy($this);
 
-        $clone->alterBeforeRender();
-
         return $clone->renderClone();
     }
 
@@ -134,8 +132,6 @@ class Form extends \Cawa\Html\Forms\Form
         /* @var \Cawa\Bootstrap\Forms\Form $clone */
         $deepcopy = new DeepCopy();
         $clone = $deepcopy->copy($this);
-
-        $clone->alterBeforeRender();
 
         return $clone->renderOuterClone();
     }
@@ -173,23 +169,9 @@ class Form extends \Cawa\Html\Forms\Form
     /**
      *
      */
-    private function alterBeforeRender()
+    protected function alterBeforeRender()
     {
-        // append all querystring
-        if ($this->getMethod() == 'GET') {
-            $uri = new Uri($this->getAction());
-            if ($uri->getQueries()) {
-                foreach ($uri->getQueries() as $key => $value) {
-                    if (isset($this->values[$key])) {
-                        continue;
-                    }
-
-                    $this->add(new Hidden($key, $value));
-
-                    $this->setAction($uri->removeAllQueries()->get());
-                }
-            }
-        }
+        parent::alterBeforeRender();
 
         // size
         if ($this->size) {
