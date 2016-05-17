@@ -30,9 +30,9 @@ class DateTime extends \Cawa\Bootstrap\Forms\Fields\DateTime
      *
      * @return $this
      */
-    public function setLinkedTo(string $selector) : self
+    public function setMinimumDate(string $selector) : self
     {
-        $this->getField()->addAttribute('data-linked', $selector);
+        $this->getField()->addAttribute('data-min-selector', $selector);
 
         return $this;
     }

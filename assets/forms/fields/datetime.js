@@ -44,7 +44,7 @@ $.widget("cawa.fields-datetime", $.cawa.widget, {
         }
 
         // linked
-        if (this.options.linked) {
+        if (this.options.minSelector) {
             this.options.plugin.useCurrent = false;
         }
 
@@ -97,18 +97,24 @@ $.widget("cawa.fields-datetime", $.cawa.widget, {
         this.element.closest(".cawa-fields-datetime-group").addClass("init");
 
         // linked events
-        if (this.options.linked) {
+        if (this.options.minSelector) {
 
-            var min = $(this.options.linked);
+            var min = $(this.options.minSelector);
             var max = this.element;
 
-            min.on("dp.change", function (e) {
+            $(document).on("dp.change", min, function (e) {
                 max.data("DateTimePicker").minDate(e.date);
             });
 
-            max.on("dp.change", function (e) {
+            $(document).on("dp.change", max, function (e) {
                 min.data("DateTimePicker").maxDate(e.date);
             });
+
+            setTimeout(function()
+            {
+                max.data("DateTimePicker").minDate(min.data("DateTimePicker").date());
+                min.data("DateTimePicker").maxDate(max.data("DateTimePicker").date());
+            }, 100);
         }
     }
 });
