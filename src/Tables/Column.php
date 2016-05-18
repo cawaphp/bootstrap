@@ -94,6 +94,31 @@ class Column extends \Cawa\Html\Tables\Column
     }
 
     /**
+     * @var string
+     */
+    private $icon;
+
+    /**
+     * @return string
+     */
+    public function getIcon()
+    {
+        return $this->icon;
+    }
+
+    /**
+     * @param string $icon
+     *
+     * @return $this
+     */
+    public function setIcon(string $icon) : self
+    {
+        $this->icon = $icon;
+
+        return $this;
+    }
+
+    /**
      * {@inheritdoc}
      */
     public function render()
@@ -116,22 +141,36 @@ class Column extends \Cawa\Html\Tables\Column
         }
 
         if ($this->isSortable()) {
-            $icon = new HtmlElement('<i>');
+            $sortIcon = HtmlElement::create('<i>')
+                ->addClass("sort");
+
             if (is_null($currentSort) || $currentCols != $this->getId()) {
-                $icon->addClass(['fa', 'fa-sort']);
+                $sortIcon->addClass(['fa', 'fa-sort']);
                 $href = call_user_func($this->argsCallback, $this, $this->getId() . '-A');
             } elseif ($currentCols == $this->getId() && $currentOrder > 0) {
-                $icon->addClass(['fa', 'fa-sort-desc']);
+                $sortIcon->addClass(['fa', 'fa-sort-desc']);
                 $href = call_user_func($this->argsCallback, $this, $this->getId() . '-D');
             } elseif ($currentCols == $this->getId()) {
-                $icon->addClass(['fa', 'fa-sort-asc']);
+                $sortIcon->addClass(['fa', 'fa-sort-asc']);
                 $href = call_user_func($this->argsCallback, $this, $this->getId() . '-A');
             }
+
+            $icon = null;
+            if ($this->icon) {
+                $icon = HtmlElement::create('<i>')
+                    ->addClass("icon")
+                    ->addClass($this->icon)
+                    ->render();
+            }
+
+            $finalContent = ($icon ? $icon . ' ' : '') .
+                $this->getContent() .
+                ' ' . $sortIcon->render();
 
             $this->setContent(
                 HtmlElement::create('<a>')
                     ->addAttribute('href', $href)
-                    ->setContent($this->getContent() . ' ' . $icon->render())
+                    ->setContent($finalContent)
                     ->render()
             );
         }

@@ -149,17 +149,21 @@ class Grid extends HtmlContainer
             }
 
             if ($column->isVisible()) {
-                $icon = 'fa fa-check-square-o';
+                $checkIcon = 'fa fa-check-square-o';
                 $argsCallback = implode('|', array_diff($columnsVisible, [$column->getId()]));
             } else {
-                $icon = 'fa fa-square-o';
+                $checkIcon = 'fa fa-square-o';
                 $argsCallback = implode('|', array_merge($columnsVisible, [$column->getId()]));
             }
 
             $href = call_user_func($this->argsCallback, Table::QUERY_COLUMNS_VISIBLE, $argsCallback);
 
+            $finalContent = '<i class="' . $checkIcon . '"></i> ' .
+                ($column->getIcon() ? '<i class="' . $column->getIcon() . '"></i> ' : '') .
+                $column->getContent();
+
             $li = HtmlContainer::create('<li>')->add(
-                new Link('<i class="' . $icon . '"></i> ' . $column->getContent(), $href)
+                new Link($finalContent, $href)
             );
 
             $subMenu->add($li);
@@ -342,6 +346,7 @@ class Grid extends HtmlContainer
         if (!$this->filtersForm) {
             $this->filtersForm = new Form();
             $this->filtersForm->setMethod('GET')
+                ->setName($this->stateId ? $this->stateId : "grid")
                 ->setAction($this->request()->getUri()->get());
 
             $this->navbar->add($this->filtersForm);
@@ -400,7 +405,7 @@ class Grid extends HtmlContainer
         foreach ($this->rowActions as $i => $rowAction) {
             $this->getTable()->add(
                 Column::create('row_action_' . $i, '')
-                    ->setRenderer(function ($content, array $primaries) use ($rowAction) {
+                    ->addRenderer(function ($content, Column $column, array $primaries) use ($rowAction) {
                         foreach ($primaries as $key => $value) {
                             unset($primaries[$key]);
                             $key = preg_replace_callback('/(?:[-_])(.?)/', function ($match) {
