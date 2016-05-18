@@ -142,7 +142,7 @@ class Column extends \Cawa\Html\Tables\Column
 
         if ($this->isSortable()) {
             $sortIcon = HtmlElement::create('<i>')
-                ->addClass("sort");
+                ->addClass('sort');
 
             if (is_null($currentSort) || $currentCols != $this->getId()) {
                 $sortIcon->addClass(['fa', 'fa-sort']);
@@ -158,7 +158,7 @@ class Column extends \Cawa\Html\Tables\Column
             $icon = null;
             if ($this->icon) {
                 $icon = HtmlElement::create('<i>')
-                    ->addClass("icon")
+                    ->addClass('icon')
                     ->addClass($this->icon)
                     ->render();
             }

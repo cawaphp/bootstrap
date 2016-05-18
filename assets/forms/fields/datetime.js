@@ -103,11 +103,15 @@ $.widget("cawa.fields-datetime", $.cawa.widget, {
             var max = this.element;
 
             $(document).on("dp.change", min, function (e) {
-                max.data("DateTimePicker").minDate(e.date);
+                if (max.data("DateTimePicker")) {
+                    max.data("DateTimePicker").minDate(e.date);
+                }
             });
 
             $(document).on("dp.change", max, function (e) {
-                min.data("DateTimePicker").maxDate(e.date);
+                if (min.data("DateTimePicker")) {
+                    min.data("DateTimePicker").maxDate(e.date);
+                }
             });
 
             setTimeout(function()

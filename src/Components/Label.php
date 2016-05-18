@@ -17,7 +17,7 @@ use Cawa\Renderer\HtmlElement;
 
 class Label extends HtmlElement
 {
-    const DEFAULT = 'label-default';
+    const default = 'label-default';
     const PRIMARY = 'label-primary';
     const SUCCESS = 'label-success';
     const INFO = 'label-info';
@@ -28,7 +28,7 @@ class Label extends HtmlElement
      * @param string $content
      * @param string $type
      */
-    public function __construct(string $content, string $type = self::DEFAULT)
+    public function __construct(string $content, string $type = self::default)
     {
         parent::__construct('<span>', $content);
         $this->addAttributes([
@@ -36,5 +36,5 @@ class Label extends HtmlElement
         ]);
 
         $this->addClass($type);
-    }
+}
 }

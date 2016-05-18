@@ -346,7 +346,7 @@ class Grid extends HtmlContainer
         if (!$this->filtersForm) {
             $this->filtersForm = new Form();
             $this->filtersForm->setMethod('GET')
-                ->setName($this->stateId ? $this->stateId : "grid")
+                ->setName($this->stateId ? $this->stateId : 'grid')
                 ->setAction($this->request()->getUri()->get());
 
             $this->navbar->add($this->filtersForm);

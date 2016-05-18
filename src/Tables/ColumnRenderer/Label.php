@@ -13,9 +13,9 @@ declare (strict_types=1);
 
 namespace Cawa\Bootstrap\Tables\ColumnRenderer;
 
+use Cawa\Bootstrap\Components\Label as LabelComponent;
 use Cawa\Html\Tables\Column;
 use Cawa\Html\Tables\ColumnRenderer\AbstractRenderer;
-use Cawa\Bootstrap\Components\Label as LabelComponent;
 
 class Label extends AbstractRenderer
 {
@@ -33,7 +33,7 @@ class Label extends AbstractRenderer
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function __invoke($content, Column $column, array $primaryValues, array $data) : string
     {
@@ -45,6 +45,7 @@ class Label extends AbstractRenderer
         }
 
         $label = new LabelComponent($content, $type);
+
         return $label->render();
     }
 }
