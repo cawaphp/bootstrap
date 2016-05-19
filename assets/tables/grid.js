@@ -14,6 +14,9 @@ $.widget("cawa.grid", $.cawa.widget, {
 
     _filterSubmit: function(event)
     {
+        event.preventDefault();
+        event.stopImmediatePropagation();
+
         var form = $(event.target);
 
         var uri = form.attr('action');
@@ -22,7 +25,6 @@ $.widget("cawa.grid", $.cawa.widget, {
         }
 
         $.goto(uri + "?" + form.serialize());
-        event.preventDefault();
     },
 
     _rowDoubleClick: function(event)

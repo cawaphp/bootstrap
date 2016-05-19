@@ -218,7 +218,7 @@ class MultipleGroup extends Group
      *
      * @return $this
      */
-    protected function setField(HtmlContainer $field = null) : parent
+    protected function setField($field = null) : parent
     {
         $index = $this->getIndex($this->newContainer);
         $this->container = $field;

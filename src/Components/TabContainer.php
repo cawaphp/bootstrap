@@ -118,15 +118,23 @@ class TabContainer extends HtmlElement
     }
 
     /**
-     * @param Tab $tab
+     * @param Tab|Tab[] ...$tab
      *
      * @return TabContainer
      */
-    public function add(Tab $tab) : self
+    public function add(Tab ...$tab) : self
     {
-        $this->body->add($tab);
+        $this->body->add(...$tab);
 
         return $this;
+    }
+
+    /**
+     * @return Tab[]
+     */
+    public function getTabs() : array
+    {
+        return $this->body->getElements();
     }
 
     /**

@@ -19,7 +19,7 @@ use Cawa\Html\Forms\Fields\Hidden;
 class Group extends \Cawa\Html\Forms\Group
 {
     use FieldTrait {
-        FieldTrait::applyContainerSize as private applyContainerSizeTrait;
+        FieldTrait::applyContainerSize as protected applyContainerSizeTrait;
         FieldTrait::setSize as private setSizeTrait;
     }
 

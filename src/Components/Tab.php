@@ -161,7 +161,7 @@ class Tab extends HtmlContainer
      */
     public function getHeader() : HtmlContainer
     {
-        $title = ($this->icon ? HtmlElement::create('<i>')->addClass($this->icon)->render() : '') .
+        $title = ($this->icon ? HtmlElement::create('<i>')->addClass($this->icon)->render() . ' ' : '') .
             $this->title;
 
         $link = HtmlContainer::create('<a>', $title);
@@ -175,7 +175,8 @@ class Tab extends HtmlContainer
 
         $li = HtmlContainer::create('<li>')
             ->addAttribute('role', 'presentation')
-            ->add($link);
+            ->add($link)
+        ;
 
         if ($this->isActive()) {
             $li->addClass('active');
