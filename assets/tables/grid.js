@@ -24,7 +24,8 @@ $.widget("cawa.grid", $.cawa.widget, {
             uri = document.location.href;
         }
 
-        $.goto(uri + "?" + form.serialize());
+
+        $.goto(uri + (uri.indexOf("?") > 0 ?  "&" : "?") + form.serialize());
     },
 
     _rowDoubleClick: function(event)
