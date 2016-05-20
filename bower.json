@@ -35,6 +35,7 @@
         "bootstrap-fileinput": "^4.3.1",
         "google-maps": "^3.2.1",
         "select2": "^4.0.2",
-        "select2-bootstrap-theme": "^0.1.0-beta.4"
+        "select2-bootstrap-theme": "^0.1.0-beta.4",
+        "ckeditor": "#full/stable"
     }
 }

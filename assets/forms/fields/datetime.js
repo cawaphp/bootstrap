@@ -1,6 +1,7 @@
 var $ = require("jquery");
 var moment = require("moment");
 var _ = require("lodash");
+var modernizr = require("modernizr");
 
 $.widget("cawa.fields-datetime", $.cawa.widget, {
 
@@ -16,7 +17,7 @@ $.widget("cawa.fields-datetime", $.cawa.widget, {
 
     _create: function() {
         // Disabled on touch & non supported device
-        if (Modernizr.touchevents) {
+        if (modernizr.touchevents) {
             return;
         }
 
