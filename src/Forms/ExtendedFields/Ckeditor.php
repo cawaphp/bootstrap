@@ -13,7 +13,6 @@ declare (strict_types=1);
 
 namespace Cawa\Bootstrap\Forms\ExtendedFields;
 
-
 use Cawa\Bootstrap\Forms\Fields\Textarea;
 
 class Ckeditor extends Textarea
