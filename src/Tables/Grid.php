@@ -382,9 +382,14 @@ class Grid extends HtmlContainer
             $this->getTable()->setData(call_user_func($this->dataCallable, $this));
         }
 
+        $data = $this->getTable()->getData();
+        $this->getTable()->setData([]);
+
         /* @var Grid $clone */
         $deepcopy = new DeepCopy();
         $clone = $deepcopy->copy($this);
+
+        $clone->getTable()->setData($data);
 
         return $clone->renderClone();
     }
