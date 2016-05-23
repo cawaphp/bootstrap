@@ -32,6 +32,22 @@ class Image extends File
     }
 
     /**
+     * @param bool $required
+     *
+     * @return $this
+     */
+    public function setRequired(bool $required = true)
+    {
+        if ($required == true) {
+            $this->widgetOptions['plugin']['showRemove'] = false;
+        } else {
+            unset($this->widgetOptions['plugin']['showRemove']);
+        }
+
+        return parent::setRequired($required);
+    }
+
+    /**
      * @return bool
      */
     public function isMultiple() : bool
@@ -58,7 +74,7 @@ class Image extends File
     /**
      * @var array
      */
-    private $widgetOptions = [];
+    protected $widgetOptions = [];
 
     /**
      * @param array $extensions

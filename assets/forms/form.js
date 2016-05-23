@@ -177,6 +177,8 @@ $.widget("cawa.form", $.cawa.widget, {
                 element.prop('type') === 'radio'
             ) {
                 errorSpan = error.insertAfter(element.parent());
+            } else if (element.hasClass("cawa-fields-image")){
+                errorSpan = error.insertAfter(element.closest(".file-input").parent());
             } else if (element.hasClass("select2-hidden-accessible")){
                 errorSpan = error.insertAfter(element.parent().find("span.select2"));
             } else {
