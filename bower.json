@@ -36,6 +36,7 @@
         "google-maps": "^3.2.1",
         "select2": "^4.0.2",
         "select2-bootstrap-theme": "^0.1.0-beta.4",
-        "ckeditor": "#full/stable"
+        "ckeditor": "#full/stable",
+        "confighelper": "git@github.com:AlfonsoML/confighelper.git#^1.8.3"
     }
 }

@@ -31,11 +31,16 @@ $.widget("cawa.fields-ckeditor", $.cawa.widget, {
 
         options.readOnly = !!element.attr('readonly') || !!element.attr('disabled');
 
+        if (element.attr('placeholder')) {
+            options.placeholder = element.attr('placeholder');
+        }
+
         if (self.options.disabledOnTouch === true && modernizr.touchevents) {
             removePlugins.push('toolbar');
         }
 
         options.removePlugins = removePlugins.join(',');
+        options.extraPlugins = 'confighelper';
 
         var instance;
         if (element[0].isContentEditable || element.attr('contenteditable') != undefined) {
