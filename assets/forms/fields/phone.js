@@ -69,22 +69,23 @@ $.widget("cawa.fields-phone", $.cawa.widget, {
     }
 });
 
-if (jQuery.validator) {
-    jQuery.validator.addMethod("phone", function (value, element)
+if ($.validator) {
+    $.validator.addMethod("google-place", function (value, element)
     {
         if (this.optional(element) && value == "") {
             return true;
         }
 
-        if ($(element).intlTelInput("isValidNumber")) {
-            return true;
+        var isValid = $(element)["fields-googleplace"]("isValid");
+
+        if (isValid) {
+            return isValid;
         }
 
-        var error  = $(element).intlTelInput("getValidationError");
-        var key = _.invert(intlTelInputUtils.validationError)[error];
+        $.validator.messages["google-place"] = locale[$.locale()]["invalid"];
 
-        $.validator.messages.phone = locale[$.locale()][key];
+        return isValid;
 
-        return $(element).intlTelInput("isValidNumber");
-    }, $.validator.messages.phone);
+    }, $.validator.messages.required);
 }
+

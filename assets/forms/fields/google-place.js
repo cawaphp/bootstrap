@@ -143,8 +143,8 @@ $.widget("cawa.fields-googleplace", $.cawa.widget, {
     }
 });
 
-if (jQuery.validator) {
-    jQuery.validator.addMethod("google-place", function (value, element)
+if ($.validator) {
+    $.validator.addMethod("google-place", function (value, element)
     {
         if (this.optional(element) && value == "") {
             return true;
