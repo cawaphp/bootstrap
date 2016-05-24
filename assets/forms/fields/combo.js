@@ -79,6 +79,10 @@ $.widget("cawa.fields-combo", $.cawa.widget, {
             options.dropdownParent = bootstrapDialog;
         }
 
+        if (element.prop("multiple")) {
+            options.closeOnSelect = false;
+        }
+
         self._select2 = element.select2(options);
         self._hasValue = element.val() !== "";
         self._select2.on("change", function()
