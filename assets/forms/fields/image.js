@@ -8,8 +8,7 @@ $.widget("cawa.fields-image", $.cawa.widget, {
             language: $.locale(),
             showUpload: false,
             showClose: false,
-            showDelete: true,
-            clearPreviewOnChange: false
+            showDelete: true
         }
     },
 
@@ -18,17 +17,21 @@ $.widget("cawa.fields-image", $.cawa.widget, {
         var pluginOptions = this.options.plugin;
 
         if (this.options.images) {
-            pluginOptions["initialPreview"] = [];
-            pluginOptions["initialPreviewConfig"] = [];
+            pluginOptions.initialPreview = [];
+            pluginOptions.initialPreviewConfig = [];
             _.each(this.options.images, function (value, key)
             {
                 if (typeof value == "string") {
-                    pluginOptions["initialPreview"].push('<img src="' + value + '" class="file-preview-image" />');
+                    pluginOptions.initialPreview.push('<img src="' + value + '" class="file-preview-image" />');
                 } else {
-                    pluginOptions["initialPreview"].push('<img src="' + key + '" class="file-preview-image" />');
-                    pluginOptions["initialPreviewConfig"].push(value);
+                    pluginOptions.initialPreview.push('<img src="' + key + '" class="file-preview-image" />');
+                    pluginOptions.initialPreviewConfig.push(value);
                 }
             });
+        }
+
+        if (this.element.prop("multiple")) {
+            pluginOptions.overwriteInitial = false;
         }
 
         this.options.required = this.element.prop("required");

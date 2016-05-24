@@ -29,8 +29,22 @@
         width: 32px;
     }
 
+
     table td.row-action {
         text-align: center;
+    }
+
+    table td.shrink {
+        width: 1%;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+
+        &:hover {
+            overflow: visible;
+            z-index: 10;
+            position: relative;
+        }
     }
 
     table td.row-action a {
