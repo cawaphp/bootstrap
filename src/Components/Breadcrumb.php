@@ -25,7 +25,7 @@ class Breadcrumb extends HtmlContainer
     public function __construct(array $links = [])
     {
         parent::__construct('<ol>');
-        $this->addClass("breadcrumb");
+        $this->addClass('breadcrumb');
 
         $last = null;
         foreach ($links as $uri => $link) {
@@ -44,9 +44,8 @@ class Breadcrumb extends HtmlContainer
         if ($last) {
             $this->add(
                 HtmlElement::create('<li>', $last)
-                    ->addClass("active")
+                    ->addClass('active')
             );
         }
-
     }
 }
