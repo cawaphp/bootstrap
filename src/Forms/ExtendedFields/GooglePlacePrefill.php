@@ -34,7 +34,7 @@ class GooglePlacePrefill extends GooglePlace
     private $fields = [];
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function __construct(string $name, string $label = null)
     {
@@ -45,24 +45,21 @@ class GooglePlacePrefill extends GooglePlace
         $this
             ->add(Group::create($this->translator()->trans('bootstrap.googlePlace/street'))
                 ->add($this->fields['number'] = Text::create($name . '[number]')
-                    ->setPlaceholder($this->translator()->trans('bootstrap.googlePlace/number'))
-                )
+                    ->setPlaceholder($this->translator()->trans('bootstrap.googlePlace/number')))
                 ->add($this->fields['street'] = Text::create($name . '[street]')
-                    ->setPlaceholder($this->translator()->trans('bootstrap.googlePlace/street'))
-                )
-            )
+                    ->setPlaceholder($this->translator()->trans('bootstrap.googlePlace/street'))))
             ->add(Group::create(Misc::joinUnits([
                     $this->translator()->trans('bootstrap.googlePlace/zipcode'),
                     $this->translator()->trans('bootstrap.googlePlace/city')
                 ]))
                 ->add($this->fields['zipcode'] = Text::create($name . '[zipcode]')
-                    ->setPlaceholder($this->translator()->trans('bootstrap.googlePlace/zipcode'))
-                )
+                    ->setPlaceholder($this->translator()->trans('bootstrap.googlePlace/zipcode')))
                 ->add($this->fields['city'] = Text::create($name . '[city]')
-                    ->setPlaceholder($this->translator()->trans('bootstrap.googlePlace/city'))
-                )
-            )
-            ->add($this->fields['state'] = Text::create($name . '[state]', $this->translator()->trans('bootstrap.googlePlace/state')))
+                    ->setPlaceholder($this->translator()->trans('bootstrap.googlePlace/city'))))
+            ->add($this->fields['state'] = Text::create(
+                $name . '[state]',
+                $this->translator()->trans('bootstrap.googlePlace/state')
+            ))
             ->add($this->fields['country'] = Select::create(
                 $name . '[country]',
                 $this->translator()->trans('bootstrap.googlePlace/country'),

@@ -41,7 +41,7 @@ class Label extends AbstractRenderer
         $type = $function($content, $column, $primaryValues, $data);
 
         if (is_bool($type)) {
-            $type = $type ? LabelComponent::SUCCESS : LabelComponent::DANGER;
+            $type = $type ? LabelComponent::TYPE_SUCCESS : LabelComponent::TYPE_DANGER;
         }
 
         $label = new LabelComponent($content, $type);
