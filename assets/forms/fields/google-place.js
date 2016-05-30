@@ -6,7 +6,8 @@ var log = require("log").getLogger("Cawa Field Google Place");
 $.widget("cawa.fields-googleplace", $.cawa.widget, {
 
     options: {
-        geolocate: false
+        geolocate: false,
+        type: 'geocode'
     },
 
     _forms : {
@@ -46,13 +47,20 @@ $.widget("cawa.fields-googleplace", $.cawa.widget, {
 
         self._autocomplete = new this._google.maps.places.Autocomplete(
             self.element[0],
-            {types: ['geocode']}
+            {types: [self.options.type]}
         );
 
-        self._autocomplete.addListener("place_changed", $.proxy(self.__fillInput, self));
-        self.element.attr("data-rule-google-place", "true");
+        self._autocomplete.addListener("place_changed", $.proxy(self._fillInput, self));
+        self.element.attr("data-rule-googlePlace", "true");
+
+        var val = self.element.val();
         self.element.on("keydown", function (event)
         {
+            if (self.element.val() != val) {
+                self._resetInput();
+                val = self.element.val()
+            }
+
             if (event.which == 13) {
                 return false;
             }
@@ -66,30 +74,38 @@ $.widget("cawa.fields-googleplace", $.cawa.widget, {
 
     _getField: function(name)
     {
-        return $(this.element[0].form).find('input[name=' + this._getName() + '\\[' + name + '\\]]')
+        return $(this.element[0].form).find('[name=' + this._getName() + '\\[' + name + '\\]]')
     },
 
     isValid: function()
     {
-        return this._getField("lat").val() != "" &&
-            this._getField("long").val() != "";
+        return this._getField("data").val() != "" ;
     },
 
-    __fillInput: function ()
+    _resetInput: function()
     {
         var self = this;
-        var element = this.element;
-        var name = this._getName();
         var form = $(this.element[0].form);
+        var name = this._getName();
 
-
-        // clean up
         $.each(form[0].elements, function(key, input) {
             input = $(input);
-            if (input.attr("name") && (input.attr("name") + "[").indexOf("") == 0) {
+            if (input.attr("name") &&
+                (input.attr("name") + "[").indexOf(name + "[") == 0 &&
+                input.attr("name").indexOf("[text]") < 0
+            ) {
                 input.val("");
             }
         });
+    },
+
+    _fillInput: function ()
+    {
+        var self = this;
+        var element = this.element;
+
+        self._resetInput();
+
 
         var place = this._autocomplete.getPlace();
         if (!place || !place.geometry || !place.geometry.location) {
@@ -98,6 +114,7 @@ $.widget("cawa.fields-googleplace", $.cawa.widget, {
 
         element.val(place.formatted_address);
 
+        self._getField("data").val(JSON.stringify(place));
         self._getField("lat").val(place.geometry.location.lat());
         self._getField("long").val(place.geometry.location.lng());
 
@@ -114,6 +131,8 @@ $.widget("cawa.fields-googleplace", $.cawa.widget, {
                     .val(addressComponent[self._forms[addressType][1]]);
             }
         });
+
+        $(self._getField("data")[0].form).valid();
     },
 
     _geolocate: function ()
@@ -137,6 +156,15 @@ $.widget("cawa.fields-googleplace", $.cawa.widget, {
 
                 self._getField("lat").val(geolocation.lat);
                 self._getField("long").val(geolocation.lng);
+                self._getField("data").val(JSON.stringify({
+                    geometry: {
+                        location : {
+                            lat : geolocation.lat,
+                            lng : geolocation.lng
+                        }
+                    }
+                }));
+
                 self._getField("text").attr("placeholder", locale[$.locale()]["myPosition"]);
             });
         }
@@ -144,7 +172,7 @@ $.widget("cawa.fields-googleplace", $.cawa.widget, {
 });
 
 if ($.validator) {
-    $.validator.addMethod("google-place", function (value, element)
+    $.validator.addMethod("googlePlace", function (value, element)
     {
         if (this.optional(element) && value == "") {
             return true;
@@ -155,6 +183,7 @@ if ($.validator) {
         if (isValid) {
             return isValid;
         }
+
 
         $.validator.messages["google-place"] = locale[$.locale()]["invalid"];
 

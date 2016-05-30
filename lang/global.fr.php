@@ -13,5 +13,13 @@ return [
         'perpage' => 'Rows per page',
         'columns' => 'Columns',
         'filter' => 'Filter',
+    ],
+    'googlePlace' => [
+        'number' => 'Numero de rue',
+        'street' => 'Rue',
+        'zipcode' => 'Code postal',
+        'city' => 'Ville',
+        'state' => 'Etat',
+        'country' => 'Pays',
     ]
 ];

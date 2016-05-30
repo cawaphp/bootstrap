@@ -14,39 +14,102 @@ declare (strict_types=1);
 namespace Cawa\Bootstrap\Forms\ExtendedFields;
 
 use Cawa\Bootstrap\Forms\Fields\Text;
+use Cawa\Bootstrap\Forms\Fieldset;
 use Cawa\Core\DI;
+use Cawa\GoogleMaps\Models\GeocoderResult;
 use Cawa\Html\Forms\Fields\Hidden;
-use Cawa\Renderer\WidgetOption;
 
-class GooglePlace extends Text
+class GooglePlace extends Fieldset
 {
     /**
-     * {@inheritdoc}
+     * nstructs the Place Autocomplete service to return only geocoding results, rather than business results.
+     * Generally, you use this request to disambiguate results where the location specified may be indeterminate.
+     */
+    const TYPE_GEOCODE = 'geocode';
+
+    /**
+     * instructs the Place Autocomplete service to return only geocoding results with a precise address.
+     * Generally, you use this request when you know the user will be looking for a fully specified address.
+     */
+    const TYPE_ADDRESS = 'address';
+
+    /**
+     * instructs the Place Autocomplete service to return only business results.
+     */
+    const TYPE_ESTABLISHMENT = 'establishment';
+
+    /**
+     * instructs the Places service to return any result matching the following types:
+     * - locality
+     * - sublocality
+     * - postal_code
+     * - country
+     * - administrative_area_level_1
+     * - administrative_area_level_2
+     */
+    const TYPE_REGIONS = 'regions';
+
+    /**
+     * instructs the Places service to return results that match locality or administrative_area_level_3
+     */
+    const TYPE_CITIES = 'cities';
+
+    /**
+     * @param string $name
+     * @param string|null $label
      */
     public function __construct(string $name, string $label = null)
     {
-        parent::__construct($name . '[text]', $label);
-        $this->getField()->addClass('cawa-fields-googleplace');
+        parent::__construct();
 
-        $this->widgetOption = new WidgetOption(['key' => DI::config()->get('googlemaps/apikey')]);
+        $this->main = Text::create($name . '[text]', $label);
+        $this->hidden = Hidden::create($name . '[data]');
 
-        $this
-            ->add($this->widgetOption)
-            ->add(Hidden::create($name . '[number]'))
-            ->add(Hidden::create($name . '[street]'))
-            ->add(Hidden::create($name . '[zipcode]'))
-            ->add(Hidden::create($name . '[state]'))
-            ->add(Hidden::create($name . '[country]'))
-            ->add(Hidden::create($name . '[lat]'))
-            ->add(Hidden::create($name . '[long]'))
+        $this->add($this->main)
+            ->add($this->hidden)
+        ;
 
+        $this->main->getField()->addClass('cawa-fields-googleplace')
+            ->addAttribute('data-key', DI::config()->get('googlemaps/apikey'))
         ;
     }
 
     /**
-     * @var WidgetOption
+     * @param bool $required
+     *
+     * @return $this
      */
-    private $widgetOption;
+    public function setRequired(bool $required = true)
+    {
+        $this->main->setRequired($required);
+
+        return $this;
+    }
+
+    /**
+     * @param GeocoderResult|null $geocode
+     *
+     * @return $this
+     */
+    public function setValue(GeocoderResult $geocode = null) : self
+    {
+        if ($geocode) {
+            $this->main->setValue($geocode->getFormattedAddress());
+            $this->hidden->setValue(json_encode($geocode));
+        }
+
+        return $this;
+    }
+
+    /**
+     * @var Text
+     */
+    private $main;
+
+    /**
+     * @var Hidden
+     */
+    private $hidden;
 
     /**
      * @param bool $geolocate
@@ -55,7 +118,19 @@ class GooglePlace extends Text
      */
     public function setGeolocate(bool $geolocate) : self
     {
-        $this->widgetOption->addData('geolocate', $geolocate);
+        $this->main->getField()->addAttribute('data-geolocate', $geolocate ? 'true' : 'false');
+
+        return $this;
+    }
+
+    /**
+     * @param string $type
+     *
+     * @return $this|GooglePlace
+     */
+    public function setType(string $type) : self
+    {
+        $this->main->getField()->addAttribute('data-type', $type);
 
         return $this;
     }

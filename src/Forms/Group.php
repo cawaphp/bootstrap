@@ -29,7 +29,7 @@ class Group extends \Cawa\Html\Forms\Group
     public function __construct(string $label = null)
     {
         parent::__construct($label);
-        $this->addClass('form-group');
+        // $this->addClass('form-group');
         $this->container->addClass('row');
     }
 
