@@ -19,7 +19,7 @@
         "php": "~7.0",
         "cawaphp/cawa" : "dev-master",
         "cawaphp/html" : "dev-master",
-        "behat/transliterator": "^1.1",
-        "myclabs/deep-copy": "dev-master"
+        "behat/transliterator": "~1.1",
+        "myclabs/deep-copy": "~1.5"
     }
 }
