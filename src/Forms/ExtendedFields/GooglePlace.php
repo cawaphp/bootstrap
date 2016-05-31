@@ -18,6 +18,7 @@ use Cawa\Bootstrap\Forms\Fieldset;
 use Cawa\Core\DI;
 use Cawa\GoogleMaps\Models\GeocoderResult;
 use Cawa\Html\Forms\Fields\Hidden;
+use Cawa\Renderer\HtmlContainer;
 
 class GooglePlace extends Fieldset
 {
@@ -72,6 +73,26 @@ class GooglePlace extends Fieldset
         $this->main->getField()->addClass('cawa-fields-googleplace')
             ->addAttribute('data-key', DI::config()->get('googlemaps/apikey'))
         ;
+    }
+
+    /**
+     * @return HtmlContainer
+     */
+    public function getField() : HtmlContainer
+    {
+        return $this->main->getField();
+    }
+
+    /**
+     * @param string|null $name
+     *
+     * @return $this
+     */
+    public function setPlaceholder(string $name = null) : self
+    {
+        $this->main->setPlaceholder($name);
+
+        return $this;
     }
 
     /**
