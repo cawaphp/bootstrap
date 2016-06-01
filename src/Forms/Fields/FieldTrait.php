@@ -135,13 +135,9 @@ trait FieldTrait
 
         // help wrap
         if ($this->helpText) {
-            $helpWrapper = new HtmlContainer('<div>');
-            $helpWrapper
-                ->addClass(['col-sm-' . (12 - $this->getGridSize()), 'col-sm-offset-' . $this->getGridSize()])
-                ->add($this->getHelpText())
-            ;
-
-            $this->setHelpText($helpWrapper);
+            $fieldWrapper->add($this->helpText);
+            $index = $this->getIndex($this->helpText);
+            unset($this->elements[$index]);
         }
 
         return parent::render();
