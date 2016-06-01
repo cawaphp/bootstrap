@@ -14,11 +14,18 @@ declare (strict_types=1);
 namespace Cawa\Bootstrap\Components;
 
 use Behat\Transliterator\Transliterator;
+use Cawa\Controller\ViewController;
 use Cawa\Renderer\HtmlContainer;
 use Cawa\Renderer\HtmlElement;
+use Cawa\Router\RouterFactory;
 
 class TabContainer extends HtmlElement
 {
+    use RouterFactory;
+
+    /**
+     *
+     */
     public function __construct()
     {
         parent::__construct('<div>');
@@ -31,6 +38,30 @@ class TabContainer extends HtmlElement
 
         $this->body = HtmlContainer::create('<div>')
             ->addClass('tab-content');
+    }
+
+    /**
+     * @param array $routes
+     * @param int $index
+     * @param ViewController $content
+     *
+     * @return TabContainer
+     */
+    public static function fromRoute(array $routes, int $index, ViewController $content) : self
+    {
+        $container = new static();
+
+        foreach ($routes as $currentIndex => $route) {
+            $container->add($tab = Tab::create($route['name']));
+
+            if ($index == $currentIndex) {
+                $tab->add($content)->setActive();
+            } else {
+                $tab->setHref((string) self::router()->getUri($route['routeName'], $route['routeArgs'] ?? []));
+            }
+        }
+
+        return $container;
     }
 
     /**
