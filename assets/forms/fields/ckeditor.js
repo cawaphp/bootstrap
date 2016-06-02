@@ -17,7 +17,7 @@ $.widget("cawa.fields-ckeditor", $.cawa.widget, {
             toolbar: [
                 { name: 'basicstyles', items: [ 'Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript', '-', 'RemoveFormat' ] },
                 { name: 'paragraph', items: [ 'NumberedList', 'BulletedList'] },
-                { name: 'links', items: [ 'Link', 'Unlink', 'Anchor' ] },
+                { name: 'links', items: [ 'Link', 'Unlink'] },
                 { name: 'tools', items: [ 'Undo', 'Redo'] }
             ]
         }
