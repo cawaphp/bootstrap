@@ -65,7 +65,7 @@ class Grid extends HtmlContainer
         $this->addClass('grid-table');
         $this->translator()->addFile(__DIR__ . '/../../lang/global', 'bootstrap');
 
-        $this->navbar = Navbar::create()
+        $this->navbar = (new Navbar())
             ->setInverse();
 
         $this->add($this->navbar);
@@ -75,7 +75,7 @@ class Grid extends HtmlContainer
         );
 
         // refresh
-        $this->options->add(Link::create(
+        $this->options->add(new Link(
             '<i class="glyphicon glyphicon-refresh"></i> ' . $this->translator()->trans('bootstrap.grid/refresh'),
             $this->request()->getUri()->get()
         ));
@@ -107,11 +107,11 @@ class Grid extends HtmlContainer
      */
     private function getRowsPerPageDropdown() : HtmlContainer
     {
-        $subMenu = HtmlContainer::create('<ul>')->addClass('dropdown-menu');
+        $subMenu = (new HtmlContainer('<ul>'))->addClass('dropdown-menu');
         foreach ([25, 50, 75, 100] as $count) {
             $href = call_user_func($this->argsCallback, self::QUERY_PAGESIZE, $count);
 
-            $li = HtmlContainer::create('<li>')->add(Link::create($count, $href));
+            $li = (new HtmlContainer('<li>'))->add(new Link((string) $count, $href));
             if ($this->getPageSize() == $count) {
                 $li->addClass('active');
             }
@@ -119,9 +119,9 @@ class Grid extends HtmlContainer
             $subMenu->add($li);
         }
 
-        $rowsperpageLi = HtmlContainer::create('<li>')
+        $rowsperpageLi = (new HtmlContainer('<li>'))
             ->addClass('dropdown-submenu')
-            ->add(Link::create(
+            ->add(new Link(
                 '<i class="glyphicon glyphicon-plus"></i> ' . $this->translator()->trans('bootstrap.grid/perpage')
             ))
             ->add($subMenu)
@@ -142,7 +142,7 @@ class Grid extends HtmlContainer
             }
         }
 
-        $subMenu = HtmlContainer::create('<ul>')->addClass('dropdown-menu');
+        $subMenu = (new HtmlContainer('<ul>'))->addClass('dropdown-menu');
         foreach ($this->getTable()->getColums() as $column) {
             if (!$column->isHideable()) {
                 continue;
@@ -162,16 +162,16 @@ class Grid extends HtmlContainer
                 ($column->getIcon() ? '<i class="' . $column->getIcon() . '"></i> ' : '') .
                 $column->getContent();
 
-            $li = HtmlContainer::create('<li>')->add(
+            $li = (new HtmlContainer('<li>'))->add(
                 new Link($finalContent, $href)
             );
 
             $subMenu->add($li);
         }
 
-        $columsLi = HtmlContainer::create('<li>')
+        $columsLi = (new HtmlContainer('<li>'))
             ->addClass('dropdown-submenu')
-            ->add(Link::create('<i class="fa fa-columns"></i> ' . $this->translator()->trans('bootstrap.grid/columns')))
+            ->add(new Link('<i class="fa fa-columns"></i> ' . $this->translator()->trans('bootstrap.grid/columns')))
             ->add($subMenu)
         ;
 
@@ -403,13 +403,13 @@ class Grid extends HtmlContainer
         $this->options->add($this->getColumnDropdown());
 
         if ($this->filtersForm) {
-            $this->filtersForm->add(Submit::create($this->translator()->trans('bootstrap.grid/filter')));
+            $this->filtersForm->add(new Submit($this->translator()->trans('bootstrap.grid/filter')));
         }
 
         // append row actions
         foreach ($this->rowActions as $i => $rowAction) {
             $this->getTable()->add(
-                Column::create('row_action_' . $i, '')
+                (new Column('row_action_' . $i, ''))
                     ->addRenderer(function ($content, Column $column, array $primaries) use ($rowAction) {
                         foreach ($primaries as $key => $value) {
                             unset($primaries[$key]);

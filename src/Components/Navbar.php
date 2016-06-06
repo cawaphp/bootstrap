@@ -208,7 +208,7 @@ class Navbar extends HtmlElement
         $phtml = $this->phtmlRender();
 
         if ($this->isStaticToTop()) {
-            $phtml = HtmlElement::create('<div>')
+            $phtml = (new HtmlElement('<div>'))
                 ->addClass('container')
                 ->setContent($phtml)
                 ->render();

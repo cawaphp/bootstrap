@@ -84,15 +84,15 @@ class Dropdown extends ViewController
     public function add($element) : self
     {
         if (is_string($element) && $element == '---') {
-            $element = HtmlElement::create('<li>')
+            $element = (new HtmlElement('<li>'))
                 ->addAttribute('role', 'separator')
                 ->addClass('divider');
         } elseif (is_string($element)) {
-            $element = HtmlElement::create('<li>')
+            $element = (new HtmlElement('<li>'))
                 ->setContent($element)
                 ->addClass('dropdown-header');
         } else {
-            $element = HtmlContainer::create('<li>')
+            $element = (new HtmlContainer('<li>'))
                 ->add($element);
         }
 

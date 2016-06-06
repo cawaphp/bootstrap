@@ -36,12 +36,11 @@ class MultipleGroup extends Group
         /** @var HtmlElement $element */
         foreach ($this->elements as $i => $element) {
             if ($element->getTag() == '<div>' && $element->hasClass('row')) {
-                $this->newContainer = WidgetElement::create(
-                    HtmlContainer::create('<div>')
+                $this->newContainer = new WidgetElement(
+                    (new HtmlContainer('<div>'))
                         ->addClass('cawa-fields-multiple-group')
                         ->add($this->getInputGroup($element))
-                )
-                ;
+                );
 
                 $this->elements[$i] = $this->newContainer;
             }
@@ -172,7 +171,7 @@ class MultipleGroup extends Group
         $this->row++;
         $this->applyContainerSize($this->container->elements);
 
-        $this->container = HtmlContainer::create('<div>')
+        $this->container = (new HtmlContainer('<div>'))
             ->addClass('row');
         $this->newContainer->getElement()->add($this->getInputGroup($this->container));
     }
@@ -184,17 +183,17 @@ class MultipleGroup extends Group
      */
     private function getInputGroup($element) : HtmlContainer
     {
-        return HtmlContainer::create('<div>')
+        return (new HtmlContainer('<div>'))
             ->addClass('input-group')
             ->add($element)
             ->add(
-                HtmlContainer::create('<div>')->addClass('input-group-btn')
+                (new HtmlContainer('<div>'))->addClass('input-group-btn')
                     ->add(
-                        Button::create('<i class="glyphicon glyphicon-plus"></i>')
+                        (new Button('<i class="glyphicon glyphicon-plus"></i>'))
                             ->addAttribute('data-action', '+')
                     )
                     ->add(
-                        Button::create('<i class="glyphicon glyphicon-minus"></i>')
+                        (new Button('<i class="glyphicon glyphicon-minus"></i>'))
                             ->addAttribute('data-action', '-')
                     )
             );

@@ -63,8 +63,8 @@ class GooglePlace extends Fieldset
     {
         parent::__construct();
 
-        $this->main = Text::create($name . '[text]', $label);
-        $this->hidden = Hidden::create($name . '[data]');
+        $this->main = (new Text($name . '[text]', $label));
+        $this->hidden = (new Hidden($name . '[data]'));
 
         $this->add($this->main)
             ->add($this->hidden)

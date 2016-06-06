@@ -46,12 +46,13 @@ class Checkbox extends \Cawa\Html\Forms\Fields\Checkbox
      */
     protected function wrap()
     {
-        return HtmlElement::create(
+        return (new HtmlElement(
             '<div>',
-            HtmlElement::create('<div>', parent::render())
+            (new HtmlElement('<div>', parent::render()))
                 ->addClass('col-sm-' . (12-$this->getGridSize()) . ' col-sm-offset-' . $this->getGridSize())
                 ->render()
-        )->addClass('form-group')
+        ))
+            ->addClass('form-group')
             ->render();
     }
 }

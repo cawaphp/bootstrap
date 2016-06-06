@@ -31,12 +31,12 @@ class TabContainer extends HtmlElement
         parent::__construct('<div>');
         $this->addClass('tab-container');
 
-        $this->header = HtmlContainer::create('<ul>')
+        $this->header = (new HtmlContainer('<ul>'))
             ->addClass('nav nav-tabs')
             ->addAttribute('data-tabs', 'tabs')
         ;
 
-        $this->body = HtmlContainer::create('<div>')
+        $this->body = (new HtmlContainer('<div>'))
             ->addClass('tab-content');
     }
 
@@ -52,7 +52,7 @@ class TabContainer extends HtmlElement
         $container = new static();
 
         foreach ($routes as $currentIndex => $route) {
-            $container->add($tab = Tab::create($route['name']));
+            $container->add($tab = (new Tab($route['name'])));
 
             if ($index == $currentIndex) {
                 $tab->add($content)->setActive();

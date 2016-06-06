@@ -161,10 +161,10 @@ class Tab extends HtmlContainer
      */
     public function getHeader() : HtmlContainer
     {
-        $title = ($this->icon ? HtmlElement::create('<i>')->addClass($this->icon)->render() . ' ' : '') .
+        $title = ($this->icon ? (new HtmlElement('<i>'))->addClass($this->icon)->render() . ' ' : '') .
             $this->title;
 
-        $link = HtmlContainer::create('<a>', $title);
+        $link = new HtmlContainer('<a>', $title);
         if ($this->href) {
             $link->addAttribute('href', $this->href);
         }
@@ -173,7 +173,7 @@ class Tab extends HtmlContainer
             $link->addAttribute('data-toggle', 'tab');
         }
 
-        $li = HtmlContainer::create('<li>')
+        $li = (new HtmlContainer('<li>'))
             ->addAttribute('role', 'presentation')
             ->add($link)
         ;

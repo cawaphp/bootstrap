@@ -33,9 +33,9 @@ class Breadcrumb extends HtmlContainer
                 $last = $link;
             } else {
                 $this->add(
-                    HtmlContainer::create('<li>')
+                    (new HtmlContainer('<li>'))
                         ->add(
-                            Link::create($link, $uri)
+                            new Link($link, $uri)
                         )
                 );
             }
@@ -43,7 +43,7 @@ class Breadcrumb extends HtmlContainer
 
         if ($last) {
             $this->add(
-                HtmlElement::create('<li>', $last)
+                (new HtmlElement('<li>', $last))
                     ->addClass('active')
             );
         }
