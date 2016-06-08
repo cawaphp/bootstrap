@@ -1,0 +1,102 @@
+.cawa-tabs {
+    .tab-content > div {
+        background-color: $nav-tabs-active-link-hover-bg;
+        border: 1px solid $nav-tabs-active-link-hover-border-color;
+        border-top: 0;
+        padding: 15px 15px 0;
+    }
+
+    .nav-tabs {
+        position: relative;
+        z-index: 10;
+        overflow: visible;
+        border-bottom: none;
+
+        @media(min-width: $screen-sm) {
+            border-bottom: 1px solid $nav-tabs-border-color;
+        }
+
+        span.glyphicon {
+            position: absolute;
+            top: 14px;
+            color: $gray;
+            right: 22px;
+            &.glyphicon-triangle-top {
+                display: none;
+            }
+            @media(min-width: $screen-sm) {
+                display: none;
+            }
+        }
+
+        > li {
+            display: none;
+            float: none;
+            text-align: center;
+
+            &:last-of-type > a {
+                margin-right: 0;
+            }
+
+            > a {
+                margin-right: 0;
+                @media(max-width: $screen-sm) {
+                    background: $nav-tabs-active-link-hover-bg;
+                    border: 1px solid $nav-tabs-border-color;
+                }
+
+                @media(min-width: $screen-sm) {
+                    margin-right: 4px;
+                }
+            }
+
+            &.active {
+                display: block;
+                a {
+                    @media(min-width: $screen-sm) {
+                        border-bottom-color: transparent;
+                    }
+                    border: 1px solid $nav-tabs-border-color;
+                }
+            }
+
+            @media(min-width: $screen-sm) {
+                display: block;
+                float: left;
+            }
+
+        }
+
+        &.open {
+
+            span.glyphicon {
+                &.glyphicon-triangle-top {
+                    display: block;
+                    @media(min-width: $screen-sm) {
+                        display: none;
+                    }
+                }
+                &.glyphicon-triangle-bottom {
+                    display: none;
+                }
+            }
+
+            > li {
+                display: block;
+
+                a {
+                    border-radius: 0;
+                }
+
+                &:first-of-type a {
+                    border-radius: 2px 2px 0 0;
+                }
+                &:last-of-type a {
+                    border-radius: 0 0 2px 2px;
+                }
+            }
+        }
+    }
+
+}
+

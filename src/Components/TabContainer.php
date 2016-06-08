@@ -29,7 +29,7 @@ class TabContainer extends HtmlElement
     public function __construct()
     {
         parent::__construct('<div>');
-        $this->addClass('tab-container');
+        $this->addClass('cawa-tabs');
 
         $this->header = (new HtmlContainer('<ul>'))
             ->addClass('nav nav-tabs')
