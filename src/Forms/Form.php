@@ -214,8 +214,19 @@ class Form extends \Cawa\Html\Forms\Form
     protected function populateValue($element) : bool
     {
         $return = parent::populateValue($element);
-        if (!$return && $this->isSubmit() && $element->isRequired()) {
-            $element->addClass('has-error');
+
+        if (!$return && $this->isSubmit()) {
+            if ($element instanceof Group || $element instanceof Fieldset) {
+
+                foreach ($element->getFields() as $field) {
+                    if ($field->isRequired()) {
+                        $field->addClass('has-error');
+                    }
+                }
+
+            } else if ($element->isRequired()) {
+                $element->addClass('has-error');
+            }
         }
 
         return $return;
