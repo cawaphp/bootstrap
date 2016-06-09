@@ -13,7 +13,6 @@ declare (strict_types=1);
 
 namespace Cawa\Bootstrap\Components;
 
-use Cawa\Html\Link;
 use Cawa\Renderer\HtmlContainer;
 use Cawa\Renderer\HtmlElement;
 
@@ -57,5 +56,4 @@ class Description extends HtmlContainer
 
         return $this;
     }
-
 }

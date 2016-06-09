@@ -217,14 +217,12 @@ class Form extends \Cawa\Html\Forms\Form
 
         if (!$return && $this->isSubmit()) {
             if ($element instanceof Group || $element instanceof Fieldset) {
-
                 foreach ($element->getFields() as $field) {
                     if ($field->isRequired()) {
                         $field->addClass('has-error');
                     }
                 }
-
-            } else if ($element->isRequired()) {
+            } elseif ($element->isRequired()) {
                 $element->addClass('has-error');
             }
         }
