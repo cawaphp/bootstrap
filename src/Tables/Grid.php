@@ -144,7 +144,7 @@ class Grid extends HtmlContainer
 
         $subMenu = (new HtmlContainer('<ul>'))->addClass('dropdown-menu');
         foreach ($this->getTable()->getColums() as $column) {
-            if (!$column->isHideable()) {
+            if (!$column->isHideable() || !$column->isRenderable()) {
                 continue;
             }
 

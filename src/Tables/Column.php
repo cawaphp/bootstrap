@@ -23,7 +23,7 @@ class Column extends \Cawa\Html\Tables\Column
     /**
      * {@inheritdoc}
      */
-    public function __construct($id, $name)
+    public function __construct($id, $name = null)
     {
         parent::__construct($id, $name);
 
