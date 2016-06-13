@@ -117,7 +117,12 @@ class Dropdown extends ViewController
     public function render()
     {
         $title = $this->getTitle();
-        $this->setTitle($title . ' <span class="caret"></span>');
+
+        if (sizeof($this->ul->getElements()) == 0) {
+            $this->ul->setRenderable(false);
+        } else {
+            $this->setTitle($title . ' <span class="caret"></span>');
+        }
 
         $return = $this->container->render();
 
