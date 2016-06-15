@@ -71,12 +71,12 @@ class Grid extends HtmlContainer
         $this->add($this->navbar);
 
         $this->options = new Dropdown(
-            '<i class="fa fa-adjust"></i> ' . $this->translator()->trans('bootstrap.grid/options')
+            '<i class="fa fa-adjust"></i> ' . $this->trans('bootstrap.grid/options')
         );
 
         // refresh
         $this->options->add(new Link(
-            '<i class="glyphicon glyphicon-refresh"></i> ' . $this->translator()->trans('bootstrap.grid/refresh'),
+            '<i class="glyphicon glyphicon-refresh"></i> ' . $this->trans('bootstrap.grid/refresh'),
             $this->request()->getUri()->get()
         ));
 
@@ -122,7 +122,7 @@ class Grid extends HtmlContainer
         $rowsperpageLi = (new HtmlContainer('<li>'))
             ->addClass('dropdown-submenu')
             ->add(new Link(
-                '<i class="glyphicon glyphicon-plus"></i> ' . $this->translator()->trans('bootstrap.grid/perpage')
+                '<i class="glyphicon glyphicon-plus"></i> ' . $this->trans('bootstrap.grid/perpage')
             ))
             ->add($subMenu)
         ;
@@ -171,7 +171,7 @@ class Grid extends HtmlContainer
 
         $columsLi = (new HtmlContainer('<li>'))
             ->addClass('dropdown-submenu')
-            ->add(new Link('<i class="fa fa-columns"></i> ' . $this->translator()->trans('bootstrap.grid/columns')))
+            ->add(new Link('<i class="fa fa-columns"></i> ' . $this->trans('bootstrap.grid/columns')))
             ->add($subMenu)
         ;
 
@@ -403,7 +403,7 @@ class Grid extends HtmlContainer
         $this->options->add($this->getColumnDropdown());
 
         if ($this->filtersForm) {
-            $this->filtersForm->add(new Submit($this->translator()->trans('bootstrap.grid/filter')));
+            $this->filtersForm->add(new Submit($this->trans('bootstrap.grid/filter')));
         }
 
         // append row actions

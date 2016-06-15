@@ -43,26 +43,26 @@ class GooglePlacePrefill extends GooglePlace
         $this->translator()->addFile(__DIR__ . '/../../../lang/global', 'bootstrap');
 
         $this
-            ->add((new Group($this->translator()->trans('bootstrap.googlePlace/street')))
+            ->add((new Group($this->trans('bootstrap.googlePlace/street')))
                 ->add($this->fields['number'] = (new Text($name . '[number]'))
-                    ->setPlaceholder($this->translator()->trans('bootstrap.googlePlace/number')))
+                    ->setPlaceholder($this->trans('bootstrap.googlePlace/number')))
                 ->add($this->fields['street'] = (new Text($name . '[street]'))
-                    ->setPlaceholder($this->translator()->trans('bootstrap.googlePlace/street'))))
+                    ->setPlaceholder($this->trans('bootstrap.googlePlace/street'))))
             ->add((new Group(Misc::joinUnits([
-                    $this->translator()->trans('bootstrap.googlePlace/zipcode'),
-                    $this->translator()->trans('bootstrap.googlePlace/city')
+                    $this->trans('bootstrap.googlePlace/zipcode'),
+                    $this->trans('bootstrap.googlePlace/city')
                 ])))
                 ->add($this->fields['zipcode'] = (new Text($name . '[zipcode]'))
-                    ->setPlaceholder($this->translator()->trans('bootstrap.googlePlace/zipcode')))
+                    ->setPlaceholder($this->trans('bootstrap.googlePlace/zipcode')))
                 ->add($this->fields['city'] = (new Text($name . '[city]'))
-                    ->setPlaceholder($this->translator()->trans('bootstrap.googlePlace/city'))))
+                    ->setPlaceholder($this->trans('bootstrap.googlePlace/city'))))
             ->add($this->fields['state'] = new Text(
                 $name . '[state]',
-                $this->translator()->trans('bootstrap.googlePlace/state')
+                $this->trans('bootstrap.googlePlace/state')
             ))
             ->add($this->fields['country'] = new Select(
                 $name . '[country]',
-                $this->translator()->trans('bootstrap.googlePlace/country'),
+                $this->trans('bootstrap.googlePlace/country'),
                 Territory::getCountries()
             ))
             ->add($this->fields['lat'] = (new Hidden($name . '[lat]')))
