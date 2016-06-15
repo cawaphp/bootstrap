@@ -57,7 +57,7 @@ class TabContainer extends HtmlElement
             if ($index == $currentIndex) {
                 $tab->add($content)->setActive();
             } else {
-                $tab->setHref((string) self::router()->getUri($route['routeName'], $route['routeArgs'] ?? []));
+                $tab->setHref((string) self::uri($route['routeName'], $route['routeArgs'] ?? []));
             }
         }
 
