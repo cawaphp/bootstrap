@@ -113,7 +113,7 @@ class Collapse extends PhtmlHtmlContainer
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function getId() : string
     {
@@ -121,7 +121,7 @@ class Collapse extends PhtmlHtmlContainer
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function setId(string $value) : parent
     {
@@ -131,7 +131,7 @@ class Collapse extends PhtmlHtmlContainer
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function render()
     {

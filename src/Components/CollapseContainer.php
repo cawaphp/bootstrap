@@ -13,11 +13,8 @@ declare (strict_types=1);
 
 namespace Cawa\Bootstrap\Components;
 
-use Behat\Transliterator\Transliterator;
 use Cawa\Controller\ViewController;
 use Cawa\Renderer\HtmlContainer;
-use Cawa\Renderer\HtmlElement;
-use Cawa\Router\RouterFactory;
 
 class CollapseContainer extends HtmlContainer
 {
@@ -119,12 +116,12 @@ class CollapseContainer extends HtmlContainer
     }
 
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     public function add(ViewController ...$elements)
     {
         foreach ($elements as $element) {
-            /** @noinspection PhpParamsInspection */
+            /* @noinspection PhpParamsInspection */
             parent::add($this->handleDisplay($element));
         }
 
@@ -132,16 +129,15 @@ class CollapseContainer extends HtmlContainer
     }
 
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     public function addFirst(ViewController ...$elements)
     {
         foreach ($elements as $element) {
-            /** @noinspection PhpParamsInspection */
+            /* @noinspection PhpParamsInspection */
             parent::addFirst($this->handleDisplay($element, true));
         }
 
         return $this;
     }
-
 }
