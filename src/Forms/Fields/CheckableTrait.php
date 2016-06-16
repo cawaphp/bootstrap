@@ -23,7 +23,7 @@ use Cawa\Renderer\HtmlContainer;
 trait CheckableTrait
 {
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     protected function layout() : Container
     {
@@ -31,8 +31,7 @@ trait CheckableTrait
             ->addClass('form-group')
             ->add((new HtmlContainer('<div>'))
                 ->addClass('col-sm-' . (12-$this->getGridSize()) . ' col-sm-offset-' . $this->getGridSize())
-                ->add(parent::layout()->first())
-            )
+                ->add(parent::layout()->first()))
         ;
 
         return (new Container())->add($wrapper);

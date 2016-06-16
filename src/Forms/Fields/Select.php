@@ -37,6 +37,7 @@ class Select extends \Cawa\Html\Forms\Fields\Select
     protected function layout() : Container
     {
         parent::layout();
+
         return $this->fieldTraitLayout();
     }
 }

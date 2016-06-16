@@ -17,7 +17,6 @@ use Cawa\Bootstrap\Components\TabContainer;
 use Cawa\Controller\ViewController;
 use Cawa\Html\Forms\Fields\AbstractField;
 use Cawa\Renderer\Container;
-use Cawa\Renderer\HtmlContainer;
 
 class TabGroup extends Group
 {

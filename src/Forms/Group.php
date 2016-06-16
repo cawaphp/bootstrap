@@ -68,7 +68,6 @@ class Group extends \Cawa\Html\Forms\Group
             }
         }
 
-
         $this->applyContainerSizeTrait($elements);
     }
 }

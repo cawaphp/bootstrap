@@ -109,7 +109,7 @@ trait FieldTrait
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     protected function layout() : Container
     {
@@ -154,6 +154,7 @@ trait FieldTrait
             }
 
             $container->add($fieldWrapper);
+
             return $container;
         } else {
             $container = parent::layout();

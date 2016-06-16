@@ -15,7 +15,6 @@ namespace Cawa\Bootstrap\Forms\ExtendedFields;
 
 use Cawa\Bootstrap\Forms\Fields\File;
 use Cawa\Renderer\Container;
-use Cawa\Renderer\HtmlContainer;
 use Cawa\Renderer\WidgetOption;
 
 class Image extends File
