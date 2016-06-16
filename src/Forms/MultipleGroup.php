@@ -207,28 +207,17 @@ class MultipleGroup extends Group
     /**
      * @return WidgetElement
      */
-    public function getField()
+    public function getContainer()
     {
         return $this->newContainer;
     }
 
     /**
-     * @param HtmlContainer|null $field
-     *
-     * @return $this
+     * @return string
      */
-    protected function setField($field = null) : parent
+    private function parentRender()
     {
-        $index = $this->getIndex($this->newContainer);
-        $this->container = $field;
-
-        if (is_null($index)) {
-            array_unshift($this->elements, $field);
-        } else {
-            $this->elements[$index] = $field;
-        }
-
-        return $this;
+        return parent::render();
     }
 
     /**
@@ -237,8 +226,9 @@ class MultipleGroup extends Group
     public function render()
     {
         $deepcopy = new DeepCopy();
+        /** @var MultipleGroup $clone */
         $clone = $deepcopy->copy($this);
-        $fullRender = $clone->renderBootstrapProperties();
+        $fullRender = $clone->parentRender();
 
         $this->newContainer->getOptions()->addData('clone', $fullRender);
 

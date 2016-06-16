@@ -26,12 +26,4 @@ class Time extends \Cawa\Html\Forms\Fields\Time
         $this->getField()->addClass('form-control');
         $this->addClass('form-group');
     }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function render()
-    {
-        return $this->renderBootstrapProperties();
-    }
 }

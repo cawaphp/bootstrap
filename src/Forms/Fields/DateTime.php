@@ -26,12 +26,4 @@ class DateTime extends \Cawa\Html\Forms\Fields\DateTime
         $this->getField()->addClass('form-control');
         $this->addClass('form-group');
     }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function render()
-    {
-        return $this->renderBootstrapProperties();
-    }
 }

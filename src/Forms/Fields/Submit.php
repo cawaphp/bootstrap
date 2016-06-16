@@ -26,12 +26,4 @@ class Submit extends \Cawa\Html\Forms\Fields\Submit
         $this->getField()->addClass(['btn', 'btn-primary']);
         $this->addClass('form-group');
     }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function render()
-    {
-        return $this->renderBootstrapProperties();
-    }
 }

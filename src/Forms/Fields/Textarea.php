@@ -26,12 +26,4 @@ class Textarea extends \Cawa\Html\Forms\Fields\Textarea
         $this->addClass('form-group');
         $this->getField()->addClass('form-control');
     }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function render()
-    {
-        return $this->renderBootstrapProperties();
-    }
 }

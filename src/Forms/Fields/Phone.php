@@ -27,12 +27,4 @@ class Phone extends \Cawa\Html\Forms\Fields\Phone
         $this->addClass('form-group');
         $this->setPlaceholder(null);
     }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function render()
-    {
-        return $this->renderBootstrapProperties();
-    }
 }

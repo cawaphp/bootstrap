@@ -22,7 +22,7 @@ class Ckeditor extends Textarea
      */
     public function __construct(string $name, string $label = null)
     {
-        parent::__construct($name);
+        parent::__construct($name, $label);
         $this->getField()->addClass('cawa-fields-ckeditor');
     }
 }

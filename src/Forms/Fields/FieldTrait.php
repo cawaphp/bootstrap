@@ -14,9 +14,14 @@ declare (strict_types = 1);
 namespace Cawa\Bootstrap\Forms\Fields;
 
 use Cawa\Bootstrap\Forms\BootstrapPropertiesTrait;
+use Cawa\Bootstrap\Forms\Fieldset;
 use Cawa\Bootstrap\Forms\Form;
+use Cawa\Bootstrap\Forms\Group;
 use Cawa\Bootstrap\Forms\LabelIcon;
+use Cawa\Bootstrap\Forms\MultipleGroup;
+use Cawa\Controller\ViewController;
 use Cawa\Html\Forms\Fields\AbstractField;
+use Cawa\Renderer\Container;
 use Cawa\Renderer\HtmlContainer;
 use Cawa\Renderer\HtmlElement;
 
@@ -62,8 +67,6 @@ trait FieldTrait
      */
     public function setHelpText($helpText) : self
     {
-        $index = $this->getIndex($this->helpText);
-
         if (!$helpText instanceof HtmlElement) {
             $helpText = new HtmlElement('<span>', $helpText);
         }
@@ -80,66 +83,85 @@ trait FieldTrait
 
         $this->helpText = $helpText;
 
-        if (is_null($index)) {
-            $this->add($helpText);
-        } else {
-            $this->elements[$index] = $helpText;
-        }
-
         return $this;
     }
 
     /**
-     * @return string
+     * @param Container $container
+     *
+     * @return Container|HtmlContainer|ViewController
      */
-    protected function renderBootstrapProperties()
+    protected function getFieldContainer(Container $container) : ViewController
     {
-        $this->applySize($this);
+        foreach ($container->getElements() as $element) {
+            if ($element === $this->getField()) {
+                return $container;
+            }
 
-        if ($this->getGridSize()) {
-            $render = $this->wrap();
-        } else {
-            $render = parent::render();
+            if ($element instanceof HtmlContainer) {
+                foreach ($element->getElements() as $sub) {
+                    if ($sub === $this->getField()) {
+                        return $element;
+                    }
+                }
+            }
         }
-
-        return $render;
     }
 
     /**
-     * @return string
+     * @inheritdoc
      */
-    protected function wrap() : string
+    protected function layout() : Container
     {
-        // field wrap
-        $fieldWrapper = new HtmlContainer('<div>');
-        $fieldWrapper->addClass('col-sm-' . (12 - $this->getGridSize()))
-            ->add($this->getField());
-
-        if (!$this->getLabel()) {
-            $fieldWrapper->addClass('col-sm-offset-' . $this->getGridSize());
+        if ($this instanceof Group || $this instanceof Fieldset) {
+            $this->applyContainerSize($this->container->elements);
+        } else {
+            $this->applySize($this);
         }
 
-        $this->setField($fieldWrapper);
+        if ($this->getGridSize()) {
+            $container = new Container();
 
-        // label wrap
-        if ($this->getLabel()) {
-            $label = $this->getLabel();
-            $labelWrapper = clone $label;
+            // label
+            if ($this->getLabel()) {
+                $this->getLabel()->addClass('col-sm-' . $this->getGridSize())
+                    ->addClass('control-label');
+                $container->add($this->getLabel());
+            }
 
-            $labelWrapper
-                ->addClass('col-sm-' . $this->getGridSize())
-                ->addClass('control-label')
-            ;
-            $this->setLabel($labelWrapper);
+            // field
+            if ($this instanceof  Group) {
+                $fieldWrapper = $this->getContainer();
+            } else {
+                $fieldWrapper = new HtmlContainer('<div>');
+                $fieldWrapper->add($this->getField());
+            }
+
+            if ($this instanceof MultipleGroup) {
+                $fieldWrapper->getElement()->addClass('col-sm-' . (12 - $this->getGridSize()));
+            } else {
+                $fieldWrapper->addClass('col-sm-' . (12 - $this->getGridSize()));
+            }
+
+            // label
+            if (!$this->getLabel()) {
+                $fieldWrapper->addClass('col-sm-offset-' . $this->getGridSize());
+            }
+
+            // help wrap
+            if ($this->helpText) {
+                $fieldWrapper->add($this->helpText);
+            }
+
+            $container->add($fieldWrapper);
+            return $container;
+        } else {
+            $container = parent::layout();
+            if ($this->helpText) {
+                $container->add($this->helpText);
+            }
+
+            return $container;
         }
-
-        // help wrap
-        if ($this->helpText) {
-            $fieldWrapper->add($this->helpText);
-            $index = $this->getIndex($this->helpText);
-            unset($this->elements[$index]);
-        }
-
-        return parent::render();
     }
 }

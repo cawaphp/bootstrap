@@ -16,6 +16,8 @@ namespace Cawa\Bootstrap\Forms;
 use Cawa\Bootstrap\Components\TabContainer;
 use Cawa\Controller\ViewController;
 use Cawa\Html\Forms\Fields\AbstractField;
+use Cawa\Renderer\Container;
+use Cawa\Renderer\HtmlContainer;
 
 class TabGroup extends Group
 {
@@ -26,6 +28,8 @@ class TabGroup extends Group
     {
         parent::__construct($label);
         $this->tabContainer = new TabContainer();
+        $this->container->add($this->tabContainer)
+            ->addClass('form-tabs');
     }
 
     /**
@@ -66,31 +70,5 @@ class TabGroup extends Group
         $this->tabContainer->add(...$elements);
 
         return $this;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    protected function renderBootstrapProperties()
-    {
-        $this->applyContainerSizeTrait($this->getFields());
-
-        if ($this->getGridSize()) {
-            $render = $this->wrap();
-        } else {
-            $render = parent::render();
-        }
-
-        return $render;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function render()
-    {
-        $this->setField($this->tabContainer);
-
-        return parent::render();
     }
 }

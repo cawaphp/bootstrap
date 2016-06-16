@@ -14,6 +14,7 @@ declare (strict_types=1);
 namespace Cawa\Bootstrap\Forms\ExtendedFields;
 
 use Cawa\Bootstrap\Forms\Fields\File;
+use Cawa\Renderer\Container;
 use Cawa\Renderer\HtmlContainer;
 use Cawa\Renderer\WidgetOption;
 
@@ -108,15 +109,14 @@ class Image extends File
     /**
      * {@inheritdoc}
      */
-    public function render()
+    public function layout() : Container
     {
+        $container = parent::layout();
         if ($this->widgetOptions) {
-            $container = new HtmlContainer('<div>');
-            $container->add($this->getField());
-            $container->add(new WidgetOption($this->widgetOptions));
-            $this->setField($container);
+            $instance = $this->getFieldContainer($container);
+            $instance->add(new WidgetOption($this->widgetOptions));
         }
 
-        return parent::render();
+        return $container;
     }
 }

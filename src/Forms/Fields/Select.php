@@ -13,9 +13,13 @@ declare (strict_types=1);
 
 namespace Cawa\Bootstrap\Forms\Fields;
 
+use Cawa\Renderer\Container;
+
 class Select extends \Cawa\Html\Forms\Fields\Select
 {
-    use FieldTrait;
+    use FieldTrait {
+        FieldTrait::layout as private fieldTraitLayout;
+    }
 
     /**
      * {@inheritdoc}
@@ -30,8 +34,9 @@ class Select extends \Cawa\Html\Forms\Fields\Select
     /**
      * {@inheritdoc}
      */
-    public function render()
+    protected function layout() : Container
     {
-        return $this->renderBootstrapProperties();
+        parent::layout();
+        return $this->fieldTraitLayout();
     }
 }

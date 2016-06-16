@@ -6,6 +6,11 @@
 
     .input-group {
         margin-bottom: $form-group-margin-bottom;
+
+        > .row {
+            margin-left: 0;
+            margin-right: 0;
+        }
     }
 
     .input-group:last-child {

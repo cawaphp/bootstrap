@@ -13,6 +13,8 @@ declare (strict_types=1);
 
 namespace Cawa\Bootstrap\Forms;
 
+use Cawa\Renderer\HtmlElement;
+
 class Fieldset extends \Cawa\Html\Forms\Fieldset
 {
     use BootstrapPropertiesTrait {
@@ -85,21 +87,17 @@ class Fieldset extends \Cawa\Html\Forms\Fieldset
         }
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    protected function renderBootstrapProperties()
-    {
-        $this->applyContainerSize($this->elements);
-
-        return parent::render();
-    }
-
-    /**
-     * {@inheritdoc}
-     */
     public function render()
     {
-        return $this->renderBootstrapProperties();
+        if ($this->getGridSize()) {
+            /** @var HtmlElement $legend */
+            $legend = $this->elements[0];
+
+            if ($legend->getTag() == '<fieldset>') {
+                $legend->addClass('col-sm-' . (12 - $this->getGridSize()) . ' col-sm-offset-' . $this->getGridSize());
+            }
+        }
+
+        return parent::render();
     }
 }

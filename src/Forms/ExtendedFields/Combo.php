@@ -14,6 +14,7 @@ declare (strict_types=1);
 namespace Cawa\Bootstrap\Forms\ExtendedFields;
 
 use Cawa\Bootstrap\Forms\Fields\Select;
+use Cawa\Renderer\Container;
 use Cawa\Renderer\HtmlContainer;
 use Cawa\Renderer\WidgetOption;
 
@@ -121,19 +122,18 @@ class Combo extends Select
     /**
      * {@inheritdoc}
      */
-    public function render()
+    public function layout() : Container
     {
         if ($this->isRequired() == false) {
             $this->widgetOptions->addData('plugin', ['allowClear' => true]);
         }
 
+        $container = parent::layout();
         if ($this->widgetOptions->count()) {
-            $container = new HtmlContainer('<div>');
-            $container->add($this->getField());
-            $container->add($this->widgetOptions);
-            $this->setField($container);
+            $instance = $this->getFieldContainer($container);
+            $instance->add($this->widgetOptions);
         }
 
-        return parent::render();
+        return $container;
     }
 }

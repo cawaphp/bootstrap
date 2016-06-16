@@ -29,7 +29,7 @@ class Group extends \Cawa\Html\Forms\Group
     public function __construct(string $label = null)
     {
         parent::__construct($label);
-        $this->addClass('form-group');
+        $this->addClass('form-group cawa-fields-group');
         $this->container->addClass('row');
     }
 
@@ -63,34 +63,12 @@ class Group extends \Cawa\Html\Forms\Group
 
         if ($count > 1) {
             foreach ($elements as $element) {
-                $element->addClass('col-sm-' . floor(12 / $count));
+                $element->addClass('col-sm-' . floor(12 / $count))
+                    ->removeClass('form-group');
             }
         }
 
+
         $this->applyContainerSizeTrait($elements);
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    protected function renderBootstrapProperties()
-    {
-        $this->applyContainerSize($this->container->elements);
-
-        if ($this->getGridSize()) {
-            $render = $this->wrap();
-        } else {
-            $render = parent::render();
-        }
-
-        return $render;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function render()
-    {
-        return $this->renderBootstrapProperties();
     }
 }

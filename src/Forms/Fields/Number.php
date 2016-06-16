@@ -27,12 +27,4 @@ class Number extends \Cawa\Html\Forms\Fields\Number
         $this->addClass('form-group');
         $this->setValidation('int');
     }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function render()
-    {
-        return $this->renderBootstrapProperties();
-    }
 }

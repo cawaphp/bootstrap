@@ -26,12 +26,4 @@ class Email extends \Cawa\Html\Forms\Fields\Email
         $this->getField()->addClass('form-control');
         $this->addClass('form-group');
     }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function render()
-    {
-        return $this->renderBootstrapProperties();
-    }
 }

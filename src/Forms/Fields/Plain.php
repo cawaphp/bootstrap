@@ -26,12 +26,4 @@ class Plain extends \Cawa\Html\Forms\Fields\Plain
         $this->getField()->addClass('form-control-static');
         $this->addClass('form-group');
     }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function render()
-    {
-        return $this->renderBootstrapProperties();
-    }
 }

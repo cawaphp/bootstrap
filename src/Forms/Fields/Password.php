@@ -26,12 +26,4 @@ class Password extends \Cawa\Html\Forms\Fields\Password
         $this->getField()->addClass('form-control');
         $this->addClass('form-group');
     }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function render()
-    {
-        return $this->renderBootstrapProperties();
-    }
 }
