@@ -90,7 +90,9 @@ $.widget("cawa.form", $.cawa.widget, {
     _highlightSuccess: function (element, errorClass, validClass)
     {
         var hightlight = null;
-        if (element.parent('.checkbox').length || element.parent('.radio').length) {
+        if (element.parent('.radio').length) {
+
+        } else if (element.parent('.checkbox').length) {
             hightlight = $(element).parent();
         } else if ($(element).prev(".input-group").length) {
             hightlight = $(element).prev(".input-group");
@@ -99,8 +101,10 @@ $.widget("cawa.form", $.cawa.widget, {
                 .closest('.form-group');
         }
 
-        hightlight.removeClass('has-error')
-            .addClass('has-success');
+        if (hightlight) {
+            hightlight.removeClass('has-error')
+                .addClass('has-success');
+        }
 
         element.remove();
     },
@@ -109,15 +113,19 @@ $.widget("cawa.form", $.cawa.widget, {
     {
         var hightlight = null;
 
-        if ($(element).prop('type') === 'checkbox' || $(element).prop('type') === 'radio') {
+        if ($(element).prop('type') === 'radio') {
+
+        } else if ($(element).prop('type') === 'checkbox') {
             hightlight = $(element).closest("." + $(element).prop('type'));
         } else {
             hightlight = $(element).closest('.form-group');
         }
 
-        hightlight
-            .addClass('has-error')
-            .removeClass('has-success');
+        if (hightlight) {
+            hightlight
+                .addClass('has-error')
+                .removeClass('has-success');
+        }
     },
 
     _unhighlightError: function (element, errorClass, validClass)
