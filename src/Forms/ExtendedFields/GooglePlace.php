@@ -71,7 +71,7 @@ class GooglePlace extends Fieldset
         ;
 
         $this->main->getField()->addClass('cawa-fields-googleplace')
-            ->addAttribute('data-key', DI::config()->get('googlemaps/apikey'))
+            ->addAttribute('data-key', DI::config()->get('googleMaps/apikey'))
         ;
     }
 
