@@ -25,6 +25,5 @@ class Number extends \Cawa\Html\Forms\Fields\Number
         parent::__construct($name, $label);
         $this->getField()->addClass('form-control');
         $this->addClass('form-group');
-        $this->setValidation('int');
     }
 }
