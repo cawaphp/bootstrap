@@ -34,6 +34,30 @@ class Group extends \Cawa\Html\Forms\Group
     }
 
     /**
+     * @return bool
+     */
+    public function isMultiline() : bool
+    {
+        return $this->container->hasClass('group-multiline');
+    }
+
+    /**
+     * @param bool $multiline
+     *
+     * @return Group
+     */
+    public function setMultiline(bool $multiline = true) : self
+    {
+        if ($multiline) {
+            $this->container->addClass('group-multiline');
+        } else {
+            $this->container->removeClass('group-multiline');
+        }
+
+        return $this;
+    }
+
+    /**
      * * {@inheritdoc}
      */
     public function setSize(string $size) : self
@@ -54,17 +78,19 @@ class Group extends \Cawa\Html\Forms\Group
      */
     protected function applyContainerSize(array $elements)
     {
-        $count = 0;
-        foreach ($elements as $element) {
-            if (!$element instanceof Hidden) {
-                $count ++;
-            }
-        }
-
-        if ($count > 1) {
+        if (!$this->isMultiline()) {
+            $count = 0;
             foreach ($elements as $element) {
-                $element->addClass('col-sm-' . floor(12 / $count))
-                    ->removeClass('form-group');
+                if (!$element instanceof Hidden) {
+                    $count++;
+                }
+            }
+
+            if ($count > 1) {
+                foreach ($elements as $element) {
+                    $element->addClass('col-sm-' . floor(12 / $count))
+                        ->removeClass('form-group');
+                }
             }
         }
 

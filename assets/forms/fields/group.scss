@@ -10,4 +10,8 @@
     form.form-horizontal & .row .radio + .radio, .checkbox + .checkbox {
         margin-top: 0;
     }
+
+    .group-multiline > div {
+        margin-bottom: $line-height-computed;
+    }
 }
