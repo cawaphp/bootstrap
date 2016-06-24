@@ -11,7 +11,8 @@ $.widget("cawa.fields-datetime", $.cawa.widget, {
             // stepping: 15,
             showTodayButton: true,
             showClose: true,
-            sideBySide: false
+            sideBySide: false,
+            widgetParent: 'body'
         }
     },
 
@@ -83,6 +84,23 @@ $.widget("cawa.fields-datetime", $.cawa.widget, {
         {
             inputHidden.val('');
         });
+
+        // position
+        $('body').css('position', 'relative');
+        this.element.on('dp.show', function (event)
+        {
+            var datepicker = $("body").find('.bootstrap-datetimepicker-widget:last');
+            var top = $(this).offset().top + $(this).outerHeight();
+            var left = $(this).offset().left;
+            datepicker.css({
+                'z-index': 1100,
+                'top': top + 'px',
+                'left': left + 'px',
+                'bottom': 'auto',
+                'right': 'auto'
+            });
+        });
+
 
         // input modification
         if (this.element.attr("type") != "text") {
