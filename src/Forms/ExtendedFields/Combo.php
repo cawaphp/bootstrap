@@ -135,4 +135,14 @@ class Combo extends Select
 
         return $container;
     }
+
+    /**
+     * @inheritdoc
+     */
+    public function render()
+    {
+        $this->optionsElements['']->setRenderable(false);
+
+        return parent::render();
+    }
 }

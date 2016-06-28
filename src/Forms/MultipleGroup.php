@@ -62,7 +62,7 @@ class MultipleGroup extends Group
 
                     $userInput = $this->request()->getArg($name);
                     if ($this->container->first() instanceof Group) {
-                        foreach ($this->request()->getArg($name) as $index => $value) {
+                        foreach ($this->request()->getArg($name) ?? [] as $index => $value) {
                             $submitData[$index][$i] = $value;
                         };
                     } else {

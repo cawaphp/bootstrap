@@ -1,7 +1,12 @@
 .cawa-fields-group {
     .row {
         padding-right: 0;
+
+        > .form-group {
+            margin-bottom: 0;
+        }
     }
+
 
     form  & .row .radio + .radio, .checkbox + .checkbox {
         margin-top: 10px;
