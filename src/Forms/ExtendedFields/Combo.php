@@ -137,7 +137,7 @@ class Combo extends Select
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function render()
     {
