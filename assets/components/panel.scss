@@ -1,0 +1,41 @@
+.panel {
+    .panel-heading {
+        .btn-group-sm {
+            margin-top: -3px;
+        }
+    }
+
+    &.panel-primary {
+        .btn-primary {
+            @include button-variant($btn-primary-color, darken($btn-primary-bg, 5%), darken($btn-primary-border, 10%));
+        }
+    }
+
+    &.panel-success {
+        .btn-success {
+            @include button-variant($btn-success-color, darken($btn-success-bg, 5%), darken($btn-success-border, 10%));
+        }
+    }
+
+    &.panel-info {
+        .btn-info {
+            @include button-variant($btn-info-color, darken($btn-info-bg, 5%), darken($btn-info-border, 10%));
+        }
+    }
+
+    &.panel-warning {
+        .btn-warning {
+            @include button-variant($btn-warning-color, darken($btn-warning-bg, 5%), darken($btn-warning-border, 10%));
+        }
+    }
+
+    &.panel-danger {
+        .btn-danger {
+            @include button-variant($btn-danger-color, darken($btn-danger-bg, 5%), darken($btn-danger-border, 10%));
+        }
+    }
+
+    .panel-body > *:last-child {
+        margin-bottom: 0;
+    }
+}
