@@ -1,0 +1,17 @@
+table.table {
+    th.row-action {
+        width: 32px;
+    }
+
+    td.row-action {
+        text-align: center;
+    }
+
+    td.row-action a {
+        color: $gray;
+    }
+
+    tr.deleted {
+        color: $gray-light;
+    }
+}

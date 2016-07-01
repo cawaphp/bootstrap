@@ -300,27 +300,6 @@ class Grid extends HtmlContainer
 
     //endregion
 
-    //region RowActions
-
-    /**
-     * @var RowAction[]
-     */
-    private $rowActions = [];
-
-    /**
-     * @param RowAction $rowAction
-     *
-     * @return Grid
-     */
-    public function addRowAction(RowAction $rowAction) : self
-    {
-        $this->rowActions[] = $rowAction;
-
-        return $this;
-    }
-
-    //endregion
-
     //region Filters
 
     /**
@@ -404,32 +383,6 @@ class Grid extends HtmlContainer
 
         if ($this->filtersForm) {
             $this->filtersForm->add(new Submit($this->trans('bootstrap.grid/filter')));
-        }
-
-        // append row actions
-        foreach ($this->rowActions as $i => $rowAction) {
-            $this->getTable()->add(
-                (new Column('row_action_' . $i, ''))
-                    ->addRenderer(function ($content, Column $column, array $primaries) use ($rowAction) {
-                        foreach ($primaries as $key => $value) {
-                            unset($primaries[$key]);
-                            $key = preg_replace_callback('/(?:[-_])(.?)/', function ($match) {
-                                return strtoupper($match[1]);
-                            }, $key);
-                            $primaries[$key] = (string) $value;
-                        }
-
-                        if ($rowAction->getUri()) {
-                            return $rowAction->setUri($rowAction->getUri()->addQueries($primaries))
-                                ->render();
-                        } else {
-                            return $rowAction->addAttribute('data-ids', json_encode($primaries))
-                                ->render();
-                        }
-                    })
-                    ->addClass('row-action')
-                    ->setHideable(false)
-            );
         }
 
         // add pagination

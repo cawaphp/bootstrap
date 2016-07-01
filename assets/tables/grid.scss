@@ -25,14 +25,6 @@
         }
     }
 
-    table th.row-action {
-        width: 32px;
-    }
-
-
-    table td.row-action {
-        text-align: center;
-    }
 
     table td.shrink {
         width: 1%;
@@ -47,13 +39,6 @@
         }
     }
 
-    table td.row-action a {
-        color: darkgrey;
-    }
-
-    table tr.deleted {
-        color: $gray-light;
-    }
 
     table.table {
         th > a {
@@ -86,6 +71,10 @@
         }
 
     }
+}
+
+.panel > .cawa-grid table {
+    margin-bottom: 0;
 }
 
 /* ----------------------------------------------------------------------------------------------------------------- *\
