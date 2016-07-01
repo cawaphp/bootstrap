@@ -20,6 +20,7 @@ $.widget("cawa.fields-googleplace", $.cawa.widget, {
     },
     _google: null,
     _autocomplete: null,
+    _value: null,
     _create: function()
     {
         if (!this.options.key) {
@@ -53,16 +54,21 @@ $.widget("cawa.fields-googleplace", $.cawa.widget, {
         self._autocomplete.addListener("place_changed", $.proxy(self._fillInput, self));
         self.element.attr("data-rule-googlePlace", "true");
 
-        var val = self.element.val();
+        self._value = self.element.val();
+
+        // prevent form submission on enter
         self.element.on("keydown", function (event)
         {
-            if (self.element.val() != val) {
-                self._resetInput();
-                val = self.element.val()
-            }
-
             if (event.which == 13) {
                 return false;
+            }
+        });
+
+        // reset input if value change
+        self.element.on("keyup", function ()
+        {
+            if (self.element.val() != self._value) {
+                self._resetInput();
             }
         });
     },
@@ -104,15 +110,25 @@ $.widget("cawa.fields-googleplace", $.cawa.widget, {
         var self = this;
         var element = this.element;
 
-        self._resetInput();
-
-
         var place = this._autocomplete.getPlace();
+        var valid = true;
         if (!place || !place.geometry || !place.geometry.location) {
+            valid = false;
+        }
+
+        if (self.element.val() == self._value && !valid) {
+            return;
+        }
+
+        self._resetInput();
+        self._value = self.element.val();
+
+        if (!valid) {
             return ;
         }
 
         element.val(place.formatted_address);
+        self._value = place.formatted_address;
 
         self._getField("data").val(JSON.stringify(place));
         self._getField("lat").val(place.geometry.location.lat());
