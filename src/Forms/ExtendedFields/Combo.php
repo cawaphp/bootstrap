@@ -95,6 +95,18 @@ class Combo extends Select
     }
 
     /**
+     * @param bool $close
+     *
+     * @return $this
+     */
+    public function setCloseOnSelect(bool $close) : self
+    {
+        $this->widgetOptions->addData('plugin', ['closeOnSelect' => $close]);
+
+        return $this;
+    }
+
+    /**
      * @param bool $html
      *
      * @return $this
