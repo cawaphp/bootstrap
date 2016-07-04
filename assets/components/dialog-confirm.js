@@ -6,13 +6,7 @@ $.widget("cawa.dialog-confirm", $.cawa.widget, {
 
     options: {
         initSelector: '[data-confirm]',
-        plugin: {
-            title: locale[$.locale()]['title'],
-            message: locale[$.locale()]['message'],
-            animate: false,
-            closable: true,
-            type: BootstrapDialog.TYPE_WARNING
-        }
+        message: locale[$.locale()]['message']
     },
 
     _create: function ()
@@ -25,20 +19,15 @@ $.widget("cawa.dialog-confirm", $.cawa.widget, {
             event.stopPropagation();
             event.preventDefault();
 
-            var options = self.options.plugin;
+            var message = self.options.message;
 
             if (element.attr("data-confirm") !== "true") {
-                options.message = element.attr("data-confirm");
+                message = element.attr("data-confirm");
             }
 
-            options.callback = function (result)
-            {
-                if (result) {
-                    $.goto(element.attr("href"));
-                }
-            };
-
-            BootstrapDialog.confirm(options);
+            if (confirm(message)) {
+                $.goto(element.attr("href"));
+            }
         });
     }
 });
