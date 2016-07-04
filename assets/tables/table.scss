@@ -7,7 +7,7 @@ table.table {
         text-align: center;
     }
 
-    td.row-action a {
+    td.row-action a:not(.btn) {
         color: $gray;
     }
 

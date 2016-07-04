@@ -26,11 +26,24 @@ class Description extends HtmlContainer
         parent::__construct('<dl>');
 
         foreach ($keyValue as $key => $value) {
-            $this->add((new HtmlElement('<dt>', $key)));
-            if ($value) {
-                $this->add((new HtmlElement('<dd>', $value)));
-            }
+            $this->addDescription($key, $value);
         }
+    }
+
+    /**
+     * @param string $key
+     * @param string $value
+     *
+     * @return $this
+     */
+    public function addDescription(string $key, string $value) : self
+    {
+        $this->add((new HtmlElement('<dt>', $key)));
+        if ($value) {
+            $this->add((new HtmlElement('<dd>', $value)));
+        }
+
+        return $this;
     }
 
     /**

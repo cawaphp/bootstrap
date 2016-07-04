@@ -170,6 +170,7 @@ class Panel extends HtmlContainer
                             ->addClass('panel-body')
                             ->add($container)
                         );
+                        $container = new Container();
                     }
 
                     parent::add($element);
@@ -182,6 +183,7 @@ class Panel extends HtmlContainer
                         ->addClass('panel-body')
                         ->add($container)
                     );
+                    $container = new Container();
                 }
             }
         }
