@@ -14,6 +14,7 @@ declare (strict_types=1);
 namespace Cawa\Bootstrap\Forms\ExtendedFields;
 
 use Cawa\Bootstrap\Forms\Fields\Select;
+use Cawa\Html\Forms\Fields\AbstractField;
 use Cawa\Renderer\Container;
 use Cawa\Renderer\WidgetOption;
 
@@ -119,6 +120,26 @@ class Combo extends Select
     }
 
     /**
+     * {@inheritdoc}
+     */
+    public function setValue($value) : AbstractField
+    {
+        if (($this->widgetOptions->getData()['plugin']['tags'] ?? false) === true) {
+            if ($value) {
+                if (!is_array($value)) {
+                    $value = [$value];
+                }
+
+                foreach ($value as $option) {
+                    $this->addOption($option, $option);
+                }
+            }
+        }
+
+        return parent::setValue($value);
+    }
+
+    /**
      * @param bool $tag
      *
      * @return $this
@@ -126,6 +147,7 @@ class Combo extends Select
     public function setTagTyping(bool $tag = true) : self
     {
         $this->widgetOptions->addData('plugin', ['tags' => $tag]);
+        $this->checkValue = !$tag;
 
         return $this;
     }
