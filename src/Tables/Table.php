@@ -14,7 +14,6 @@ declare (strict_types=1);
 namespace Cawa\Bootstrap\Tables;
 
 use Cawa\Controller\ViewController;
-use Cawa\Html\Tables\Column as HtmlColumn;
 use Cawa\Renderer\HtmlElement;
 
 class Table extends \Cawa\Html\Tables\Table
@@ -60,7 +59,7 @@ class Table extends \Cawa\Html\Tables\Table
      */
     private function configureColumns($column)
     {
-        if ($column instanceof HtmlColumn) {
+        if (!$column instanceof Column) {
             return ;
         }
 
