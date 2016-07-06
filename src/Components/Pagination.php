@@ -46,7 +46,7 @@ class Pagination extends HtmlElement
             };
         }
 
-        $this->current = call_user_func($this->argsCallback, $this) ?? 1;
+        $this->current = call_user_func($this->argsCallback, $this) ?: 1;
 
         $this->ul = new HtmlContainer('<ul>');
         $this->ul->addClass('pagination');
@@ -85,6 +85,35 @@ class Pagination extends HtmlElement
     private $current = 1;
 
     /**
+     * @var int
+     */
+    private $maxItem = 4;
+
+    /**
+     * @return int
+     */
+    public function getMaxItem(): int
+    {
+        return $this->maxItem;
+    }
+
+    /**
+     * @param int $maxItem
+     *
+     * @return Pagination
+     */
+    public function setMaxItem(int $maxItem): Pagination
+    {
+        if ($maxItem % 2 !== 0) {
+            throw new \InvalidArgumentException(sprintf("Invalid maxItem '%s', must be multiple of 2"));
+        }
+
+        $this->maxItem = $maxItem;
+
+        return $this;
+    }
+
+    /**
      * @param int $page
      * @param string $display
      *
@@ -116,8 +145,24 @@ class Pagination extends HtmlElement
 
         $this->ul->add($this->getLi(max(1, $this->current-1), '&laquo;')->addClass('prev'));
 
-        for ($i=1; $i<=$this->page; $i++) {
+        $min = 1;
+        $max = $this->page;
+
+        if ($this->page > $this->maxItem) {
+            $min = max(1, $this->current - ($this->maxItem/2));
+            $max = min($this->page, $this->current + ($this->maxItem/2));
+        }
+
+        if ($min - 1 >= 1) {
+            $this->ul->add($this->getLi($min + 1, '...'));
+        }
+
+        for ($i=$min; $i<=$max; $i++) {
             $this->ul->add($this->getLi($i));
+        }
+
+        if ($max + 1 < $this->page) {
+            $this->ul->add($this->getLi($max + 1, '...'));
         }
 
         $this->ul->add($this->getLi(min($this->page, $this->current+1), '&raquo;')->addClass('next'));
