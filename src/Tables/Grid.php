@@ -186,7 +186,7 @@ class Grid extends HtmlContainer
     /**
      * @var Dropdown
      */
-    private $options;
+    protected $options;
 
     //endregion
 
