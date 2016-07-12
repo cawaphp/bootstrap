@@ -6,11 +6,7 @@
         "tchiotludo"
     ],
     "main": [
-        "assets/fields/datetime/datetime.js",
-        "assets/fields/datetime/_datetime.scss",
-        "assets/grid/_grid.scss",
-        "assets/grid/grid.js",
-        "assets/form.js"
+
     ],
     "moduleType": [
         "amd"

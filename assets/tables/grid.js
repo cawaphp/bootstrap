@@ -1,42 +1,45 @@
-var $ = require("jquery");
-var spf = require("spf");
+require([
+    "jquery",
+    "cawaphp/cawa/assets/widget"
+], function($)
+{
+    $.widget("cawa.grid", $.cawa.widget, {
 
-$.widget("cawa.grid", $.cawa.widget, {
+        _create: function() {
+            var self = this;
+            var element = $(this.element);
 
-    _create: function() {
-        var self = this;
-        var element = $(this.element);
+            $(element).find("tbody tr").on("dblclick", self._rowDoubleClick);
 
-        $(element).find("tbody tr").on("dblclick", self._rowDoubleClick);
+            element.find("nav form").on("submit", self._filterSubmit);
+        },
 
-        element.find("nav form").on("submit", self._filterSubmit);
-    },
+        _filterSubmit: function(event)
+        {
+            event.preventDefault();
+            event.stopImmediatePropagation();
 
-    _filterSubmit: function(event)
-    {
-        event.preventDefault();
-        event.stopImmediatePropagation();
+            var form = $(event.target);
 
-        var form = $(event.target);
+            var uri = form.attr('action');
+            if (!uri) {
+                uri = document.location.href;
+            }
 
-        var uri = form.attr('action');
-        if (!uri) {
-            uri = document.location.href;
+
+            $.goto(uri + (uri.indexOf("?") > 0 ?  "&" : "?") + form.serialize());
+        },
+
+        _rowDoubleClick: function(event)
+        {
+            var element = $(event.target);
+            var link = element.closest('tr')
+                .find("a[data-main-action='true']");
+
+            if (link.attr("href")) {
+                link.trigger("click");
+            }
         }
-
-
-        $.goto(uri + (uri.indexOf("?") > 0 ?  "&" : "?") + form.serialize());
-    },
-
-    _rowDoubleClick: function(event)
-    {
-        var element = $(event.target);
-        var link = element.closest('tr')
-            .find("a[data-main-action='true']");
-
-        if (link.attr("href")) {
-            link.trigger("click");
-        }
-    }
+    });
 });
 
