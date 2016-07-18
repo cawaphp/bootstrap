@@ -34,4 +34,28 @@ class ButtonLink extends Button
 
         parent::__construct($content, $type, $size);
     }
+
+    /**
+     * @return bool
+     */
+    public function isDisabled() : bool
+    {
+        return $this->hasClass('disabled');
+    }
+
+    /**
+     * @param bool $disabled
+     *
+     * @return $this
+     */
+    public function setDisabled(bool $disabled = true) : parent
+    {
+        if ($disabled) {
+            $this->addClass('disabled');
+        } else {
+            $this->removeClass('disabled');
+        }
+
+        return $this;
+    }
 }

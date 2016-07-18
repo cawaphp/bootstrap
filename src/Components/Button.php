@@ -79,11 +79,7 @@ class Button extends HtmlElement
      */
     public function isDisabled() : bool
     {
-        if ($this->getTag() == self::TAG_A) {
-            return $this->hasClass('disabled');
-        } else {
-            return $this->hasAttribute('disabled');
-        }
+        return $this->hasAttribute('disabled');
     }
 
     /**
@@ -93,18 +89,10 @@ class Button extends HtmlElement
      */
     public function setDisabled(bool $disabled = true) : self
     {
-        if ($this->getTag() == self::TAG_A) {
-            if ($disabled) {
-                $this->addClass('disabled');
-            } else {
-                $this->removeClass('disabled');
-            }
+        if ($disabled) {
+            $this->addAttribute('disabled', 'disabled');
         } else {
-            if ($disabled) {
-                $this->addAttribute('disabled', 'disabled');
-            } else {
-                $this->removeAttribute('disabled');
-            }
+            $this->removeAttribute('disabled');
         }
 
         return $this;
