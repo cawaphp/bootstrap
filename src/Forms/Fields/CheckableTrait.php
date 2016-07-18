@@ -27,12 +27,18 @@ trait CheckableTrait
      */
     protected function layout() : Container
     {
+        $parent = parent::layout()->first();
+
         $wrapper = (new HtmlContainer('<div>'))
             ->addClass('form-group')
-            ->add((new HtmlContainer('<div>'))
+            ->add($container = (new HtmlContainer('<div>'))
                 ->addClass('col-sm-' . (12-$this->getGridSize()) . ' col-sm-offset-' . $this->getGridSize())
-                ->add(parent::layout()->first()))
-        ;
+                ->add($parent)
+            );
+
+        if ($this->getHelpText()) {
+            $container->add($this->getHelpText());
+        }
 
         return (new Container())->add($wrapper);
     }
