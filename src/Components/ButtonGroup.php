@@ -24,7 +24,8 @@ class ButtonGroup extends HtmlContainer
     /**
      * @param string $size
      */
-    public function __construct(string $size = null) {
+    public function __construct(string $size = null)
+    {
         parent::__construct('<div>');
 
         $this->addClass('btn-group');
@@ -77,7 +78,6 @@ class ButtonGroup extends HtmlContainer
         if ($vertical) {
             $this->addClass('btn-group-vertical')
                 ->removeClass('btn-group');
-
         } else {
             $this->removeClass('btn-group-vertical')
                 ->addClass('btn-group');

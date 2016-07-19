@@ -17,7 +17,6 @@ use Cawa\Bootstrap\Tables\Grid;
 use Cawa\Bootstrap\Tables\Table;
 use Cawa\Controller\ViewController;
 use Cawa\Renderer\Container;
-use Cawa\Renderer\Element;
 use Cawa\Renderer\HtmlContainer;
 use Cawa\Renderer\HtmlElement;
 
@@ -123,14 +122,12 @@ class Panel extends HtmlContainer
      */
     private $buttonGroup;
 
-
     public function addButton(Button $button)
     {
         if (!$this->buttonGroup) {
             $this->buttonGroup = (new ButtonGroup(ButtonGroup::SIZE_SMALL))
                 ->addClass('pull-right');
         }
-
 
         $this->buttonGroup->add($button);
 
@@ -159,8 +156,7 @@ class Panel extends HtmlContainer
 
         if ($this->content) {
             parent::add((new HtmlElement('<div>', $this->content))
-                ->addClass('panel-body')
-            );
+                ->addClass('panel-body'));
         } else {
             $container = new Container();
             foreach ($this->container->getElements() as $element) {
@@ -168,8 +164,7 @@ class Panel extends HtmlContainer
                     if (sizeof($container->getElements()) > 0) {
                         parent::add((new HtmlContainer('<div>'))
                             ->addClass('panel-body')
-                            ->add($container)
-                        );
+                            ->add($container));
                         $container = new Container();
                     }
 
@@ -182,15 +177,13 @@ class Panel extends HtmlContainer
             if (sizeof($container->getElements()) > 0) {
                 parent::add((new HtmlContainer('<div>'))
                     ->addClass('panel-body')
-                    ->add($container)
-                );
+                    ->add($container));
             }
         }
 
         if ($this->footer) {
             parent::add((new HtmlElement('<div>', $this->footer))
-                ->addClass('panel-footer')
-            );
+                ->addClass('panel-footer'));
         }
 
         return parent::render();

@@ -54,7 +54,7 @@ class Submit extends \Cawa\Html\Forms\Fields\Submit
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     protected function layout() : Container
     {

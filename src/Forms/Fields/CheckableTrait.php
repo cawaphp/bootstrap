@@ -33,8 +33,7 @@ trait CheckableTrait
             ->addClass('form-group')
             ->add($container = (new HtmlContainer('<div>'))
                 ->addClass('col-sm-' . (12-$this->getGridSize()) . ' col-sm-offset-' . $this->getGridSize())
-                ->add($parent)
-            );
+                ->add($parent));
 
         if ($this->getHelpText()) {
             $container->add($this->getHelpText());
