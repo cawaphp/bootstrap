@@ -1,7 +1,12 @@
 .panel {
     .panel-heading {
         .btn-group-sm {
-            margin-top: -3px;
+            margin-top: -6px;
+            margin-right: -9px;
+
+            > a > i {
+                line-height: $line-height-small;
+            }
         }
     }
 

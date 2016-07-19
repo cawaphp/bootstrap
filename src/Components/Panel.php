@@ -177,14 +177,13 @@ class Panel extends HtmlContainer
                 } else {
                     $container->add($element);
                 }
+            }
 
-                if (sizeof($container->getElements()) > 0) {
-                    parent::add((new HtmlContainer('<div>'))
-                        ->addClass('panel-body')
-                        ->add($container)
-                    );
-                    $container = new Container();
-                }
+            if (sizeof($container->getElements()) > 0) {
+                parent::add((new HtmlContainer('<div>'))
+                    ->addClass('panel-body')
+                    ->add($container)
+                );
             }
         }
 
