@@ -1,7 +1,7 @@
 require([
     "jquery",
     "cawaphp/cawa/assets/widget",
-    "jquery-validation"
+    // "jquery-validation"
 ], function($)
 {
     $.widget("cawa.form", $.cawa.widget, {
