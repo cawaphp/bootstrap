@@ -53,9 +53,9 @@ class Grid extends HtmlContainer
             }
 
             if ($arg) {
-                return $this->request()->getUri()->addQuery($query, (string) $arg)->get();
+                return self::request()->getUri()->addQuery($query, (string) $arg)->get();
             } else {
-                return $this->request()->getUri()->getQuery($query);
+                return self::request()->getUri()->getQuery($query);
             }
         };
 
@@ -63,7 +63,7 @@ class Grid extends HtmlContainer
         $this->addClass('cawa-grid');
 
         $this->addClass('grid-table');
-        $this->translator()->addFile(__DIR__ . '/../../lang/global', 'bootstrap');
+        self::translator()->addFile(__DIR__ . '/../../lang/global', 'bootstrap');
 
         $this->navbar = (new Navbar())
             ->setInverse();
@@ -71,13 +71,13 @@ class Grid extends HtmlContainer
         $this->add($this->navbar);
 
         $this->options = new Dropdown(
-            '<i class="fa fa-adjust"></i> ' . $this->trans('bootstrap.grid/options')
+            '<i class="fa fa-adjust"></i> ' . self::trans('bootstrap.grid/options')
         );
 
         // refresh
         $this->options->add(new Link(
-            '<i class="glyphicon glyphicon-refresh"></i> ' . $this->trans('bootstrap.grid/refresh'),
-            $this->request()->getUri()->get()
+            '<i class="glyphicon glyphicon-refresh"></i> ' . self::trans('bootstrap.grid/refresh'),
+            self::request()->getUri()->get()
         ));
 
         $ul = new HtmlContainer('<ul>');
@@ -122,7 +122,7 @@ class Grid extends HtmlContainer
         $rowsperpageLi = (new HtmlContainer('<li>'))
             ->addClass('dropdown-submenu')
             ->add(new Link(
-                '<i class="glyphicon glyphicon-plus"></i> ' . $this->trans('bootstrap.grid/perpage')
+                '<i class="glyphicon glyphicon-plus"></i> ' . self::trans('bootstrap.grid/perpage')
             ))
             ->add($subMenu)
         ;
@@ -171,7 +171,7 @@ class Grid extends HtmlContainer
 
         $columsLi = (new HtmlContainer('<li>'))
             ->addClass('dropdown-submenu')
-            ->add(new Link('<i class="fa fa-columns"></i> ' . $this->trans('bootstrap.grid/columns')))
+            ->add(new Link('<i class="fa fa-columns"></i> ' . self::trans('bootstrap.grid/columns')))
             ->add($subMenu)
         ;
 
@@ -266,7 +266,7 @@ class Grid extends HtmlContainer
     {
         $var = ($this->stateId ? $this->stateId . '_'  : '') . $name;
 
-        return $this->request()->getQuery($var, $type, $default);
+        return self::request()->getQuery($var, $type, $default);
     }
 
     /**
@@ -326,7 +326,7 @@ class Grid extends HtmlContainer
             $this->filtersForm = new Form();
             $this->filtersForm->setMethod('GET')
                 ->setName($this->stateId ? $this->stateId : 'grid')
-                ->setAction($this->request()->getUri()->get());
+                ->setAction(self::request()->getUri()->get());
 
             $this->navbar->add($this->filtersForm);
         }
@@ -382,7 +382,7 @@ class Grid extends HtmlContainer
         $this->options->add($this->getColumnDropdown());
 
         if ($this->filtersForm) {
-            $this->filtersForm->add(new Submit($this->trans('bootstrap.grid/filter')));
+            $this->filtersForm->add(new Submit(self::trans('bootstrap.grid/filter')));
         }
 
         // add pagination

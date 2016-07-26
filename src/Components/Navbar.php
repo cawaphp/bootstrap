@@ -38,7 +38,7 @@ class Navbar extends HtmlElement
 
         $this->elements = new Container();
 
-        $this->translator()->addFile(__DIR__ . '/../../lang/global', 'bootstrap');
+        self::translator()->addFile(__DIR__ . '/../../lang/global', 'bootstrap');
     }
 
     /**

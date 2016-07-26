@@ -227,11 +227,11 @@ class TreeItem implements \JsonSerializable
         }
 
         if (!$this->text && $this->id) {
-            $return['text'] = $this->trans('rights.' . $this->id, null, false);
+            $return['text'] = self::trans('rights.' . $this->id, null, false);
             if (!$return['text']) {
                 $explode = explode('/', $this->id);
                 if (sizeof($explode) > 1) {
-                    $return['text'] = $this->trans('rights.' . array_pop($explode), null, false);
+                    $return['text'] = self::trans('rights.' . array_pop($explode), null, false);
                 }
             }
         }

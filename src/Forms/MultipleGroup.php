@@ -60,9 +60,9 @@ class MultipleGroup extends Group
                 if (!in_array($name, $nameIndex)) {
                     $nameIndex[] = $name;
 
-                    $userInput = $this->request()->getArg($name);
+                    $userInput = self::request()->getArg($name);
                     if ($this->container->first() instanceof Group) {
-                        foreach ($this->request()->getArg($name) ?? [] as $index => $value) {
+                        foreach (self::request()->getArg($name) ?? [] as $index => $value) {
                             $submitData[$index][$i] = $value;
                         };
                     } else {
