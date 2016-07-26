@@ -17,7 +17,8 @@ require([
 
         _select2: null,
         _hasValue: false,
-        _create: function() {
+        _create: function()
+        {
             var self = this;
             var element = this.element;
             var options = self.options.plugin;
@@ -36,9 +37,9 @@ require([
                     }
                 };
 
-                $(document).on("keyup", ".select2-search__field", function(event)
+                $(document).on("keyup", ".select2-search__field", function (event)
                 {
-                    if (event.which == 13 && (!element.val() || self._hasValue)) {
+                    if (element.select2("isOpen") && event.which == 13 && (!element.val() || self._hasValue)) {
                         element.val(null).trigger('change');
                         self.options.noResultCreate.call(self, event, $(event.target).val());
                     }
@@ -57,13 +58,14 @@ require([
                         return markup;
                     };
 
-                    options.templateResult = function(data)
+                    options.templateResult = function (data)
                     {
-                        return  data.html;
+                        return data.html;
                     };
-                    options.templateSelection = function(data)
+
+                    options.templateSelection = function (data)
                     {
-                        return  data.text;
+                        return data.text;
                     };
                 }
 
@@ -71,6 +73,20 @@ require([
                     options.ajax.delay = 250;
                 }
             }
+
+            // optgroup displayed on selection
+            if (!options.ajax) {
+                options.templateSelection = function (data)
+                {
+                    var parent = $(data.element).parent();
+                    if (parent.prop("tagName") == "OPTGROUP") {
+                        return parent[0].label + " » " + data.text;
+                    } else {
+                        return data.text;
+                    }
+                };
+            }
+
 
             /*
              * @see http://stackoverflow.com/a/33884094/1590168
@@ -86,14 +102,25 @@ require([
                 options.closeOnSelect = false;
             }
 
+            // custom matcher for optgroup
+            options.matcher = $.proxy(self._matcher, self);
+
+            // init
             self._select2 = element.select2(options);
             self._hasValue = element.val() !== "";
+            self._select2.removeClass("hidden");
+
+            // value selected
             self._select2.on("change", function()
             {
                 self._hasValue = true;
-            });
 
-            self._select2.removeClass("hidden");
+                // remove type text on selection
+                if (self.options.searchBox === undefined || self.options.searchBox == true) {
+                    $(self._select2).parent().find(".select2-search__field").val('');
+                    self.element.select2("trigger", "query");
+                }
+            });
 
             // open menu on keypress
             $(self._select2).parent().find(".select2-selection").on("keydown", function(event)
@@ -103,6 +130,59 @@ require([
                     self.element.select2("open");
                 }
             });
+        },
+
+        _matcher: function (params, data)
+        {
+            var self = this;
+
+            data.parentText = data.parentText || "";
+
+            // Always return the object if there is nothing to compare
+            if ($.trim(params.term) === '') {
+                return data;
+            }
+
+            // Do a recursive check for options with children
+            if (data.children && data.children.length > 0) {
+                // Clone the data object if there are children
+                // This is required as we modify the object to remove any non-matches
+                var match = $.extend(true, {}, data);
+
+                // Check each child of the option
+                for (var c = data.children.length - 1; c >= 0; c--) {
+                    var child = data.children[c];
+                    child.parentText += data.parentText + " " + data.text;
+
+                    var matches = self._matcher(params, child);
+
+                    // If there wasn't a match, remove the object in the array
+                    if (matches == null) {
+                        match.children.splice(c, 1);
+                    }
+                }
+
+                // If any children matched, return the new object
+                if (match.children.length > 0) {
+                    return match;
+                }
+
+                // If there were no matching children, check just the plain object
+                return self._matcher(params, match);
+            }
+
+            // If the typed-in term matches the text of this term, or the text from any
+            // parent term, then it's a match.
+            var original = (data.parentText + ' ' + data.text).toUpperCase();
+            var term = params.term.toUpperCase();
+
+            // Check if the text contains the term
+            if (original.indexOf(term) > -1) {
+                return data;
+            }
+
+            // If it doesn't contain the term, don't return anything
+            return null;
         },
 
         _processParam: function (params)
