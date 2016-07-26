@@ -9,14 +9,14 @@ require([
         options: {
             plugin: {
                 core: {
+
                     data: null,
                     animation: false,
                     themes : {
-                        variant : "large",
                         icons: false
                     }
                 },
-                plugins : ["checkbox" ]
+                plugins : ["checkbox"]
             }
         },
 

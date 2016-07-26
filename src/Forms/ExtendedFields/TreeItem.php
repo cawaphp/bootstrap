@@ -13,12 +13,8 @@ declare (strict_types=1);
 
 namespace Cawa\Bootstrap\Forms\ExtendedFields;
 
-use Cawa\Intl\TranslatorFactory;
-
 class TreeItem implements \JsonSerializable
 {
-    use TranslatorFactory;
-
     /**
      * @param string|null $id
      * @param string|null $text
@@ -224,16 +220,6 @@ class TreeItem implements \JsonSerializable
         $return = get_object_vars($this);
         if (!$this->id) {
             $return['id'] = uniqid('_');
-        }
-
-        if (!$this->text && $this->id) {
-            $return['text'] = self::trans('rights.' . $this->id, null, false);
-            if (!$return['text']) {
-                $explode = explode('/', $this->id);
-                if (sizeof($explode) > 1) {
-                    $return['text'] = self::trans('rights.' . array_pop($explode), null, false);
-                }
-            }
         }
 
         return $return;
