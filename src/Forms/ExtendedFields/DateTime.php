@@ -26,13 +26,17 @@ class DateTime extends \Cawa\Bootstrap\Forms\Fields\DateTime
     }
 
     /**
-     * @param string $selector
+     * @param DateTime $field
      *
-     * @return $this
+     * @return $this|DateTime
      */
-    public function setMinimumDate(string $selector) : self
+    public function setLinkedStartDate(DateTime $field) : self
     {
-        $this->getField()->addAttribute('data-min-selector', $selector);
+        if (!$field->getId()) {
+            $field->generateId();
+        }
+
+        $this->getField()->addAttribute('data-linked-min', '#' . $field->getId());
 
         return $this;
     }

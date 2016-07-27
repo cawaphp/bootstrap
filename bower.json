@@ -22,7 +22,7 @@
     "dependencies": {
         "bootstrap-sass": "^3.3.6",
         "modernizr": "^3.3.1",
-        "eonasdan-bootstrap-datetimepicker": "^4.17.37",
+        "datetimepicker": "^2.5.4",
         "jquery-validation": "master",
         "intl-tel-input": "^8.4.9",
         "jquery-mask-plugin": "^1.14.0",
