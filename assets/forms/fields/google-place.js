@@ -57,7 +57,7 @@ require([
             );
 
             self._autocomplete.addListener("place_changed", $.proxy(self._fillInput, self));
-            self.element.attr("data-rule-googlePlace", "true");
+            self.element.attr("data-rule-google-place", "true");
 
             self._value = self.element.val();
 
@@ -193,7 +193,7 @@ require([
     });
 
     if ($.validator) {
-        $.validator.addMethod("googlePlace", function (value, element)
+        $.validator.addMethod("google-place", function (value, element)
         {
             if (this.optional(element) && value == "") {
                 return true;

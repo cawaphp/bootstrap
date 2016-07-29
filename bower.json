@@ -34,6 +34,8 @@
         "select2-bootstrap-theme": "git@github.com:tchiotludo/select2-bootstrap-theme.git#master",
         "ckeditor": "#full/stable",
         "confighelper": "git@github.com:AlfonsoML/confighelper.git#^1.8.3",
-        "jstree": "git@github.com:tchiotludo/jstree.git#master"
+        "jstree": "git@github.com:tchiotludo/jstree.git#master",
+        "jquery.payment": "^1.4.3",
+        "credit_card_icons": "git@github.com:kristianmandrup/credit_card_icons.git#master"
     }
 }

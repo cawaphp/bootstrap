@@ -1,0 +1,54 @@
+input.cawa-fields-creditcard {
+    background-position: right $padding-base-horizontal center;
+    background-color: $input-bg;
+    background-repeat: no-repeat;
+    background-image: url("#{$creditcard-img}/credit_cards/generic_1.png");
+
+    &.visa {
+        background-image: url("#{$creditcard-img}/cards/32/visa_32.png");
+    }
+
+    &.mastercard {
+        background-image: url("#{$creditcard-img}/cards/32/mastercard_32.png");
+    }
+
+    &.amex {
+        background-image: url("#{$creditcard-img}/cards/32/american_express_32.png");
+    }
+
+    &.dinersclub {
+        background-image: url("#{$creditcard-img}/cards/32/diners_club_32.png");
+    }
+
+    &.discover {
+        background-image: url("#{$creditcard-img}/cards/32/discover_32.png");
+    }
+
+    &.unionpay {
+        background-image: url("#{$creditcard-img}/cards/32/china_union_pay_32.png");
+    }
+
+    &.jcb {
+        background-image: url("#{$creditcard-img}/cards/32/jcb_32.png");
+    }
+
+    &.visaelectron {
+        background-image: url("#{$creditcard-img}/cards/32/visa_electron_32.png");
+    }
+
+    &.maestro {
+        background-image: url("#{$creditcard-img}/cards/32/maestro_32.png");
+    }
+
+    &.forbrugsforeningen {
+
+    }
+
+    &.dankort {
+
+    }
+
+    &.elo {
+
+    }
+}

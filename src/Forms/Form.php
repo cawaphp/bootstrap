@@ -13,6 +13,7 @@ declare (strict_types=1);
 
 namespace Cawa\Bootstrap\Forms;
 
+use Cawa\Html\Forms\Fields\AbstractField;
 use DeepCopy\DeepCopy;
 
 class Form extends \Cawa\Html\Forms\Form
@@ -172,10 +173,10 @@ class Form extends \Cawa\Html\Forms\Form
         parent::alterBeforeRender();
 
         // size
-        if ($this->size) {
+        if ($this->fieldSize) {
             foreach ($this->elements as $i => $element) {
-                if (method_exists($element, 'setSize')) {
-                    $element->setSize($this->size);
+                if (method_exists($element, 'setFieldSize')) {
+                    $element->setFieldSize($this->fieldSize);
                 }
             }
         }
@@ -209,6 +210,26 @@ class Form extends \Cawa\Html\Forms\Form
     }
 
     /**
+     * @param AbstractField|Group|Fieldset $element
+     *
+     * @return void
+     */
+    private function addErrorClass($element)
+    {
+        if ($element instanceof Group || $element instanceof Fieldset) {
+            foreach ($element->getFields() as $field) {
+                if ($element instanceof Group || $element instanceof Fieldset) {
+                    $this->addErrorClass($field);
+                } else if ($field->isRequired()) {
+                    $field->addClass('has-error');
+                }
+            }
+        } elseif ($element->isRequired()) {
+            $element->addClass('has-error');
+        }
+    }
+
+    /**
      * {@inheritdoc}
      */
     protected function populateValue($element) : bool
@@ -216,15 +237,7 @@ class Form extends \Cawa\Html\Forms\Form
         $return = parent::populateValue($element);
 
         if (!$return && $this->isSubmit()) {
-            if ($element instanceof Group || $element instanceof Fieldset) {
-                foreach ($element->getFields() as $field) {
-                    if ($field->isRequired()) {
-                        $field->addClass('has-error');
-                    }
-                }
-            } elseif ($element->isRequired()) {
-                $element->addClass('has-error');
-            }
+           $this->addErrorClass($element);
         }
 
         return $return;

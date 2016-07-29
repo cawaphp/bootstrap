@@ -21,5 +21,11 @@ return [
         'city' => 'Ville',
         'state' => 'Etat',
         'country' => 'Pays',
+    ],
+    'creditcard' => [
+        'number' => 'Numéro de carte',
+        'expiration' => 'Date d\'expiration',
+        'expirationPlaceholder' => 'MM / AA',
+        'cvv' => 'Cryptogramme visuel',
     ]
 ];

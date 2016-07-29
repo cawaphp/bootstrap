@@ -75,7 +75,7 @@ require([
     });
 
     if ($.validator) {
-        $.validator.addMethod("google-place", function (value, element)
+        $.validator.addMethod("phone", function (value, element)
         {
             if (this.optional(element) && value == "") {
                 return true;
@@ -87,7 +87,7 @@ require([
                 return isValid;
             }
 
-            $.validator.messages["google-place"] = locale[$.locale()]["invalid"];
+            $.validator.messages["phone"] = locale[$.locale()]["invalid"];
 
             return isValid;
 

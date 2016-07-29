@@ -75,7 +75,6 @@ require([
             }
         },
 
-
         _submit: function (element)
         {
             element = $(element);
