@@ -18,7 +18,7 @@ use Cawa\Renderer\HtmlElement;
 class Fieldset extends \Cawa\Html\Forms\Fieldset
 {
     use BootstrapPropertiesTrait {
-        BootstrapPropertiesTrait::setSize as private setSizeTrait;
+        BootstrapPropertiesTrait::setFieldSize as private setSizeTrait;
         BootstrapPropertiesTrait::setHorizontal as private setHorizontalTrait;
         BootstrapPropertiesTrait::setInline as private setInlineTrait;
         BootstrapPropertiesTrait::setGridSize as private setGridSizeTrait;
@@ -66,10 +66,10 @@ class Fieldset extends \Cawa\Html\Forms\Fieldset
     /**
      * * {@inheritdoc}
      */
-    public function setSize(string $size) : self
+    public function setFieldSize(string $size) : self
     {
         $this->setSizeTrait($size);
-        $this->applyToElements('setSize', func_get_args());
+        $this->applyToElements('setFieldSize', func_get_args());
 
         return $this;
     }

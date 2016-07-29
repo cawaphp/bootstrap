@@ -20,7 +20,7 @@ class Group extends \Cawa\Html\Forms\Group
 {
     use FieldTrait {
         FieldTrait::applyContainerSize as protected applyContainerSizeTrait;
-        FieldTrait::setSize as private setSizeTrait;
+        FieldTrait::setFieldSize as private setSizeTrait;
     }
 
     /**
@@ -60,13 +60,13 @@ class Group extends \Cawa\Html\Forms\Group
     /**
      * * {@inheritdoc}
      */
-    public function setSize(string $size) : self
+    public function setFieldSize(string $size) : self
     {
         $this->setSizeTrait($size);
 
         foreach ($this->container->elements as $element) {
-            if (method_exists($element, 'setSize')) {
-                $element->setSize($this->size);
+            if (method_exists($element, 'setFieldSize')) {
+                $element->setFieldSize($this->fieldSize);
             }
         }
 

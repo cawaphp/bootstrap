@@ -97,14 +97,14 @@ trait BootstrapPropertiesTrait
     /**
      * @var string
      */
-    private $size;
+    private $fieldSize;
 
     /**
      * @return string
      */
-    public function getSize()
+    public function getFieldSize()
     {
-        return $this->size;
+        return $this->fieldSize;
     }
 
     /**
@@ -112,9 +112,9 @@ trait BootstrapPropertiesTrait
      *
      * @return $this
      */
-    public function setSize(string $size) : self
+    public function setFieldSize(string $size) : self
     {
-        $this->size = $size;
+        $this->fieldSize = $size;
 
         return $this;
     }
@@ -124,7 +124,7 @@ trait BootstrapPropertiesTrait
      */
     protected function applyContainerSize(array $elements)
     {
-        if ($this->size) {
+        if ($this->fieldSize) {
             /** @var AbstractField $element */
             foreach ($elements as $element) {
                 if ($element instanceof Hidden) {
@@ -141,17 +141,17 @@ trait BootstrapPropertiesTrait
      */
     protected function applySize($element)
     {
-        if (!$element->getSize()) {
+        if (!$element->getFieldSize()) {
             return;
         }
 
         if ($this instanceof Submit) {
-            $this->getField()->addClass($element->getSize() == Form::SIZE_LARGE ? 'btn-lg' : 'btn-sm');
+            $this->getField()->addClass($element->getFieldSize() == Form::SIZE_LARGE ? 'btn-lg' : 'btn-sm');
         } else {
             if ($this->horizontal) {
-                $this->addClass($element->getSize() == Form::SIZE_LARGE ? 'form-group-lg' : 'form-group-sm');
+                $this->addClass($element->getFieldSize() == Form::SIZE_LARGE ? 'form-group-lg' : 'form-group-sm');
             } else {
-                $this->getField()->addClass($element->getSize() == Form::SIZE_LARGE ? 'input-lg' : 'input-sm');
+                $this->getField()->addClass($element->getFieldSize() == Form::SIZE_LARGE ? 'input-lg' : 'input-sm');
             }
         }
     }
