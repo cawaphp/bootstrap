@@ -86,6 +86,30 @@ class CollapseContainer extends HtmlContainer
     }
 
     /**
+     * @return bool
+     */
+    public function isCollapseIcon() : bool
+    {
+        return $this->hasClass('collapse-icon');
+    }
+
+    /**
+     * @param bool $collapseIcon
+     *
+     * @return $this
+     */
+    public function setCollapseIcon(bool $collapseIcon = true) : self
+    {
+        if ($collapseIcon) {
+            $this->addClass('collapse-icon');
+        } else {
+            $this->removeClass('collapse-icon');
+        }
+
+        return $this;
+    }
+
+    /**
      * @param Collapse $collapse
      * @param bool $first
      *
