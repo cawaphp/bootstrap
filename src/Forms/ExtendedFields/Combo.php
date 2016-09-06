@@ -124,14 +124,21 @@ class Combo extends Select
      */
     public function setValue($value) : AbstractField
     {
-        if (($this->widgetOptions->getData()['plugin']['tags'] ?? false) === true) {
+        $dynamicValue = false;
+        if (isset($this->widgetOptions->getData()['plugin']['tags'])) {
+            $dynamicValue = true;
+        } else if (isset($this->widgetOptions->getData()['plugin']['ajax'])) {
+            $dynamicValue = true;
+        }
+
+        if ($dynamicValue) {
             if ($value) {
                 if (!is_array($value)) {
                     $value = [$value];
                 }
 
                 foreach ($value as $option) {
-                    $this->addOption($option, $option);
+                    $this->addOption((string)$option, (string)$option);
                 }
             }
         }

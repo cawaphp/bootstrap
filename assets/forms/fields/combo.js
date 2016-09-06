@@ -49,6 +49,7 @@ require([
             // remote ajax data sources
             if (options.ajax) {
                 options.ajax.dataType = 'json';
+                options.ajax.queryType = 'autocomplete';
                 options.ajax.data = $.proxy(self._processParam, self);
                 options.ajax.processResults = $.proxy(self._processResult, self);
 
