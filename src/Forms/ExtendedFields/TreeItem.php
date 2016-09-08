@@ -106,7 +106,7 @@ class TreeItem implements \JsonSerializable
     private $open;
 
     /**
-     * @return boolean
+     * @return bool
      */
     public function isOpen() : bool
     {
@@ -114,7 +114,7 @@ class TreeItem implements \JsonSerializable
     }
 
     /**
-     * @param boolean $open
+     * @param bool $open
      *
      * @return $this
      */
@@ -131,7 +131,7 @@ class TreeItem implements \JsonSerializable
     private $disabled;
 
     /**
-     * @return boolean
+     * @return bool
      */
     public function isDisabled() : bool
     {
@@ -139,7 +139,7 @@ class TreeItem implements \JsonSerializable
     }
 
     /**
-     * @param boolean $disabled
+     * @param bool $disabled
      *
      * @return $this
      */
@@ -156,7 +156,7 @@ class TreeItem implements \JsonSerializable
     private $state = [];
 
     /**
-     * @return boolean
+     * @return bool
      */
     public function isSelected() : bool
     {
@@ -164,7 +164,7 @@ class TreeItem implements \JsonSerializable
     }
 
     /**
-     * @param boolean $selected
+     * @param bool $selected
      *
      * @return $this
      */
@@ -213,7 +213,7 @@ class TreeItem implements \JsonSerializable
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function jsonSerialize()
     {

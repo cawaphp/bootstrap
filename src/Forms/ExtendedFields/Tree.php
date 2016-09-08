@@ -48,7 +48,7 @@ class Tree extends Text implements MultipleValueInterface
     }
 
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     public function setValue($value) : parent
     {

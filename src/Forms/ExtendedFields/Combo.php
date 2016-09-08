@@ -127,7 +127,7 @@ class Combo extends Select
         $dynamicValue = false;
         if (isset($this->widgetOptions->getData()['plugin']['tags'])) {
             $dynamicValue = true;
-        } else if (isset($this->widgetOptions->getData()['plugin']['ajax'])) {
+        } elseif (isset($this->widgetOptions->getData()['plugin']['ajax'])) {
             $dynamicValue = true;
         }
 
@@ -138,7 +138,7 @@ class Combo extends Select
                 }
 
                 foreach ($value as $option) {
-                    $this->addOption((string)$option, (string)$option);
+                    $this->addOption((string) $option, (string) $option);
                 }
             }
         }

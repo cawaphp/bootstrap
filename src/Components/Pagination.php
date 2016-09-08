@@ -26,7 +26,7 @@ class Pagination extends HtmlElement
 
     /**
      * @param int $page
-     * @param $callback $argsCallback
+     * @param callable $argsCallback
      */
     public function __construct(int $page, callable $argsCallback = null)
     {

@@ -31,11 +31,11 @@
         "bootstrap-fileinput": "master",
         "google-maps": "^3.2.1",
         "select2": "^4.0.2",
-        "select2-bootstrap-theme": "git@github.com:tchiotludo/select2-bootstrap-theme.git#master",
+        "select2-bootstrap-theme": "git://github.com/tchiotludo/select2-bootstrap-theme.git#master",
         "ckeditor": "#full/stable",
-        "confighelper": "git@github.com:AlfonsoML/confighelper.git#^1.8.3",
-        "jstree": "git@github.com:tchiotludo/jstree.git#master",
+        "confighelper": "git://github.com/AlfonsoML/confighelper.git#^1.8.3",
+        "jstree": "git://github.com/tchiotludo/jstree.git#master",
         "jquery.payment": "^1.4.3",
-        "credit_card_icons": "git@github.com:kristianmandrup/credit_card_icons.git#master"
+        "credit_card_icons": "git://github.com/kristianmandrup/credit_card_icons.git#master"
     }
 }

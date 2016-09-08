@@ -220,7 +220,7 @@ class Form extends \Cawa\Html\Forms\Form
             foreach ($element->getFields() as $field) {
                 if ($element instanceof Group || $element instanceof Fieldset) {
                     $this->addErrorClass($field);
-                } else if ($field->isRequired()) {
+                } elseif ($field->isRequired()) {
                     $field->addClass('has-error');
                 }
             }
@@ -237,7 +237,7 @@ class Form extends \Cawa\Html\Forms\Form
         $return = parent::populateValue($element);
 
         if (!$return && $this->isSubmit()) {
-           $this->addErrorClass($element);
+            $this->addErrorClass($element);
         }
 
         return $return;

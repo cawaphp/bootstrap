@@ -23,7 +23,7 @@ class CreditCardExpiry extends AbstractField
     use FieldTrait;
 
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     public function __construct(string $name = null, string $label = null)
     {
