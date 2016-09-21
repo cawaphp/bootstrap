@@ -88,6 +88,14 @@ require([
                 };
             }
 
+            // css class
+            options.containerCssClass = function()
+            {
+                return $('<div>').attr('class', element.attr('class'))
+                    .removeClass('hidden')
+                    .removeClass('cawa-fields-combo')
+                    .attr('class');
+            };
 
             /*
              * @see http://stackoverflow.com/a/33884094/1590168
@@ -110,6 +118,19 @@ require([
             self._select2 = element.select2(options);
             self._hasValue = element.val() !== "";
             self._select2.removeClass("hidden");
+
+            // loading
+            element.data('select2').results.__proto__.showLoading = function()
+            {
+                console.log('showLoading');
+                $(self._select2).parent().find(".select2").addClass('loading');
+            };
+
+            element.data('select2').results.__proto__.hideLoading = function()
+            {
+                console.log('hideLoading');
+                $(self._select2).parent().find(".select2").removeClass('loading');
+            };
 
             // value selected
             self._select2.on("change", function()

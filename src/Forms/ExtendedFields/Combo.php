@@ -131,7 +131,7 @@ class Combo extends Select
             $dynamicValue = true;
         }
 
-        if ($dynamicValue) {
+        if ($dynamicValue && !isset($this->options[$value])) {
             if ($value) {
                 if (!is_array($value)) {
                     $value = [$value];
