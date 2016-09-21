@@ -123,6 +123,7 @@ class Pagination extends HtmlElement
     {
         $li = new HtmlElement('<li>');
         $url = call_user_func($this->argsCallback, $this, $page);
+
         if ($page == $this->current) {
             $li->addClass($display ? 'disabled' : 'active');
         }
@@ -131,6 +132,14 @@ class Pagination extends HtmlElement
             $li->setContent('<span href="' . $url . '">' . ($display ?: $page) . '</span>');
         } else {
             $li->setContent('<a href="' . $url . '">' . ($display ?: $page) . '</a>');
+        }
+
+        if ($this->current - 1 == $page) {
+            $li->addAttribute('rel', 'prev');
+        }
+
+        if ($this->current + 1 == $page) {
+            $li->addAttribute('rel', 'next');
         }
 
         return $li;
