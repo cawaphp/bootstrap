@@ -39,6 +39,14 @@ require([
                 type = "date";
             } else if (this.element.attr("type") == "time") {
                 options.datepicker = false;
+                options.step = 5;
+                var minDate = new Date();
+                minDate.setHours(0);
+                minDate.setMinutes(0);
+                minDate.setSeconds(0);
+                minDate.setMilliseconds(0);
+                options.defaultTime = '00:00';
+                options.minDate = minDate;
                 options.format = moment().localeData().longDateFormat('LT');
                 type = "time";
             } else {
