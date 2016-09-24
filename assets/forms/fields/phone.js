@@ -2,10 +2,11 @@ require([
     "jquery",
     "imports?this=>window!exports?window.intlTelInputUtils!intl-tel-input/build/js/utils.js",
     "../../../lang/fields-phone",
+    "lodash",
     "cawaphp/cawa/assets/widget",
     "intl-tel-input",
     "jquery-mask-plugin"
-], function($, intlTelInputUtils, locale)
+], function($, intlTelInputUtils, locale, _)
 {
     $.widget("cawa.fields-phone", $.cawa.widget, {
 
@@ -81,15 +82,16 @@ require([
                 return true;
             }
 
-            var isValid = $(element)["fields-googleplace"]("isValid");
-
-            if (isValid) {
-                return isValid;
+            if ($(element).intlTelInput("isValidNumber")) {
+                return true;
             }
 
-            $.validator.messages["phone"] = locale[$.locale()]["invalid"];
+            var error  = $(element).intlTelInput("getValidationError");
+            var key = _.invert(intlTelInputUtils.validationError)[error];
 
-            return isValid;
+            $.validator.messages.phone = locale[$.locale()][key];
+
+            return false;
 
         }, $.validator.messages.required);
     }
