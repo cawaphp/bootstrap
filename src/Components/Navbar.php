@@ -50,7 +50,7 @@ class Navbar extends HtmlElement
      * @param HtmlElement $element
      * @param bool $left
      *
-     * @return $this
+     * @return $this|self
      */
     public function add(HtmlElement $element, bool $left = true) : self
     {
@@ -101,7 +101,7 @@ class Navbar extends HtmlElement
     /**
      * @param bool $inverse
      *
-     * @return $this
+     * @return $this|self
      */
     public function setInverse(bool $inverse = true)
     {
@@ -127,7 +127,7 @@ class Navbar extends HtmlElement
     /**
      * @param bool $fixedToTop
      *
-     * @return $this
+     * @return $this|self
      */
     public function setFixedToTop(bool $fixedToTop = true)
     {
@@ -153,7 +153,7 @@ class Navbar extends HtmlElement
     /**
      * @param bool $StaticToTop
      *
-     * @return $this
+     * @return $this|self
      */
     public function setStaticToTop(bool $StaticToTop = true)
     {
@@ -179,7 +179,7 @@ class Navbar extends HtmlElement
     /**
      * @param bool $fixedToBottom
      *
-     * @return $this
+     * @return $this|self
      */
     public function setFixedToBottom(bool $fixedToBottom = true)
     {

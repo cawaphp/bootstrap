@@ -28,7 +28,7 @@ class DateTime extends \Cawa\Bootstrap\Forms\Fields\DateTime
     /**
      * @param DateTime $field
      *
-     * @return $this|DateTime
+     * @return $this|self
      */
     public function setLinkedStartDate(DateTime $field) : self
     {

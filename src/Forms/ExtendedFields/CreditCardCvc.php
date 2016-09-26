@@ -46,7 +46,7 @@ class CreditCardCvc extends AbstractField
     /**
      * @param CreditCard $card
      *
-     * @return $this
+     * @return $this|self
      */
     public function setCardCredit(CreditCard $card) : self
     {

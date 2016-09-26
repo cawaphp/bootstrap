@@ -44,7 +44,7 @@ class Group extends \Cawa\Html\Forms\Group
     /**
      * @param bool $multiline
      *
-     * @return Group
+     * @return $this|self
      */
     public function setMultiline(bool $multiline = true) : self
     {
@@ -58,7 +58,7 @@ class Group extends \Cawa\Html\Forms\Group
     }
 
     /**
-     * * {@inheritdoc}
+     * {@inheritdoc}
      */
     public function setFieldSize(string $size) : self
     {

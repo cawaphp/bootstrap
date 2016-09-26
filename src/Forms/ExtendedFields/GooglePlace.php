@@ -86,7 +86,7 @@ class GooglePlace extends Fieldset
     /**
      * @param string|null $name
      *
-     * @return $this
+     * @return $this|self
      */
     public function setPlaceholder(string $name = null) : self
     {
@@ -98,7 +98,7 @@ class GooglePlace extends Fieldset
     /**
      * @param bool $required
      *
-     * @return $this
+     * @return $this|self
      */
     public function setRequired(bool $required = true)
     {
@@ -110,7 +110,7 @@ class GooglePlace extends Fieldset
     /**
      * @param GeocoderResult|null $geocode
      *
-     * @return $this
+     * @return $this|self
      */
     public function setValue(GeocoderResult $geocode = null) : self
     {
@@ -135,7 +135,7 @@ class GooglePlace extends Fieldset
     /**
      * @param bool $geolocate
      *
-     * @return $this
+     * @return $this|self
      */
     public function setGeolocate(bool $geolocate) : self
     {
@@ -147,11 +147,23 @@ class GooglePlace extends Fieldset
     /**
      * @param string $type
      *
-     * @return $this|GooglePlace
+     * @return $this|self
      */
     public function setType(string $type) : self
     {
         $this->main->getField()->addAttribute('data-type', $type);
+
+        return $this;
+    }
+
+    /**
+     * @param string[] $types
+     *
+     * @return $this|self
+     */
+    public function setTypes(array $types) : self
+    {
+        $this->main->getField()->addAttribute('data-types', json_encode($types));
 
         return $this;
     }

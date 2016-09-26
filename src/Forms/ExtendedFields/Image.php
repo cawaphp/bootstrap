@@ -32,9 +32,7 @@ class Image extends File
     }
 
     /**
-     * @param bool $required
-     *
-     * @return $this
+     * {@inheritdoc}
      */
     public function setRequired(bool $required = true)
     {
@@ -58,7 +56,7 @@ class Image extends File
     /**
      * @param bool $multiple
      *
-     * @return $this
+     * @return $this|self
      */
     public function setMultiple(bool $multiple = true)
     {
@@ -79,7 +77,7 @@ class Image extends File
     /**
      * @param array $extensions
      *
-     * @return $this
+     * @return $this|self
      */
     public function setAllowedExtensions(array $extensions) : self
     {
@@ -92,7 +90,7 @@ class Image extends File
     /**
      * @param array|string $url
      *
-     * @return Image
+     * @return $this|self
      */
     public function setUrl($url) : self
     {

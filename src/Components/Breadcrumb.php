@@ -45,7 +45,7 @@ class Breadcrumb extends Container
     /**
      * @param array $links
      *
-     * @return $this
+     * @return $this|self
      */
     private function setOl(array $links = []) : self
     {
@@ -82,7 +82,7 @@ class Breadcrumb extends Container
     /**
      * @param array $links
      *
-     * @return $this
+     * @return $this|self
      */
     private function setSchema(array $links = []) : self
     {

@@ -46,7 +46,7 @@ class ButtonLink extends Button
     /**
      * @param bool $disabled
      *
-     * @return $this
+     * @return $this|self|parent|Button|ButtonLink
      */
     public function setDisabled(bool $disabled = true) : parent
     {

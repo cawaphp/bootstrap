@@ -12,7 +12,6 @@ require([
 
         options: {
             geolocate: false,
-            type: 'geocode'
         },
 
         _forms : {
@@ -50,10 +49,11 @@ require([
         _initAutocomplete: function ()
         {
             var self = this;
+            var types = self.options.types ? self.options.types : (self.options.type ? [self.options.type] : []);
 
             self._autocomplete = new this._google.maps.places.Autocomplete(
                 self.element[0],
-                {types: [self.options.type]}
+                {types: types}
             );
 
             self._autocomplete.addListener("place_changed", $.proxy(self._fillInput, self));

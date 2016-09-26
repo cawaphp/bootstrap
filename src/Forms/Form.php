@@ -55,7 +55,7 @@ class Form extends \Cawa\Html\Forms\Form
     }
 
     /**
-     * @return $this
+     * @return $this|self
      */
     public function setBasic() : self
     {
@@ -73,9 +73,7 @@ class Form extends \Cawa\Html\Forms\Form
     }
 
     /**
-     * @param int $size
-     *
-     * @return $this
+     * {@inheritdoc}
      */
     public function setHorizontal(int $size = 2) : self
     {
@@ -94,7 +92,7 @@ class Form extends \Cawa\Html\Forms\Form
     }
 
     /**
-     * @return $this
+     * @return $this|self
      */
     public function setInline() : self
     {

@@ -44,7 +44,7 @@ class Column extends \Cawa\Html\Tables\Column
     /**
      * @param callable $argsCallback
      *
-     * @return $this
+     * @return $this|self
      */
     public function setArgsCallback(callable $argsCallback) : self
     {
@@ -69,7 +69,7 @@ class Column extends \Cawa\Html\Tables\Column
     /**
      * @param bool $sortable
      *
-     * @return $this
+     * @return $this|self
      */
     public function setSortable(bool $sortable = true) : self
     {
@@ -109,7 +109,7 @@ class Column extends \Cawa\Html\Tables\Column
     /**
      * @param string $icon
      *
-     * @return $this
+     * @return $this|self
      */
     public function setIcon(string $icon) : self
     {
@@ -144,6 +144,7 @@ class Column extends \Cawa\Html\Tables\Column
             $sortIcon = (new HtmlElement('<i>'))
                 ->addClass('sort');
 
+            /** @var string $href */
             if (is_null($currentSort) || $currentCols != $this->getId()) {
                 $sortIcon->addClass(['fa', 'fa-sort']);
                 $href = call_user_func($this->argsCallback, $this, $this->getId() . '-A');

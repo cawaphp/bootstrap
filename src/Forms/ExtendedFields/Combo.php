@@ -38,7 +38,7 @@ class Combo extends Select
     /**
      * @param string|null $name
      *
-     * @return $this
+     * @return $this|self|parent
      */
     public function setPlaceholder(string $name = null) : parent
     {
@@ -50,7 +50,7 @@ class Combo extends Select
     /**
      * @param bool $searchBox
      *
-     * @return $this
+     * @return $this|self
      */
     public function setSearchBox(bool $searchBox = false) : self
     {
@@ -62,7 +62,7 @@ class Combo extends Select
     /**
      * @param int $length
      *
-     * @return $this
+     * @return $this|self
      */
     public function setMinimunFilterLength(int $length) : self
     {
@@ -74,7 +74,7 @@ class Combo extends Select
     /**
      * @param int $length
      *
-     * @return $this
+     * @return $this|self
      */
     public function setMaximumFilterLength(int $length) : self
     {
@@ -86,7 +86,7 @@ class Combo extends Select
     /**
      * @param string $url
      *
-     * @return $this
+     * @return $this|self
      */
     public function setRemoteUrl(string $url) : self
     {
@@ -98,7 +98,7 @@ class Combo extends Select
     /**
      * @param bool $close
      *
-     * @return $this
+     * @return $this|self
      */
     public function setCloseOnSelect(bool $close) : self
     {
@@ -110,7 +110,7 @@ class Combo extends Select
     /**
      * @param bool $html
      *
-     * @return $this
+     * @return $this|self
      */
     public function setRemoteHtml(bool $html = true) : self
     {
@@ -131,7 +131,7 @@ class Combo extends Select
             $dynamicValue = true;
         }
 
-        if ($dynamicValue && !isset($this->options[$value])) {
+        if ($dynamicValue && (is_array($value) || !isset($this->options[$value]))) {
             if ($value) {
                 if (!is_array($value)) {
                     $value = [$value];
@@ -149,7 +149,7 @@ class Combo extends Select
     /**
      * @param bool $tag
      *
-     * @return $this
+     * @return $this|self
      */
     public function setTagTyping(bool $tag = true) : self
     {

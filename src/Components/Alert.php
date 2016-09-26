@@ -48,7 +48,7 @@ class Alert extends HtmlElement
     /**
      * @param bool $dismissible
      *
-     * @return $this
+     * @return $this|self
      */
     public function setDismissible(bool $dismissible = true)
     {

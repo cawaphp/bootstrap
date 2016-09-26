@@ -60,7 +60,7 @@ class Pagination extends HtmlElement
     /**
      * @param string $size
      *
-     * @return $this
+     * @return $this|self
      */
     public function setSize(string $size) : self
     {
@@ -100,9 +100,9 @@ class Pagination extends HtmlElement
     /**
      * @param int $maxItem
      *
-     * @return Pagination
+     * @return $this|self
      */
-    public function setMaxItem(int $maxItem): Pagination
+    public function setMaxItem(int $maxItem) : self
     {
         if ($maxItem % 2 !== 0) {
             throw new \InvalidArgumentException(sprintf("Invalid maxItem '%s', must be multiple of 2"));

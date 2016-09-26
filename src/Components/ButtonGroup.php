@@ -47,7 +47,7 @@ class ButtonGroup extends HtmlContainer
     /**
      * @param bool $justified
      *
-     * @return $this
+     * @return $this|self
      */
     public function setJustified(bool $justified = true) : self
     {
@@ -71,7 +71,7 @@ class ButtonGroup extends HtmlContainer
     /**
      * @param bool $vertical
      *
-     * @return $this
+     * @return $this|self
      */
     public function setVertical(bool $vertical = true) : self
     {

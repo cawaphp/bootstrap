@@ -42,7 +42,7 @@ class Submit extends \Cawa\Html\Forms\Fields\Submit
     /**
      * @param string $type
      *
-     * @return Submit
+     * @return $this|self
      */
     public function setType(string $type) : self
     {
@@ -66,7 +66,7 @@ class Submit extends \Cawa\Html\Forms\Fields\Submit
     /**
      * @param Button $button
      *
-     * @return $this
+     * @return $this|self
      */
     public function addButton(Button $button) : self
     {

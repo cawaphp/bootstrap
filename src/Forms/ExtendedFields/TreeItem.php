@@ -41,7 +41,7 @@ class TreeItem implements \JsonSerializable
     /**
      * @param string $id
      *
-     * @return $this
+     * @return $this|self
      */
     public function setId(string $id) : self
     {
@@ -66,7 +66,7 @@ class TreeItem implements \JsonSerializable
     /**
      * @param string $text
      *
-     * @return $this
+     * @return $this|self
      */
     public function setText(string $text) : self
     {
@@ -91,7 +91,7 @@ class TreeItem implements \JsonSerializable
     /**
      * @param string $icon
      *
-     * @return $this
+     * @return $this|self
      */
     public function setIcon(string $icon) : self
     {
@@ -99,11 +99,6 @@ class TreeItem implements \JsonSerializable
 
         return $this;
     }
-
-    /**
-     * @var bool
-     */
-    private $open;
 
     /**
      * @return bool
@@ -116,7 +111,7 @@ class TreeItem implements \JsonSerializable
     /**
      * @param bool $open
      *
-     * @return $this
+     * @return $this|self
      */
     public function setOpen(bool $open) : self
     {
@@ -124,11 +119,6 @@ class TreeItem implements \JsonSerializable
 
         return $this;
     }
-
-    /**
-     * @var bool
-     */
-    private $disabled;
 
     /**
      * @return bool
@@ -141,7 +131,7 @@ class TreeItem implements \JsonSerializable
     /**
      * @param bool $disabled
      *
-     * @return $this
+     * @return $this|self
      */
     public function setDisabled(bool $disabled) : self
     {
@@ -166,7 +156,7 @@ class TreeItem implements \JsonSerializable
     /**
      * @param bool $selected
      *
-     * @return $this
+     * @return $this|self
      */
     public function setSelected(bool $selected) : self
     {
@@ -191,7 +181,7 @@ class TreeItem implements \JsonSerializable
     /**
      * @param TreeItem $item
      *
-     * @return $this
+     * @return $this|self
      */
     public function addChildren(TreeItem $item) : self
     {
@@ -203,7 +193,7 @@ class TreeItem implements \JsonSerializable
     /**
      * @param array|TreeItem[] $children
      *
-     * @return $this
+     * @return $this|self
      */
     public function setChildren(array $children) : self
     {

@@ -51,7 +51,7 @@ class CollapseContainer extends HtmlContainer
     /**
      * @param string $initialShow
      *
-     * @return $this
+     * @return $this|self
      */
     public function setInitialShow(string $initialShow) : self
     {
@@ -76,7 +76,7 @@ class CollapseContainer extends HtmlContainer
     /**
      * @param bool $isAccordion
      *
-     * @return $this
+     * @return $this|self
      */
     public function setIsAccordion(bool $isAccordion) : self
     {
@@ -96,7 +96,7 @@ class CollapseContainer extends HtmlContainer
     /**
      * @param bool $collapseIcon
      *
-     * @return $this
+     * @return $this|self
      */
     public function setCollapseIcon(bool $collapseIcon = true) : self
     {

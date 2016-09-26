@@ -225,7 +225,7 @@ class Grid extends HtmlContainer
     /**
      * @param int $rowCount
      *
-     * @return $this
+     * @return $this|self
      */
     public function setRowCount(int $rowCount) : self
     {
@@ -242,7 +242,7 @@ class Grid extends HtmlContainer
     /**
      * @param callable|string|array $data
      *
-     * @return $this
+     * @return $this|self
      */
     public function setDataCallable($data) : self
     {
@@ -318,7 +318,7 @@ class Grid extends HtmlContainer
     /**
      * @param $filter
      *
-     * @return Grid
+     * @return $this|self
      */
     public function addFilter(AbstractField $filter) : self
     {

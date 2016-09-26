@@ -91,7 +91,7 @@ class MultipleGroup extends Group
     /**
      * @param array $values
      *
-     * @return $this
+     * @return $this|self
      */
     public function setValues(array $values) : self
     {

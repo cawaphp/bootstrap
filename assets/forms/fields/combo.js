@@ -122,13 +122,11 @@ require([
             // loading
             element.data('select2').results.__proto__.showLoading = function()
             {
-                console.log('showLoading');
                 $(self._select2).parent().find(".select2").addClass('loading');
             };
 
             element.data('select2').results.__proto__.hideLoading = function()
             {
-                console.log('hideLoading');
                 $(self._select2).parent().find(".select2").removeClass('loading');
             };
 

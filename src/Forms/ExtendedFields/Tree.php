@@ -38,7 +38,7 @@ class Tree extends Text implements MultipleValueInterface
     /**
      * @param array|TreeItem[] $data
      *
-     * @return $this
+     * @return $this|self
      */
     public function setData($data) : self
     {

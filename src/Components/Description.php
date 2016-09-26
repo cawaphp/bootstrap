@@ -34,7 +34,7 @@ class Description extends HtmlContainer
      * @param string $key
      * @param string $value
      *
-     * @return $this
+     * @return $this|self
      */
     public function addDescription(string $key, string $value) : self
     {
@@ -57,7 +57,7 @@ class Description extends HtmlContainer
     /**
      * @param bool $horizontal
      *
-     * @return $this
+     * @return $this|self
      */
     public function setHorizontal(bool $horizontal = true)
     {

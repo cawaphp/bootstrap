@@ -61,7 +61,7 @@ class Button extends HtmlElement
     /**
      * @param bool $active
      *
-     * @return $this
+     * @return $this|self
      */
     public function setActive(bool $active = true) : self
     {
@@ -85,7 +85,7 @@ class Button extends HtmlElement
     /**
      * @param bool $disabled
      *
-     * @return $this
+     * @return $this|self
      */
     public function setDisabled(bool $disabled = true) : self
     {
@@ -109,7 +109,7 @@ class Button extends HtmlElement
     /**
      * @param bool $block
      *
-     * @return $this
+     * @return $this|self
      */
     public function setBlock(bool $block = true) : self
     {

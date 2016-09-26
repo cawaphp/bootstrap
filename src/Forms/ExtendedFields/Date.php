@@ -28,7 +28,7 @@ class Date extends \Cawa\Bootstrap\Forms\Fields\Date
     /**
      * @param string $selector
      *
-     * @return $this
+     * @return $this|self
      */
     public function setMinimunDate(string $selector) : self
     {

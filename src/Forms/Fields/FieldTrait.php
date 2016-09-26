@@ -15,7 +15,6 @@ namespace Cawa\Bootstrap\Forms\Fields;
 
 use Cawa\Bootstrap\Forms\BootstrapPropertiesTrait;
 use Cawa\Bootstrap\Forms\Fieldset;
-use Cawa\Bootstrap\Forms\Form;
 use Cawa\Bootstrap\Forms\Group;
 use Cawa\Bootstrap\Forms\LabelIcon;
 use Cawa\Bootstrap\Forms\MultipleGroup;
@@ -63,7 +62,7 @@ trait FieldTrait
     /**
      * @param HtmlElement|string $helpText
      *
-     * @return $this
+     * @return $this|self
      */
     public function setHelpText($helpText) : self
     {

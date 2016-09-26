@@ -54,7 +54,7 @@ class ListGroupElement extends HtmlContainer
     /**
      * @param string $badge
      *
-     * @return $this
+     * @return $this|self
      */
     public function setBadge(string $badge) : self
     {
@@ -74,7 +74,7 @@ class ListGroupElement extends HtmlContainer
     /**
      * @param bool $disabled
      *
-     * @return $this
+     * @return $this|self
      */
     public function setDisabled(bool $disabled = true)
     {

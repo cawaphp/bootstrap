@@ -73,7 +73,7 @@ class GooglePlacePrefill extends GooglePlace
     /**
      * @param GeocoderResult|null $geocode
      *
-     * @return $this
+     * @return $this|self|parent
      */
     public function setValue(GeocoderResult $geocode = null) : parent
     {

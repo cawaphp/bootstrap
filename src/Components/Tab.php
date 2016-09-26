@@ -44,7 +44,7 @@ class Tab extends HtmlContainer
     /**
      * @param string $title
      *
-     * @return $this
+     * @return $this|self
      */
     public function setTitle(string $title) : self
     {
@@ -69,7 +69,7 @@ class Tab extends HtmlContainer
     /**
      * @param string $icon
      *
-     * @return $this
+     * @return $this|self
      */
     public function setIcon(string $icon) : self
     {
@@ -89,7 +89,7 @@ class Tab extends HtmlContainer
     /**
      * @param bool $active
      *
-     * @return $this
+     * @return $this|self
      */
     public function setActive(bool $active = true) : self
     {
@@ -118,7 +118,7 @@ class Tab extends HtmlContainer
     /**
      * @param bool $disabled
      *
-     * @return $this
+     * @return $this|self
      */
     public function setDisabled(bool $disabled) : self
     {
@@ -143,7 +143,7 @@ class Tab extends HtmlContainer
     /**
      * @param string $href
      *
-     * @return $this
+     * @return $this|self
      */
     public function setHref(string $href) : self
     {

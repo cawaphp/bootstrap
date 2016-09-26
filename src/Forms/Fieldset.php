@@ -27,7 +27,7 @@ class Fieldset extends \Cawa\Html\Forms\Fieldset
     /**
      * @param int $gridSize
      *
-     * @return $this
+     * @return $this|self
      */
     public function setGridSize(int $gridSize) : self
     {
@@ -40,7 +40,7 @@ class Fieldset extends \Cawa\Html\Forms\Fieldset
     /**
      * @param bool $inline
      *
-     * @return $this
+     * @return $this|self
      */
     public function setInline(bool $inline) : self
     {
@@ -53,7 +53,7 @@ class Fieldset extends \Cawa\Html\Forms\Fieldset
     /**
      * @param bool $horizontal
      *
-     * @return $this
+     * @return $this|self
      */
     public function setHorizontal(bool $horizontal) : self
     {

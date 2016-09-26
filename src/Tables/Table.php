@@ -43,7 +43,7 @@ class Table extends \Cawa\Html\Tables\Table
     /**
      * @param callable $argsCallback
      *
-     * @return $this
+     * @return $this|self
      */
     public function setArgsCallback(callable $argsCallback) : self
     {
@@ -135,7 +135,7 @@ class Table extends \Cawa\Html\Tables\Table
     /**
      * @param bool $responsive
      *
-     * @return $this
+     * @return $this|self
      */
     public function setResponsive(bool $responsive = true) : self
     {
@@ -155,7 +155,7 @@ class Table extends \Cawa\Html\Tables\Table
     /**
      * @param bool $striped
      *
-     * @return $this
+     * @return $this|self
      */
     public function setStriped(bool $striped = true) : self
     {
@@ -179,7 +179,7 @@ class Table extends \Cawa\Html\Tables\Table
     /**
      * @param bool $bordered
      *
-     * @return $this
+     * @return $this|self
      */
     public function setBordered(bool $bordered = true) : self
     {
@@ -203,7 +203,7 @@ class Table extends \Cawa\Html\Tables\Table
     /**
      * @param bool $hover
      *
-     * @return $this
+     * @return $this|self
      */
     public function setHover(bool $hover = true) : self
     {
@@ -227,7 +227,7 @@ class Table extends \Cawa\Html\Tables\Table
     /**
      * @param bool $condensed
      *
-     * @return $this
+     * @return $this|self
      */
     public function setCondensed(bool $condensed = true) : self
     {

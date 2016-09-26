@@ -35,7 +35,7 @@ trait BootstrapPropertiesTrait
     /**
      * @param int $gridSize
      *
-     * @return $this
+     * @return $this|self
      */
     public function setGridSize(int $gridSize) : self
     {
@@ -60,7 +60,7 @@ trait BootstrapPropertiesTrait
     /**
      * @param bool $inline
      *
-     * @return $this
+     * @return $this|self
      */
     public function setInline(bool $inline) : self
     {
@@ -85,7 +85,7 @@ trait BootstrapPropertiesTrait
     /**
      * @param bool $horizontal
      *
-     * @return $this
+     * @return $this|self
      */
     public function setHorizontal(bool $horizontal) : self
     {
@@ -110,7 +110,7 @@ trait BootstrapPropertiesTrait
     /**
      * @param string $size
      *
-     * @return $this
+     * @return $this|self
      */
     public function setFieldSize(string $size) : self
     {

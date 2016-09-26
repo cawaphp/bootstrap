@@ -58,7 +58,7 @@ class Panel extends HtmlContainer
     /**
      * @param string $title
      *
-     * @return $this
+     * @return $this|self
      */
     public function setTitle(string $title) : self
     {
@@ -83,7 +83,7 @@ class Panel extends HtmlContainer
     /**
      * @param string $footer
      *
-     * @return $this
+     * @return $this|self
      */
     public function setFooter(string $footer) : self
     {

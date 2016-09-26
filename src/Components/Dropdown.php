@@ -67,7 +67,7 @@ class Dropdown extends ViewController
     /**
      * @param string $title
      *
-     * @return $this
+     * @return $this|self
      */
     public function setTitle(string $title) : self
     {
@@ -79,7 +79,7 @@ class Dropdown extends ViewController
     /**
      * @param string|HtmlElement $element
      *
-     * @return $this
+     * @return $this|self
      */
     public function add($element) : self
     {
@@ -102,7 +102,7 @@ class Dropdown extends ViewController
     }
 
     /**
-     * @return $this
+     * @return $this|self
      */
     public function toNavbar() : self
     {

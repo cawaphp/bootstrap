@@ -63,7 +63,7 @@ class Collapse extends PhtmlHtmlContainer
     /**
      * @param string $title
      *
-     * @return $this
+     * @return $this|self
      */
     public function setTitle(string $title) : self
     {
@@ -83,7 +83,7 @@ class Collapse extends PhtmlHtmlContainer
     /**
      * @param string $parentId
      *
-     * @return $this
+     * @return $this|self
      */
     public function setParentId(string $parentId) : self
     {
@@ -103,7 +103,7 @@ class Collapse extends PhtmlHtmlContainer
     /**
      * @param bool $collapse
      *
-     * @return $this
+     * @return $this|self
      */
     public function setCollapse(bool $collapse) : self
     {

@@ -45,7 +45,7 @@ class TabContainer extends HtmlElement
      * @param int $index
      * @param ViewController $content
      *
-     * @return TabContainer
+     * @return $this|self
      */
     public static function fromRoute(array $routes, int $index, ViewController $content) : self
     {
@@ -85,7 +85,7 @@ class TabContainer extends HtmlElement
     /**
      * @param bool $justified
      *
-     * @return $this
+     * @return $this|self
      */
     public function setPills(bool $justified = true) : self
     {
@@ -111,7 +111,7 @@ class TabContainer extends HtmlElement
     /**
      * @param bool $stacked
      *
-     * @return $this
+     * @return $this|self
      */
     public function setStacked(bool $stacked = true) : self
     {
@@ -135,7 +135,7 @@ class TabContainer extends HtmlElement
     /**
      * @param bool $justified
      *
-     * @return $this
+     * @return $this|self
      */
     public function setJustified(bool $justified = true) : self
     {
@@ -151,7 +151,7 @@ class TabContainer extends HtmlElement
     /**
      * @param Tab|Tab[] ...$tab
      *
-     * @return TabContainer
+     * @return $this|self
      */
     public function add(Tab ...$tab) : self
     {
