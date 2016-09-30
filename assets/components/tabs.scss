@@ -53,6 +53,10 @@
             &.active {
                 display: block;
                 a {
+                    &:not([href^="#"]) {
+                        color: $link-color;
+                    }
+
                     @media(min-width: $screen-sm) {
                         border-bottom-color: transparent;
                     }

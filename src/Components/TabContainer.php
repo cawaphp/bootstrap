@@ -44,11 +44,16 @@ class TabContainer extends HtmlElement
      * @param array $routes
      * @param int $index
      * @param ViewController $content
+     * @param bool $keepActiveLink
      *
-     * @return $this|self
+     * @return $this|TabContainer
      */
-    public static function fromRoute(array $routes, int $index, ViewController $content) : self
-    {
+    public static function fromRoute(
+        array $routes,
+        int $index,
+        ViewController $content,
+        bool $keepActiveLink = false
+    ) : self {
         $container = new static();
 
         foreach ($routes as $currentIndex => $route) {
@@ -56,7 +61,9 @@ class TabContainer extends HtmlElement
 
             if ($index == $currentIndex) {
                 $tab->add($content)->setActive();
-            } else {
+            }
+
+            if ($keepActiveLink || $index != $currentIndex) {
                 $tab->setHref((string) self::uri($route['routeName'], $route['routeArgs'] ?? []));
             }
         }
