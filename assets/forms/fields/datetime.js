@@ -53,8 +53,9 @@ require([
                 options.format = moment().localeData().longDateFormat('LLL');
             }
 
-            // AM PM
+            // l18n
             options.hours12 = moment().localeData().longDateFormat('LLLL').indexOf('A') > 0;
+            options.dayOfWeekStart = moment().localeData().firstDayOfWeek();
 
             // required
             if (!this.element.prop("required")) {

@@ -9,7 +9,7 @@ require([
 
         options: {
             plugin: {
-                width: '100%',
+                width: 'auto',
                 theme: "bootstrap",
                 language: $.locale()
             }
