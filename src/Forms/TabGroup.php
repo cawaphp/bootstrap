@@ -16,7 +16,6 @@ namespace Cawa\Bootstrap\Forms;
 use Cawa\Bootstrap\Components\TabContainer;
 use Cawa\Controller\ViewController;
 use Cawa\Html\Forms\Fields\AbstractField;
-use Cawa\Renderer\Container;
 
 class TabGroup extends Group
 {
