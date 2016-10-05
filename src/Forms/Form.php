@@ -14,6 +14,7 @@ declare (strict_types=1);
 namespace Cawa\Bootstrap\Forms;
 
 use Cawa\Html\Forms\Fields\AbstractField;
+use Cawa\Html\Forms\Group;
 use DeepCopy\DeepCopy;
 
 class Form extends \Cawa\Html\Forms\Form
