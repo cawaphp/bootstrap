@@ -57,6 +57,11 @@ require([
             options.hours12 = moment().localeData().longDateFormat('LLLL').indexOf('A') > 0;
             options.dayOfWeekStart = moment().localeData().firstDayOfWeek();
 
+            // weekdays disabled
+            if (this.options.disabledWeekdays) {
+                options.disabledWeekDays = this.options.disabledWeekdays;
+            }
+
             // required
             if (!this.element.prop("required")) {
                 options.allowBlank = true;
@@ -94,6 +99,7 @@ require([
                     }
 
                     inputHidden.val(hiddenVal);
+                    inputHidden.trigger('change');
                 }
             };
 

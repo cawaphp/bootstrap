@@ -15,6 +15,8 @@ namespace Cawa\Bootstrap\Forms\ExtendedFields;
 
 class Date extends \Cawa\Bootstrap\Forms\Fields\Date
 {
+    use DateTrait;
+
     /**
      * {@inheritdoc}
      */
@@ -23,17 +25,5 @@ class Date extends \Cawa\Bootstrap\Forms\Fields\Date
         parent::__construct($name, $label);
         $this->getField()->addClass('cawa-fields-datetime');
         $this->addClass('cawa-fields-datetime-group');
-    }
-
-    /**
-     * @param string $selector
-     *
-     * @return $this|self
-     */
-    public function setMinimunDate(string $selector) : self
-    {
-        $this->getField()->addAttribute('data-min-selector', $selector);
-
-        return $this;
     }
 }
