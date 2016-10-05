@@ -36,12 +36,18 @@ require([
                     }
                 };
 
-                $(document).on("keyup", ".select2-search__field", function (event)
+                var keyupCallback = function (event)
                 {
                     if (element.select2("isOpen") && event.which == 13 && (!element.val() || self._hasValue)) {
                         element.val(null).trigger('change');
                         self.options.noResultCreate.call(self, event, $(event.target).val());
                     }
+                };
+                $(document).on("keyup", ".select2-search__field", keyupCallback);
+
+                self._destroyCallback.push(function()
+                {
+                    $(document).off("keyup", ".select2-search__field", keyupCallback);
                 });
             }
 
@@ -153,6 +159,24 @@ require([
                     self.element.select2("open");
                 }
             });
+        },
+
+
+        _destroyCallback : [],
+
+        /**
+         * @private
+         */
+        _destroy: function()
+        {
+            var self = this;
+
+            if (this._destroyCallback.length) {
+                $.each(this._destroyCallback, function (key, value)
+                {
+                    value.apply(self);
+                })
+            }
         },
 
         _matcher: function (params, data)
