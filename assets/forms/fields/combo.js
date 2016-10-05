@@ -9,7 +9,6 @@ require([
 
         options: {
             plugin: {
-                width: 'auto',
                 theme: "bootstrap",
                 language: $.locale()
             }
@@ -92,7 +91,7 @@ require([
             options.containerCssClass = function()
             {
                 return $('<div>').attr('class', element.attr('class'))
-                    .removeClass('hidden')
+                    .removeClass('invisible')
                     .removeClass('cawa-fields-combo')
                     .attr('class');
             };
@@ -116,8 +115,12 @@ require([
 
             // init
             self._select2 = element.select2(options);
+
+            // ugly hack : https://github.com/select2/select2/issues/3278
+            $(self._select2).parent().find(".select2-container").css('width', '');
+
             self._hasValue = element.val() !== "";
-            self._select2.removeClass("hidden");
+            self._select2.removeClass("invisible");
 
             // loading
             element.data('select2').results.__proto__.showLoading = function()
