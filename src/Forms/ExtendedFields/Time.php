@@ -15,6 +15,8 @@ namespace Cawa\Bootstrap\Forms\ExtendedFields;
 
 class Time extends \Cawa\Bootstrap\Forms\Fields\Time
 {
+    use DateTrait;
+
     /**
      * {@inheritdoc}
      */

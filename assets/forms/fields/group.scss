@@ -1,13 +1,37 @@
 .cawa-fields-group {
+
+    // padding
+    @media (min-width: $grid-float-breakpoint) {
+        .row:not([class*="-offset-"]) {
+            padding-right: 0;
+        }
+
+        > div[class*="-offset-"] {
+            padding-left: 0;
+        }
+
+        .row > div[class*="col-"]:last-child {
+            padding-right: 0;
+        }
+    }
+
+    // margin-bottom
     .row {
-        padding-right: 0;
+        @media (max-width: $grid-float-breakpoint) {
+            > div {
+                margin-bottom: $line-height-computed;
+                &:last-child {
+                    margin-bottom: 0;
+                }
+            }
+        }
 
         > .form-group {
             margin-bottom: 0;
         }
     }
 
-
+    // radio checkbox
     form  & .row .radio + .radio, .checkbox + .checkbox {
         margin-top: 10px;
     }

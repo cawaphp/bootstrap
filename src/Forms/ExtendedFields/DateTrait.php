@@ -61,4 +61,16 @@ trait DateTrait
 
         return $this;
     }
+
+    /**
+     * @param int $minute
+     *
+     * @return $this|self
+     */
+    public function setMinuteStep(int $minute) : self
+    {
+        $this->getField()->addAttribute('data-minute-step', (string) $minute);
+
+        return $this;
+    }
 }

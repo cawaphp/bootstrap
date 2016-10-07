@@ -10,6 +10,7 @@ require([
     $.widget("cawa.fields-datetime", $.cawa.widget, {
 
         options: {
+            minuteStep: 5,
             plugin: {
                 lazyInit: false
             }
@@ -32,6 +33,7 @@ require([
             // formatting
             options.formatTime = moment().localeData().longDateFormat('LT');
             options.formatDate = moment().localeData().longDateFormat('L');
+            options.step = this.options.minuteStep;
 
             if (this.element.attr("type") == "date") {
                 options.timepicker = false;
@@ -39,7 +41,6 @@ require([
                 type = "date";
             } else if (this.element.attr("type") == "time") {
                 options.datepicker = false;
-                options.step = 5;
                 var minDate = new Date();
                 minDate.setHours(0);
                 minDate.setMinutes(0);
