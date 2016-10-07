@@ -97,7 +97,7 @@ require([
             options.containerCssClass = function()
             {
                 return $('<div>').attr('class', element.attr('class'))
-                    .removeClass('invisible')
+                    .removeClass('hidden')
                     .removeClass('cawa-fields-combo')
                     .attr('class');
             };

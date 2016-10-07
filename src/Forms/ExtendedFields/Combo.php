@@ -27,7 +27,7 @@ class Combo extends Select
     {
         $this->widgetOptions = new WidgetOption();
         parent::__construct($name, $label, $options);
-        $this->getField()->addClass('cawa-fields-combo invisible');
+        $this->getField()->addClass('cawa-fields-combo hidden');
     }
 
     /**
