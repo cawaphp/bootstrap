@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-declare (strict_types=1);
+declare (strict_types = 1);
 
 namespace Cawa\Bootstrap\Components;
 
@@ -78,7 +78,6 @@ class Breadcrumb extends Container
         return $this;
     }
 
-
     /**
      * @param array $links
      *
@@ -90,7 +89,7 @@ class Breadcrumb extends Container
         $this->schema->addAttribute('type', 'application/ld+json');
 
         $content = [
-            '@context' => "http://schema.org",
+            '@context' => 'http://schema.org',
             '@type' => 'BreadcrumbList',
             'itemListElement' => [],
         ];
@@ -114,5 +113,4 @@ class Breadcrumb extends Container
 
         return $this;
     }
-
 }

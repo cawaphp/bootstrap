@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-declare (strict_types=1);
+declare (strict_types = 1);
 
 namespace Cawa\Bootstrap\Forms\Fields;
 
@@ -62,7 +62,6 @@ class Button extends \Cawa\Html\Forms\Fields\Button
 
         return $this;
     }
-
 
     /**
      * {@inheritdoc}

@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-declare (strict_types=1);
+declare (strict_types = 1);
 
 namespace Cawa\Bootstrap\Tables;
 
@@ -144,7 +144,7 @@ class Column extends \Cawa\Html\Tables\Column
             $sortIcon = (new HtmlElement('<i>'))
                 ->addClass('sort');
 
-            /** @var string $href */
+            /* @var string $href */
             if (is_null($currentSort) || $currentCols != $this->getId()) {
                 $sortIcon->addClass(['fa', 'fa-sort']);
                 $href = call_user_func($this->argsCallback, $this, $this->getId() . '-A');

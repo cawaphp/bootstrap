@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-declare (strict_types=1);
+declare (strict_types = 1);
 
 namespace Cawa\Bootstrap\Forms\ExtendedFields;
 
@@ -73,7 +73,7 @@ class ButtonGroup extends AbstractField
                 )
             );
 
-            if ($this->getValue() == $key ) {
+            if ($this->getValue() == $key) {
                 $label->addClass('active');
                 $input->addAttribute('checked', 'checked');
             }
@@ -105,5 +105,4 @@ class ButtonGroup extends AbstractField
 
         return $container;
     }
-
 }
