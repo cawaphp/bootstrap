@@ -13,6 +13,8 @@ declare (strict_types = 1);
 
 namespace Cawa\Bootstrap\Forms\Fields;
 
+use Cawa\Bootstrap\Components\Button;
+use Cawa\Bootstrap\Components\Dropdown;
 use Cawa\Bootstrap\Forms\BootstrapPropertiesTrait;
 use Cawa\Bootstrap\Forms\Fieldset;
 use Cawa\Bootstrap\Forms\Group;
@@ -86,11 +88,40 @@ trait FieldTrait
     }
 
     /**
-     * @param Container $container
-     *
-     * @return Container|HtmlContainer|ViewController
+     * @var array
      */
-    protected function getFieldContainer(Container $container) : ViewController
+    private $inputGroups = [];
+
+    /**
+     * @param Button|Dropdown|Checkbox|Radio|string $item
+     * @param bool $left
+     *
+     * @return $this|self
+     */
+    public function addInputGroup($item, bool $left = true) : self
+    {
+        if ($item instanceof Button || $item instanceof Dropdown) {
+            $this->inputGroups[$left][] = (new HtmlContainer('<span>'))
+                ->addClass('input-group-btn')
+                ->add($item);
+        } else if ($item instanceof Checkbox || $item instanceof Radio) {
+            $this->inputGroups[$left][] = (new HtmlContainer('<span>'))
+                ->addClass('input-group-addon')
+                ->add($item->getField());
+        } else {
+            $this->inputGroups[$left][] = (new HtmlElement('<span>', $item))
+                ->addClass('input-group-addon');
+        }
+
+        return $this;
+    }
+
+    /**
+     * @param Container|HtmlContainer $container
+     *
+     * @return ViewController|Container|HtmlContainer
+     */
+    protected function getFieldContainer($container)
     {
         foreach ($container->getElements() as $element) {
             if ($element === $this->getField()) {
@@ -98,10 +129,9 @@ trait FieldTrait
             }
 
             if ($element instanceof HtmlContainer) {
-                foreach ($element->getElements() as $sub) {
-                    if ($sub === $this->getField()) {
-                        return $element;
-                    }
+                $return = $this->getFieldContainer($element);
+                if ($return) {
+                    return $return;
                 }
             }
         }
@@ -129,11 +159,32 @@ trait FieldTrait
             }
 
             // field
-            if ($this instanceof  Group) {
+            if ($this instanceof Group) {
                 $fieldWrapper = $this->getContainer();
             } else {
-                $fieldWrapper = new HtmlContainer('<div>');
-                $fieldWrapper->add($this->getField());
+                if (sizeof($this->inputGroups)) {
+                    $fieldWrapper = new HtmlContainer('<div>');
+                    $fieldWrapper->add($inputGroupWrapper = (new HtmlContainer('<div>'))
+                        ->addClass('input-group')
+                    );
+
+                    if (isset($this->inputGroups[true])) {
+                        foreach ($this->inputGroups[true] as $inputGroup) {
+                            $inputGroupWrapper->add($inputGroup);
+                        }
+                    }
+
+                    $inputGroupWrapper->add($this->getField());
+
+                    if (isset($this->inputGroups[false])) {
+                        foreach ($this->inputGroups[false] as $inputGroup) {
+                            $inputGroupWrapper->add($inputGroup);
+                        }
+                    }
+                } else {
+                    $fieldWrapper = new HtmlContainer('<div>');
+                    $fieldWrapper->add($this->getField());
+                }
             }
 
             if ($this instanceof MultipleGroup) {
