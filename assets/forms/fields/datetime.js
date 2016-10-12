@@ -142,6 +142,7 @@ require([
 
         _destroy: function()
         {
+            this._super();
             this.element.datetimepicker('destroy');
         }
     });

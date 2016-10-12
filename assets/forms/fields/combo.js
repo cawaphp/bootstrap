@@ -45,7 +45,7 @@ require([
                 };
                 $(document).on("keyup", ".select2-search__field", keyupCallback);
 
-                self._destroyCallback.push(function()
+                self.addDestroyCallback(function()
                 {
                     $(document).off("keyup", ".select2-search__field", keyupCallback);
                 });
@@ -161,22 +161,15 @@ require([
             });
         },
 
-
-        _destroyCallback : [],
-
         /**
          * @private
          */
         _destroy: function()
         {
-            var self = this;
+            this.element.select2('destroy');
+            this.element.removeClass('hidden');
 
-            if (this._destroyCallback.length) {
-                $.each(this._destroyCallback, function (key, value)
-                {
-                    value.apply(self);
-                })
-            }
+            this._super();
         },
 
         _matcher: function (params, data)
