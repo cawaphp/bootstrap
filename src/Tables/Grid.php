@@ -93,7 +93,7 @@ class Grid extends HtmlContainer
     /**
      * @var string
      */
-    private $stateId;
+    protected $stateId;
 
     /**
      * @var callable

@@ -12,34 +12,35 @@ require([
         options: {
             minuteStep: 5,
             plugin: {
-                lazyInit: false
+                lazyInit: false,
+                scrollMonth : false
             }
         },
 
         _create: function() {
             var options = this.options.plugin;
+            var element = this.element;
 
             // Disabled on touch & non supported device
             if (modernizr.touchevents) {
                 return;
             }
 
-            var name = this.element.attr("name");
+            var name = element.attr("name");
             var inputHidden = $('<input />').attr('type', 'hidden').attr('name', name);
-            inputHidden.insertBefore(this.element);
+            inputHidden.insertBefore(element);
 
             var type = "datetime";
 
             // formatting
             options.formatTime = moment().localeData().longDateFormat('LT');
             options.formatDate = moment().localeData().longDateFormat('L');
-            options.step = this.options.minuteStep;
 
-            if (this.element.attr("type") == "date") {
+            if (element.attr("type") == "date") {
                 options.timepicker = false;
                 options.format = moment().localeData().longDateFormat('L');
                 type = "date";
-            } else if (this.element.attr("type") == "time") {
+            } else if (element.attr("type") == "time") {
                 options.datepicker = false;
                 var minDate = new Date();
                 minDate.setHours(0);
@@ -58,28 +59,49 @@ require([
             options.hours12 = moment().localeData().longDateFormat('LLLL').indexOf('A') > 0;
             options.dayOfWeekStart = moment().localeData().firstDayOfWeek();
 
-            // weekdays disabled
-            if (this.options.disabledWeekdays) {
-                options.disabledWeekDays = this.options.disabledWeekdays;
-            }
-
             // required
-            if (!this.element.prop("required")) {
+            if (!element.prop("required")) {
                 options.allowBlank = true;
             }
 
             // default value
-            if (this.element.attr("value")) {
+            if (element.attr("value")) {
                 var currentVal;
                 if (type == 'time') {
-                    currentVal = moment("1970-01-01 " + this.element.attr("value"), "YYYY-MM-DDThh:mm:ss");
+                    currentVal = moment("1970-01-01 " + element.attr("value"), "YYYY-MM-DDThh:mm:ss");
                 } else {
-                    currentVal = moment(this.element.attr("value"), "YYYY-MM-DDThh:mm:ss");
+                    currentVal = moment(element.attr("value"), "YYYY-MM-DDThh:mm:ss");
                 }
 
                 options.value = currentVal.format(options.format);
-                this.element.attr("value", options.value);
+                element.attr("value", options.value);
+            } else {
+                options.defaultDate = false;
             }
+
+            // allowDates formatting
+            if (this.options.allowDates) {
+                options.allowDates = [];
+                $.each(this.options.allowDates, function(key, value)
+                {
+                    options.allowDates.push(moment(value).format(options.formatDate));
+                });
+            }
+
+            // minDate formatting
+            if (this.options.minDate) {
+                options.minDate = moment(this.options.minDate).format(options.formatDate);
+            }
+
+            // highlightedDates formatting
+            if (this.options.highlightedDates) {
+                options.highlightedDates = [];
+                $.each(this.options.highlightedDates, function(key, value)
+                {
+                    options.highlightedDates.push(moment(value).format(options.formatDate));
+                });
+            }
+
 
             // events
             options.onChangeDateTime = function(datepicker, input)
@@ -104,23 +126,22 @@ require([
                 }
             };
 
-
             // input modification
-            this.element.attr("data-type", this.element.attr("type"));
-            this.element.attr("type", "text");
+            element.attr("data-type", element.attr("type"));
+            element.attr("type", "text");
 
-            this.element.removeAttr("name");
+            element.removeAttr("name");
 
             /* plugin */
-            this.element.datetimepicker(options);
-            this.element.datetimepicker('validate');
-            this.element.closest(".cawa-fields-datetime-group").addClass("init");
+            element.datetimepicker(options);
+            element.datetimepicker('validate');
+            element.closest(".cawa-fields-datetime-group").addClass("init");
 
             // linked events
             if (this.options.linkedMin) {
 
                 var min = $(this.options.linkedMin);
-                var max = $(this.element);
+                var max = $(element);
 
                 min.on("change", function (e) {
                     if (type == "time") {
@@ -137,6 +158,19 @@ require([
                         min.datetimepicker('setOptions', {maxDate: max.datetimepicker('getValue')});
                     }
                 });
+            }
+
+            // ugly hack for inline
+            if (options.inline == true) {
+                element.parent().find('.xdsoft_next').trigger('touchend');
+                element.parent().find('.xdsoft_prev').trigger('touchend');
+
+                if (!element.attr("value")) {
+                    window.setTimeout(function()
+                    {
+                        element.parent().find('.xdsoft_current').removeClass('xdsoft_current');
+                    }, 10);
+                }
             }
         },
 

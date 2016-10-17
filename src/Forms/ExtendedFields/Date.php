@@ -26,4 +26,18 @@ class Date extends \Cawa\Bootstrap\Forms\Fields\Date
         $this->getField()->addClass('cawa-fields-datetime');
         $this->addClass('cawa-fields-datetime-group');
     }
+
+    /**
+     * @param \Cawa\Date\Date $date
+     *
+     * @return $this|self
+     */
+    public function setMinimunDate(\Cawa\Date\Date $date) : self
+    {
+        $this->widgetOptions = array_merge_recursive($this->widgetOptions, [
+            'minDate' => $date->format('Y-m-d')
+        ]);
+
+        return $this;
+    }
 }

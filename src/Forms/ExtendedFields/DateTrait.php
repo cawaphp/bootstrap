@@ -13,11 +13,19 @@ declare (strict_types = 1);
 
 namespace Cawa\Bootstrap\Forms\ExtendedFields;
 
+use Cawa\Renderer\Container;
+use Cawa\Renderer\WidgetOption;
+
 /**
  * @mixin Date|DateTime
  */
 trait DateTrait
 {
+    /**
+     * @var array
+     */
+    private $widgetOptions = [];
+
     /**
      * @param DateTime $field
      *
@@ -29,7 +37,7 @@ trait DateTrait
             $field->generateId();
         }
 
-        $this->getField()->addAttribute('data-linked-min', '#' . $field->getId());
+        $this->widgetOptions['linkedMin'] = '#' . $field->getId();
 
         return $this;
     }
@@ -41,23 +49,11 @@ trait DateTrait
      */
     public function setDisabledWeekDay(array $weekdays = []) : self
     {
-        if (sizeof($weekdays) == 0) {
-            $this->getField()->removeAttribute('data-disabled-weekdays');
-        } else {
-            $this->getField()->addAttribute('data-disabled-weekdays', json_encode($weekdays));
-        }
-
-        return $this;
-    }
-
-    /**
-     * @param string $selector
-     *
-     * @return $this|self
-     */
-    public function setMinimunDate(string $selector) : self
-    {
-        $this->getField()->addAttribute('data-min-selector', $selector);
+        $this->widgetOptions = array_merge_recursive($this->widgetOptions, [
+            'plugin' => [
+                'disabledWeekdays' => $weekdays
+            ]
+        ]);
 
         return $this;
     }
@@ -69,8 +65,73 @@ trait DateTrait
      */
     public function setMinuteStep(int $minute) : self
     {
-        $this->getField()->addAttribute('data-minute-step', (string) $minute);
+        $this->widgetOptions = array_merge_recursive($this->widgetOptions, [
+            'minuteStep' => $minute
+        ]);
 
         return $this;
     }
+
+    /**
+     * @param bool $înline
+     *
+     * @return $this|self
+     */
+    public function setInlineDisplay(bool $înline = true) : self
+    {
+        $this->widgetOptions = array_merge_recursive($this->widgetOptions, [
+            'plugin' => [
+                'inline' => $înline
+            ]
+        ]);
+
+        if ($înline) {
+            $this->getField()->addClass('hidden');
+        } else {
+            $this->getField()->removeClass('hidden');
+        }
+
+        return $this;
+    }
+
+    /**
+     * @param array|\Cawa\Date\Date[] $dates
+     *
+     * @return DateTrait
+     */
+    public function setAllowDates(array $dates = []) : self
+    {
+        $this->widgetOptions = array_merge_recursive($this->widgetOptions, [
+            'allowDates' => $dates
+        ]);
+
+        return $this;
+    }
+
+    /**
+     * @param array|\Cawa\Date\Date[] $dates
+     *
+     * @return DateTrait
+     */
+    public function setHighlightedDates(array $dates = []) : self
+    {
+        $this->widgetOptions = array_merge_recursive($this->widgetOptions, [
+            'highlightedDates' => $dates
+        ]);
+
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function layout() : Container
+    {
+        $container = parent::layout();
+        $instance = $this->getFieldContainer($container);
+        $instance->add(new WidgetOption($this->widgetOptions));
+
+        return $container;
+    }
+
 }
