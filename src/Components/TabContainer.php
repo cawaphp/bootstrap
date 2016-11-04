@@ -63,8 +63,15 @@ class TabContainer extends HtmlElement
                 $tab->add($content)->setActive();
             }
 
-            if ($keepActiveLink || $index != $currentIndex) {
+            if (isset($route['routeName']) &&
+                isset($route['routeArgs']) &&
+                ($keepActiveLink || $index != $currentIndex)
+            ) {
                 $tab->setHref((string) self::uri($route['routeName'], $route['routeArgs'] ?? []));
+            }
+
+            if (isset($route['disabled']) && $route['disabled']) {
+                $tab->setDisabled(true);
             }
         }
 

@@ -164,12 +164,13 @@ class Tab extends HtmlContainer
         $title = ($this->icon ? (new HtmlElement('<i>'))->addClass($this->icon)->render() . ' ' : '') .
             $this->title;
 
+
         $link = new HtmlContainer('<a>', $title);
-        if ($this->href) {
+        if ($this->href && !$this->isDisabled()) {
             $link->addAttribute('href', $this->href);
         }
 
-        if (substr($this->href, 0, 1) == '#') {
+        if (substr($this->href, 0, 1) == '#' && !$this->isDisabled()) {
             $link->addAttribute('data-toggle', 'tab');
         }
 
