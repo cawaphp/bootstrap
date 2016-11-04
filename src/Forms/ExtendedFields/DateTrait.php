@@ -66,7 +66,9 @@ trait DateTrait
     public function setMinuteStep(int $minute) : self
     {
         $this->widgetOptions = array_merge_recursive($this->widgetOptions, [
-            'minuteStep' => $minute
+            'plugin' => [
+                'step' => $minute
+            ]
         ]);
 
         return $this;

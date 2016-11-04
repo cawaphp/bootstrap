@@ -25,8 +25,8 @@
         "bootstrap-sass": "^3.3.6",
         "modernizr": "^3.3.1",
         "datetimepicker": "^2.5.4",
-        "jquery-validation": "master",
-        "intl-tel-input": "^8.4.9",
+        "jquery-validation": "~1.15",
+        "intl-tel-input": "~9.2",
         "jquery-mask-plugin": "^1.14.0",
         "bootstrap3-dialog": "^1.35.1",
         "lodash": "^4.11.2",
@@ -37,7 +37,7 @@
         "ckeditor": "#full/stable",
         "confighelper": "git://github.com/AlfonsoML/confighelper.git#^1.8.3",
         "jstree": "git://github.com/tchiotludo/jstree.git#master",
-        "jquery.payment": "^1.4.3",
+        "jquery.payment": "~3.0",
         "credit_card_icons": "git://github.com/kristianmandrup/credit_card_icons.git#master"
     }
 }

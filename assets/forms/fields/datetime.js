@@ -10,7 +10,6 @@ require([
     $.widget("cawa.fields-datetime", $.cawa.widget, {
 
         options: {
-            minuteStep: 5,
             plugin: {
                 lazyInit: false,
                 scrollMonth : false
