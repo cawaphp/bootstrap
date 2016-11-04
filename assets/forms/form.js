@@ -11,6 +11,8 @@ require([
             plugins: {
                 focusCleanup : false,
                 focusInvalid : true,
+                // debug: true,
+                ignore: ':hidden:not(.cawa-fields-combo)',
 
                 // bootstrap
                 errorElement: "span",
