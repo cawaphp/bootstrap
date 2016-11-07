@@ -15,30 +15,58 @@ require([
         {
             var self = this;
 
-            element.find("button[data-action='+']").on("click", $.proxy(self._onPlus, self));
-            element.find("button[data-action='-']").on("click", $.proxy(self._onMinus, self));
+            element.find("a[data-action='+']").on("click", $.proxy(self._onPlus, self));
+            element.find("a[data-action='-']").on("click", $.proxy(self._onMinus, self));
         },
 
         _disabledFirstRow: function()
         {
             var element = $(this.element);
-            element.find("button[data-action='-']").prop("disabled", "");
+            element.find("a[data-action='-']").prop("disabled", "");
 
-            if (element.find("button[data-action='-']").length == 1) {
-                element.find("button[data-action='-']").first().prop("disabled", "disabled");
+            if (element.find("a[data-action='-']").length == 1) {
+                element.find("a[data-action='-']").first().prop("disabled", "disabled");
             }
         },
 
         _onPlus: function(event)
         {
+            console.trace(event);
             event.preventDefault();
 
             var clone = $(this.options.clone);
             var finalClone = clone.find(".cawa-fields-multiple-group .input-group").first();
 
+            // clear value
+            var inputs = finalClone.find('input, select');
+
+            inputs
+                .not('[type="checkbox"]')
+                .not('[type="radio"]')
+                .val('');
+
+            finalClone.find('input[type="checkbox"], input[type="radio"]')
+                .prop('checked', false);
+
+            // handle id & label
+            inputs.each(function(key, value) {
+                value = $(value);
+               if (value.attr('id')) {
+                   var uid = 'uid-' + Math.round(Math.random() * Math.pow(10, 10));
+                   var label = finalClone.find('label[for="' + value.attr('id') + '"]');
+
+                   if (label) {
+                       label.attr('for', uid);
+                   }
+
+                   value.attr('id', uid);
+               }
+            });
+
             this._addListeners(finalClone);
 
             this.element.append(finalClone);
+
             $(document).trigger("cw.refresh");
 
             this._disabledFirstRow();

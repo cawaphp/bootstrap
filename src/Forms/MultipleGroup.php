@@ -14,7 +14,7 @@ declare (strict_types = 1);
 namespace Cawa\Bootstrap\Forms;
 
 use Cawa\App\HttpFactory;
-use Cawa\Bootstrap\Components\Button;
+use Cawa\Bootstrap\Components\ButtonLink;
 use Cawa\Controller\ViewController;
 use Cawa\Html\Forms\Fields\AbstractField;
 use Cawa\Renderer\HtmlContainer;
@@ -88,6 +88,33 @@ class MultipleGroup extends Group
         return $this->fields;
     }
 
+    private function resetLabel(AbstractField $field)
+    {
+        if ($field->getId()) {
+            $field->generateId();
+            $field->getLabel()->setFor($field->getId());
+        }
+    }
+
+    /**
+     * @return Group|AbstractField
+     */
+    private function cloneRow()
+    {
+        $deepcopy = new DeepCopy();
+        $input = $deepcopy->copy($this->container->first());
+
+        if ($input instanceof AbstractField) {
+            $this->resetLabel($input);
+        } else if ($input instanceof Group) {
+            foreach ($input->getFields() as $field) {
+                $this->resetLabel($field);
+            }
+        }
+
+        return $input;
+    }
+
     /**
      * @param array $values
      *
@@ -97,9 +124,7 @@ class MultipleGroup extends Group
     {
         foreach ($values as $index => $value) {
             if ($index > $this->row) {
-                $deepcopy = new DeepCopy();
-                $input = $deepcopy->copy($this->container->first());
-
+                $input = $this->cloneRow();
                 $this->addRow();
                 $this->add($input);
             }
@@ -189,11 +214,11 @@ class MultipleGroup extends Group
             ->add(
                 (new HtmlContainer('<div>'))->addClass('input-group-btn')
                     ->add(
-                        (new Button('<i class="glyphicon glyphicon-plus"></i>'))
+                        (new ButtonLink('<i class="glyphicon glyphicon-plus"></i>'))
                             ->addAttribute('data-action', '+')
                     )
                     ->add(
-                        (new Button('<i class="glyphicon glyphicon-minus"></i>'))
+                        (new ButtonLink('<i class="glyphicon glyphicon-minus"></i>'))
                             ->addAttribute('data-action', '-')
                     )
             );

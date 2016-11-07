@@ -21,8 +21,13 @@
     .input-group-btn {
         padding-left: $grid-gutter-width;
 
-        button {
+        a {
             height: $input-height-base;
+            line-height: $input-height-base;
+
+            i {
+                margin-top: 2px;
+            }
         }
     }
 }
