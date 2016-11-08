@@ -31,7 +31,6 @@ require([
 
         _onPlus: function(event)
         {
-            console.trace(event);
             event.preventDefault();
 
             var clone = $(this.options.clone);

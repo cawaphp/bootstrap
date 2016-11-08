@@ -8,6 +8,7 @@ require([
 
         options:
         {
+            focus: false,
             plugins: {
                 focusCleanup : false,
                 focusInvalid : true,
@@ -69,10 +70,9 @@ require([
             element.validate(this.options.plugins);
             this.validator = this.element.data('validator');
 
-            var first = element.find(":input:enabled:visible:first").first();
-            var type = first.attr("data-type") ? first.attr("data-type") : first.attr("type");
+            if (this.options.focus) {
+                var first = element.find(":input:enabled:visible:first").first();
 
-            if (type != "time" && type != "date" && type != "datetime-local") {
                 first.focus();
             }
         },

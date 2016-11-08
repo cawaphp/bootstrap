@@ -121,6 +121,10 @@ class CollapseContainer extends HtmlContainer
             $collapse->setCollapse(false);
         }
 
+        if ($this->initialShow == self::INITIAL_SHOW_ALL) {
+            $collapse->setCollapse(false);
+        }
+
         if ($first) {
             /** @var Collapse $element */
             foreach ($this->elements as $element) {
