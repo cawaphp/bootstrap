@@ -14,4 +14,9 @@ table.table {
     tr.deleted {
         color: $gray-light;
     }
+
+    tr.rowheader {
+        font-weight: bold;
+        background-color: darken($table-bg-accent, 5%);
+    }
 }
