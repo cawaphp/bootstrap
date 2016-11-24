@@ -64,7 +64,7 @@ class TabContainer extends HtmlElement
             }
 
             if (isset($route['routeName']) &&
-                isset($route['routeArgs']) &&
+                (!isset($route['disabled']) || $route['disabled'] == false) &&
                 ($keepActiveLink || $index != $currentIndex)
             ) {
                 $tab->setHref((string) self::uri($route['routeName'], $route['routeArgs'] ?? []));
@@ -72,6 +72,10 @@ class TabContainer extends HtmlElement
 
             if (isset($route['disabled']) && $route['disabled']) {
                 $tab->setDisabled(true);
+            }
+
+            if (isset($route['renderable']) && !$route['renderable']) {
+                $tab->setRenderable(false);
             }
         }
 
@@ -81,12 +85,20 @@ class TabContainer extends HtmlElement
     /**
      * @var HtmlElement
      */
-    private $header;
+    protected $header;
+
+    /**
+     * @return HtmlElement
+     */
+    public function getHeader() : HtmlElement
+    {
+        return $this->header;
+    }
 
     /**
      * @var HtmlElement
      */
-    private $body;
+    protected $body;
 
     /**
      * @return bool
@@ -163,6 +175,31 @@ class TabContainer extends HtmlElement
     }
 
     /**
+     * @var bool
+     */
+    private $activateFirst = true;
+
+    /**
+     * @return boolean
+     */
+    public function isActivateFirst() : bool
+    {
+        return $this->activateFirst;
+    }
+
+    /**
+     * @param boolean $activateFirst
+     *
+     * @return TabContainer
+     */
+    public function setActivateFirst(bool $activateFirst) : TabContainer
+    {
+        $this->activateFirst = $activateFirst;
+
+        return $this;
+    }
+
+    /**
      * @param Tab|Tab[] ...$tab
      *
      * @return $this|self
@@ -183,9 +220,9 @@ class TabContainer extends HtmlElement
     }
 
     /**
-     * {@inheritdoc}
+     * Build all elements
      */
-    public function render()
+    protected function build()
     {
         $this->header->clear();
 
@@ -193,6 +230,10 @@ class TabContainer extends HtmlElement
 
         /** @var Tab $element */
         foreach ($this->body->getElements() as $element) {
+            if (!$element->isRenderable()) {
+                continue;
+            }
+
             $active = $element->isActive() ? true : $active;
 
             if (!$element->getHref()) {
@@ -201,13 +242,23 @@ class TabContainer extends HtmlElement
             }
         }
 
-        if ($active == false) {
+        if ($this->activateFirst && $active == false && isset($this->body->getElements()[0])) {
             $this->body->getElements()[0]->setActive();
         }
 
         foreach ($this->body->getElements() as $element) {
-            $this->header->add($element->getHeader());
+            if ($element->isRenderable()) {
+                $this->header->add($element->getHeader());
+            }
         }
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function render()
+    {
+        $this->build();
 
         $this->setContent(
             $this->header->render() .
