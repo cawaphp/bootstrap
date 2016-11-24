@@ -1,12 +1,11 @@
 require([
     "jquery",
-    "lodash",
     "cawaphp/cawa/assets/widget",
     "cawaphp/cawa/assets/functions",
     "bootstrap-fileinput/js/plugins/sortable",
     "bootstrap-fileinput/js/fileinput",
     "bootstrap-fileinput"
-], function($, _)
+], function($)
 {
     $.widget("cawa.fields-image", $.cawa.widget, {
 
@@ -26,7 +25,7 @@ require([
             if (this.options.images) {
                 pluginOptions.initialPreview = [];
                 pluginOptions.initialPreviewConfig = [];
-                _.each(this.options.images, function (value, key)
+                $.forEach(this.options.images, function (value, key)
                 {
                     if (typeof value == "string") {
                         pluginOptions.initialPreview.push('<img src="' + value + '" class="file-preview-image" />');

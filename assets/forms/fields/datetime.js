@@ -1,7 +1,6 @@
 require([
     "jquery",
     "moment",
-    "lodash",
     "modernizr",
     "cawaphp/cawa/assets/widget",
     "datetimepicker/build/jquery.datetimepicker.full"

@@ -29,7 +29,6 @@
         "intl-tel-input": "~9.2",
         "jquery-mask-plugin": "^1.14.0",
         "bootstrap3-dialog": "^1.35.1",
-        "lodash": "^4.11.2",
         "bootstrap-fileinput": "master",
         "google-maps": "^3.2.1",
         "select2": "^4.0.2",

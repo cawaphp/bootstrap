@@ -2,11 +2,10 @@ require([
     "jquery",
     "imports?this=>window!exports?window.intlTelInputUtils!intl-tel-input/build/js/utils.js",
     "../../../lang/fields-phone",
-    "lodash",
     "cawaphp/cawa/assets/widget",
     "intl-tel-input",
     "jquery-mask-plugin"
-], function($, intlTelInputUtils, locale, _)
+], function($, intlTelInputUtils, locale)
 {
     $.widget("cawa.fields-phone", $.cawa.widget, {
 
@@ -87,7 +86,7 @@ require([
             }
 
             var error  = $(element).intlTelInput("getValidationError");
-            var key = _.invert(intlTelInputUtils.validationError)[error];
+            var key = $.invert(intlTelInputUtils.validationError)[error];
 
             $.validator.messages.phone = locale[$.locale()][key];
 
