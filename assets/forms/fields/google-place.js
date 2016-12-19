@@ -195,11 +195,11 @@ require([
     if ($.validator) {
         $.validator.addMethod("google-place", function (value, element)
         {
-            if (this.optional(element) && value == "") {
-                return true;
-            }
-
             var isValid = $(element)["fields-googleplace"]("isValid");
+
+            if (this.optional(element) && value == "") {
+                return "dependency-mismatch";
+            }
 
             if (isValid) {
                 return isValid;

@@ -23,7 +23,7 @@ require([
         $.validator.addMethod("credit-card-expiry", function (value, element)
         {
             if (this.optional(element) && value == "") {
-                return true;
+                return "dependency-mismatch";
             }
 
             var expiry = $.payment.cardExpiryVal(value);

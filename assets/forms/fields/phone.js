@@ -78,7 +78,7 @@ require([
         $.validator.addMethod("phone", function (value, element)
         {
             if (this.optional(element) && value == "") {
-                return true;
+                return "dependency-mismatch";
             }
 
             if ($(element).intlTelInput("isValidNumber")) {
