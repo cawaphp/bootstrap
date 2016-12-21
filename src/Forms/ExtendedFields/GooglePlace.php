@@ -167,4 +167,28 @@ class GooglePlace extends Fieldset
 
         return $this;
     }
+
+    /**
+     * @param string $country
+     *
+     * @return $this|self
+     */
+    public function setCountry(string $country) : self
+    {
+        $this->main->getField()->addAttribute('data-country', $country);
+
+        return $this;
+    }
+
+    /**
+     * @param bool $strict
+     *
+     * @return $this|self
+     */
+    public function setStrictBounds(bool $strict = true) : self
+    {
+        $this->main->getField()->addAttribute('data-strict-bounds', $strict ? 'true' : 'false');
+
+        return $this;
+    }
 }

@@ -12,6 +12,8 @@ require([
 
         options: {
             geolocate: false,
+            strictBounds: false,
+            country: null
         },
 
         _forms : {
@@ -51,9 +53,19 @@ require([
             var self = this;
             var types = self.options.types ? self.options.types : (self.options.type ? [self.options.type] : []);
 
+            // componentRestrictions
+            var options = {
+                types: types,
+                strictBounds: self.options.strictBounds
+            };
+
+            if (self.options.country) {
+                options.componentRestrictions = {country: self.options.country};
+            }
+
             self._autocomplete = new this._google.maps.places.Autocomplete(
                 self.element[0],
-                {types: types}
+                options
             );
 
             self._autocomplete.addListener("place_changed", $.proxy(self._fillInput, self));
