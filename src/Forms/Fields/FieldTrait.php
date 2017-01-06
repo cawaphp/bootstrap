@@ -138,6 +138,41 @@ trait FieldTrait
     }
 
     /**
+     * @return HtmlContainer|Container
+     */
+    private function layoutInputGroup()
+    {
+        $inputGroupWrapper = (new HtmlContainer('<div>'))
+            ->addClass('input-group');
+
+        if (isset($this->inputGroups[true])) {
+            foreach ($this->inputGroups[true] as $inputGroup) {
+                $inputGroupWrapper->add($inputGroup);
+            }
+        }
+
+        $inputGroupWrapper->add($this->getField());
+
+        if (isset($this->inputGroups[false])) {
+            foreach ($this->inputGroups[false] as $inputGroup) {
+                $inputGroupWrapper->add($inputGroup);
+            }
+        }
+
+        if (!$this->getGridSize()) {
+            $fieldWrapper = new Container();
+            $fieldWrapper->add($this->getLabel());
+            $fieldWrapper->add($inputGroupWrapper);
+            return $fieldWrapper;
+        } else {
+            $fieldWrapper = new HtmlContainer('<div>');
+            $fieldWrapper->add($inputGroupWrapper);
+
+            return $fieldWrapper;
+        }
+    }
+
+    /**
      * {@inheritdoc}
      */
     protected function layout() : Container
@@ -163,24 +198,7 @@ trait FieldTrait
                 $fieldWrapper = $this->getContainer();
             } else {
                 if (sizeof($this->inputGroups)) {
-                    $fieldWrapper = new HtmlContainer('<div>');
-                    $fieldWrapper->add($inputGroupWrapper = (new HtmlContainer('<div>'))
-                        ->addClass('input-group')
-                    );
-
-                    if (isset($this->inputGroups[true])) {
-                        foreach ($this->inputGroups[true] as $inputGroup) {
-                            $inputGroupWrapper->add($inputGroup);
-                        }
-                    }
-
-                    $inputGroupWrapper->add($this->getField());
-
-                    if (isset($this->inputGroups[false])) {
-                        foreach ($this->inputGroups[false] as $inputGroup) {
-                            $inputGroupWrapper->add($inputGroup);
-                        }
-                    }
+                    $fieldWrapper = $this->layoutInputGroup();
                 } else {
                     $fieldWrapper = new HtmlContainer('<div>');
                     $fieldWrapper->add($this->getField());
@@ -207,7 +225,14 @@ trait FieldTrait
 
             return $container;
         } else {
-            $container = parent::layout();
+
+            if (sizeof($this->inputGroups)) {
+                $container = new Container();
+                $container->add($this->layoutInputGroup());
+            } else {
+                $container = parent::layout();
+            }
+
             if ($this->helpText) {
                 $container->add($this->helpText);
             }
