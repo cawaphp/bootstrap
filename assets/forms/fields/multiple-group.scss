@@ -11,6 +11,10 @@
         > .row {
             margin-left: 0;
             margin-right: 0;
+
+            & > .form-group:only-child {
+                margin-left: 15px;
+            }
         }
     }
 
