@@ -160,7 +160,15 @@ class Panel extends HtmlContainer
         } else {
             $container = new Container();
             foreach ($this->container->getElements() as $element) {
+
+                $body = true;
                 if ($element instanceof Table || $element instanceof Grid || $element instanceof ListGroup) {
+                    $body = false;
+                } else if ($body && $element instanceof HtmlElement && $element->getTag() == '<table>') {
+                    $body = false;
+                }
+
+                if (!$body) {
                     if (sizeof($container->getElements()) > 0) {
                         parent::add((new HtmlContainer('<div>'))
                             ->addClass('panel-body')
