@@ -38,7 +38,7 @@ require([
                 options.placeholder = element.attr('placeholder');
             }
 
-            if (self.options.disabledOnTouch === true && modernizr.touchevents) {
+            if (self.options.disabledOnTouch === true && window.Modernizr.touchevents) {
                 removePlugins.push('toolbar');
             }
 

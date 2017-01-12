@@ -10,7 +10,7 @@ require([
         _create: function() {
             var element = $(this.element);
 
-            if (modernizr.touchevents) {
+            if (window.Modernizr.touchevents) {
                 element.attr("type", "tel");
             }
 

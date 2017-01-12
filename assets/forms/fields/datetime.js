@@ -20,7 +20,7 @@ require([
             var element = this.element;
 
             // Disabled on touch & non supported device
-            if (modernizr.touchevents) {
+            if (window.Modernizr.touchevents) {
                 return;
             }
 
