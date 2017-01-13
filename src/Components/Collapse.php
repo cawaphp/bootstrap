@@ -38,6 +38,7 @@ class Collapse extends PhtmlHtmlContainer
             'collapse' => true,
             'id' => null,
             'noPanelBody' => false,
+            'titleTag' => 'h4'
         ];
 
         parent::__construct('<div>');
@@ -68,6 +69,26 @@ class Collapse extends PhtmlHtmlContainer
     public function setTitle(string $title) : self
     {
         $this->data['title'] = $title;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getTitleTag() : string
+    {
+        return $this->data['titleTag'];
+    }
+
+    /**
+     * @param string $titleTag
+     *
+     * @return $this|self
+     */
+    public function setTitleTag(string $titleTag) : self
+    {
+        $this->data['titleTag'] = $titleTag;
 
         return $this;
     }
@@ -135,6 +156,8 @@ class Collapse extends PhtmlHtmlContainer
      */
     public function render()
     {
+        $this->setTemplatePath(null, self::class);
+
         if (!$this->data['id']) {
             $this->generateId();
         }

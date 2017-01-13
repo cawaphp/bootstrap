@@ -33,17 +33,14 @@ class CreditCardFieldset extends Fieldset
         $this
             ->add(($creditCard = new CreditCard($name ? $name . '[card]' : null))
                 ->setRequired()
-                ->setValue('4242424242424242')
             )
             ->add((new Group(''))
                 ->add((new CreditCardExpiry($name ? $name . '[expiration]' : null))
                     ->setRequired()
-                    ->setValue('01 / 18')
                 )
                 ->add((new CreditCardCvc($name ? $name . '[cvv]' : null))
                     ->setCardCredit($creditCard)
                     ->setRequired()
-                    ->setValue('123')
                 )
             )
         ;

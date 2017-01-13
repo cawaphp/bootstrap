@@ -95,7 +95,7 @@ class Panel extends HtmlContainer
     /**
      * @var Container
      */
-    private $container;
+    protected $container;
 
     /**
      * {@inheritdoc}

@@ -38,7 +38,7 @@ class CollapseContainer extends HtmlContainer
     /**
      * @var string
      */
-    private $initialShow = self::INITIAL_SHOW_FIRST;
+    private $initialShow;
 
     /**
      * @return string

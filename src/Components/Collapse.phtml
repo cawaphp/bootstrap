@@ -4,6 +4,7 @@
  * @var string $parentId
  * @var string $id
  * @var string $title
+ * @var string $titleTag
  * @var string $content
  * @var bool $collapse
  * @var bool $noPanelBody
@@ -17,9 +18,9 @@
      data-target="#<?= $id ?>"
      aria-expanded="<?= $collapse ? 'false' : 'true' ?>"
 >
-    <h4 class="panel-title">
+    <<?= $titleTag ?> class="panel-title">
         <?= $title ?>
-    </h4>
+    </<?= $titleTag ?>>
 </div>
 <div id="<?= $id ?>"
      class="panel-collapse collapse<?= !$collapse ? ' in' : '' ?>"
