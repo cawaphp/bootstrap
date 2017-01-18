@@ -1,9 +1,6 @@
 table.table {
-    th.row-action {
+    th.row-action, th.selection {
         width: 32px;
-    }
-
-    td.row-action {
         text-align: center;
     }
 

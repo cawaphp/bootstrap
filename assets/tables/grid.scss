@@ -7,7 +7,7 @@
         border: 0;
     }
 
-    @media (min-width: $screen-sm-min) {
+    @media (min-width: $grid-float-breakpoint) {
         .navbar {
             .container-fluid {
                 padding-left: 0;
@@ -19,7 +19,7 @@
         }
     }
 
-    @media (min-width: $screen-sm-min) and (max-width: $screen-md) {
+    @media (min-width: $grid-float-breakpoint) and (max-width: $grid-float-breakpoint) {
         ul.pagination li:not(.prev):not(.next):not(.active) {
             display: none
         }

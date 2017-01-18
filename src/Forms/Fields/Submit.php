@@ -14,20 +14,14 @@ declare (strict_types = 1);
 namespace Cawa\Bootstrap\Forms\Fields;
 
 use Cawa\Bootstrap\Components\Button;
+use Cawa\Bootstrap\Interfaces\ButtonInterface;
 use Cawa\Renderer\Container;
 
-class Submit extends \Cawa\Html\Forms\Fields\Submit
+class Submit extends \Cawa\Html\Forms\Fields\Submit implements ButtonInterface
 {
     use FieldTrait {
         FieldTrait::layout as private fieldTraitLayout;
     }
-
-    const TYPE_DEFAULT = 'btn-default';
-    const TYPE_PRIMARY = 'btn-primary';
-    const TYPE_SUCCESS = 'btn-success';
-    const TYPE_INFO = 'btn-info';
-    const TYPE_WARNING = 'btn-warning';
-    const TYPE_DANGER = 'btn-danger';
 
     /**
      * {@inheritdoc}

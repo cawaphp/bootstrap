@@ -1,6 +1,5 @@
 var $ = require("jquery");
 var locale = require("../../lang/dialogs-confim");
-var BootstrapDialog = require("bootstrap-dialog");
 
 $.widget("cawa.dialog-confirm", $.cawa.widget, {
 

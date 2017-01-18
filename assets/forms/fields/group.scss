@@ -10,6 +10,9 @@
             padding-left: 0;
         }
 
+        .row > div[class*="col-"]:last-child {
+            padding-right: 0;
+        }
     }
 
     .row > div[class*="col-"] > label {

@@ -13,21 +13,11 @@ declare (strict_types = 1);
 
 namespace Cawa\Bootstrap\Components;
 
+use Cawa\Bootstrap\Interfaces\ButtonInterface;
 use Cawa\Renderer\HtmlElement;
 
-class Button extends HtmlElement
+class Button extends HtmlElement implements ButtonInterface
 {
-    const SIZE_LARGE = 'btn-lg';
-    const SIZE_SMALL = 'btn-sm';
-    const SIZE_XSMALL = 'btn-xs';
-
-    const TYPE_DEFAULT = 'btn-default';
-    const TYPE_PRIMARY = 'btn-primary';
-    const TYPE_SUCCESS = 'btn-success';
-    const TYPE_INFO = 'btn-info';
-    const TYPE_WARNING = 'btn-warning';
-    const TYPE_DANGER = 'btn-danger';
-
     /**
      * @param string $content
      * @param string $type
