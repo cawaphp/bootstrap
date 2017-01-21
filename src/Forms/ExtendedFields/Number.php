@@ -20,7 +20,7 @@ class Number extends \Cawa\Bootstrap\Forms\Fields\Number
     /**
      * {@inheritdoc}
      */
-    public function __construct(string $name, string $label = null)
+    public function __construct(string $name, string $label = null, string $type = null, string $size = null)
     {
         parent::__construct($name, $label);
 
@@ -28,11 +28,11 @@ class Number extends \Cawa\Bootstrap\Forms\Fields\Number
 
         $this
             ->addInputGroup(
-                (new Button('&nbsp;<i class="fa fa-minus"></i>&nbsp;'))
+                (new Button('&nbsp;<i class="fa fa-minus"></i>&nbsp;', $type, $size))
                     ->addAttribute('data-action', '-'),
                 true)
             ->addInputGroup(
-                (new Button('&nbsp;<i class="fa fa-plus"></i>&nbsp;'))
+                (new Button('&nbsp;<i class="fa fa-plus"></i>&nbsp;', $type, $size))
                     ->addAttribute('data-action', '+'),
                 false)
         ;

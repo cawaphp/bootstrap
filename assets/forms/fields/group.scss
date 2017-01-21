@@ -1,5 +1,4 @@
 .cawa-fields-group {
-
     // padding
     @media (min-width: $grid-float-breakpoint) {
         .row:not([class*="-offset-"]) {
@@ -9,10 +8,6 @@
         > div[class*="-offset-"] {
             padding-left: 0;
         }
-
-        .row > div[class*="col-"]:last-child {
-            padding-right: 0;
-        }
     }
 
     .row > div[class*="col-"] > label {
@@ -21,8 +16,9 @@
 
     // margin-bottom
     .row {
-        @media (max-width: $grid-float-breakpoint) {
-            > div {
+        @media (max-width: $screen-xs-max) {
+            > div[class*="col-sm-"] {
+                display: flex;
                 margin-bottom: $line-height-computed;
                 &:last-child {
                     margin-bottom: 0;
@@ -30,7 +26,28 @@
             }
         }
 
-        > .form-group {
+        @media (max-width: $screen-sm-max) {
+            > div[class*="col-md-"] {
+                display: flex;
+                margin-bottom: $line-height-computed;
+                &:last-child {
+                    margin-bottom: 0;
+                }
+            }
+        }
+
+        @media (max-width: $screen-md-max) {
+            > div[class*="col-lg-"] {
+                display: flex;
+
+                margin-bottom: $line-height-computed;
+                &:last-child {
+                    margin-bottom: 0;
+                }
+            }
+        }
+
+        >  div[class*="col-"].form-group {
             margin-bottom: 0;
         }
     }

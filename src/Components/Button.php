@@ -13,11 +13,14 @@ declare (strict_types = 1);
 
 namespace Cawa\Bootstrap\Components;
 
-use Cawa\Bootstrap\Interfaces\ButtonInterface;
+use Cawa\Bootstrap\Properties\ButtonInterface;
+use Cawa\Bootstrap\Properties\ButtonTrait;
 use Cawa\Renderer\HtmlElement;
 
 class Button extends HtmlElement implements ButtonInterface
 {
+    use ButtonTrait;
+
     /**
      * @param string $content
      * @param string $type
@@ -83,30 +86,6 @@ class Button extends HtmlElement implements ButtonInterface
             $this->addAttribute('disabled', 'disabled');
         } else {
             $this->removeAttribute('disabled');
-        }
-
-        return $this;
-    }
-
-    /**
-     * @return bool
-     */
-    public function isBlock() : bool
-    {
-        return $this->hasClass('btn-block');
-    }
-
-    /**
-     * @param bool $block
-     *
-     * @return $this|self
-     */
-    public function setBlock(bool $block = true) : self
-    {
-        if ($block) {
-            $this->addClass('btn-block');
-        } else {
-            $this->removeClass('btn-block');
         }
 
         return $this;

@@ -14,11 +14,13 @@ declare (strict_types = 1);
 namespace Cawa\Bootstrap\Forms\Fields;
 
 use Cawa\Bootstrap\Components\Button;
-use Cawa\Bootstrap\Interfaces\ButtonInterface;
+use Cawa\Bootstrap\Properties\ButtonInterface;
+use Cawa\Bootstrap\Properties\ButtonTrait;
 use Cawa\Renderer\Container;
 
 class Submit extends \Cawa\Html\Forms\Fields\Submit implements ButtonInterface
 {
+    use ButtonTrait;
     use FieldTrait {
         FieldTrait::layout as private fieldTraitLayout;
     }

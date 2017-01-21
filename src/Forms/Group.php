@@ -74,11 +74,36 @@ class Group extends \Cawa\Html\Forms\Group
     }
 
     /**
+     * @var string
+     */
+    private $colClass = 'md';
+
+    /**
+     * @return string
+     */
+    public function getColClass() : string
+    {
+        return $this->colClass;
+    }
+
+    /**
+     * @param string $colClass
+     *
+     * @return Group
+     */
+    public function setColClass(string $colClass = null) : Group
+    {
+        $this->colClass = $colClass;
+
+        return $this;
+    }
+
+    /**
      * {@inheritdoc}
      */
     protected function applyContainerSize(array $elements)
     {
-        if (!$this->isMultiline()) {
+        if (!$this->isMultiline() && $this->colClass) {
             $count = 0;
             foreach ($elements as $element) {
                 if (!$element instanceof Hidden) {
@@ -88,7 +113,7 @@ class Group extends \Cawa\Html\Forms\Group
 
             if ($count > 1) {
                 foreach ($elements as $element) {
-                    $element->addClass('col-sm-' . floor(12 / $count))
+                    $element->addClass('col-' . $this->colClass . '-' . floor(12 / $count))
                         ->removeClass('form-group');
                 }
             }

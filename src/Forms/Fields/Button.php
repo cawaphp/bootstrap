@@ -13,18 +13,15 @@ declare (strict_types = 1);
 
 namespace Cawa\Bootstrap\Forms\Fields;
 
-class Button extends \Cawa\Html\Forms\Fields\Button
+use Cawa\Bootstrap\Properties\ButtonInterface;
+use Cawa\Bootstrap\Properties\ButtonTrait;
+
+class Button extends \Cawa\Html\Forms\Fields\Button implements ButtonInterface
 {
+    use ButtonTrait;
     use FieldTrait {
         FieldTrait::layout as private fieldTraitLayout;
     }
-
-    const TYPE_DEFAULT = 'btn-default';
-    const TYPE_PRIMARY = 'btn-primary';
-    const TYPE_SUCCESS = 'btn-success';
-    const TYPE_INFO = 'btn-info';
-    const TYPE_WARNING = 'btn-warning';
-    const TYPE_DANGER = 'btn-danger';
 
     /**
      * {@inheritdoc}
@@ -51,6 +48,31 @@ class Button extends \Cawa\Html\Forms\Fields\Button
         }
 
         $this->getField()->addClass($type);
+
+        return $this;
+    }
+
+
+    /**
+     * @return bool
+     */
+    public function isBlock() : bool
+    {
+        return $this->hasClass('btn-block');
+    }
+
+    /**
+     * @param bool $block
+     *
+     * @return $this|self
+     */
+    public function setBlock(bool $block = true) : self
+    {
+        if ($block) {
+            $this->addClass('btn-block');
+        } else {
+            $this->removeClass('btn-block');
+        }
 
         return $this;
     }

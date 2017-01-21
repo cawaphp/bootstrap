@@ -13,7 +13,10 @@ declare (strict_types = 1);
 
 namespace Cawa\Bootstrap\Forms;
 
+use Cawa\Bootstrap\Components\Button;
+use Cawa\Bootstrap\Components\Dropdown;
 use Cawa\Bootstrap\Forms\Fields\Submit;
+use Cawa\Bootstrap\Properties\ButtonInterface;
 use Cawa\Html\Forms\Fields\AbstractField;
 use Cawa\Html\Forms\Fields\Hidden;
 
@@ -146,12 +149,21 @@ trait BootstrapPropertiesTrait
         }
 
         if ($this instanceof Submit) {
-            $this->getField()->addClass($element->getFieldSize() == Form::SIZE_LARGE ? 'btn-lg' : 'btn-sm');
+            $this->getField()->addClass($element->getFieldSize() == Form::SIZE_LARGE ? ButtonInterface::SIZE_LARGE : ButtonInterface::SIZE_SMALL);
         } else {
             if ($this->horizontal) {
                 $this->addClass($element->getFieldSize() == Form::SIZE_LARGE ? 'form-group-lg' : 'form-group-sm');
             } else {
                 $this->getField()->addClass($element->getFieldSize() == Form::SIZE_LARGE ? 'input-lg' : 'input-sm');
+                foreach ($this->getInputGroups() as $direction => $groups) {
+                    foreach ($groups as $input) {
+                        foreach ($input->getElements() as $item) {
+                            if ($item instanceof Button || $item instanceof Dropdown) {
+                                $item->addClass($element->getFieldSize() == Form::SIZE_LARGE ? ButtonInterface::SIZE_LARGE : ButtonInterface::SIZE_SMALL);
+                            }
+                        }
+                    }
+                }
             }
         }
     }

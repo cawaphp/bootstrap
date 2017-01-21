@@ -93,6 +93,14 @@ trait FieldTrait
     private $inputGroups = [];
 
     /**
+     * @return array
+     */
+    public function getInputGroups() : array
+    {
+        return $this->inputGroups;
+    }
+
+    /**
      * @param Button|Dropdown|Checkbox|Radio|string $item
      * @param bool $left
      *
@@ -161,7 +169,9 @@ trait FieldTrait
 
         if (!$this->getGridSize()) {
             $fieldWrapper = new Container();
-            $fieldWrapper->add($this->getLabel());
+            if ($this->getLabel()) {
+                $fieldWrapper->add($this->getLabel());
+            }
             $fieldWrapper->add($inputGroupWrapper);
             return $fieldWrapper;
         } else {
