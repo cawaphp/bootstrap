@@ -20,6 +20,7 @@ require([
 
         _create: function ()
         {
+            var self = this;
             var pluginOptions = this.options.plugin;
 
             if (this.options.images) {
@@ -27,7 +28,7 @@ require([
                 pluginOptions.initialPreviewConfig = [];
                 $.forEach(this.options.images, function (value, key)
                 {
-                    if (typeof value == "string") {
+                    if (typeof value === "string") {
                         pluginOptions.initialPreview.push('<img src="' + value + '" class="file-preview-image" />');
                     } else {
 
@@ -58,6 +59,16 @@ require([
             /* Plugins */
             this.element.fileinput(pluginOptions);
 
+            if (this.options.deleteUrl && !this.element.prop("multiple") && !this.options.required) {
+                this.element.on('filecleared', function (event)
+                {
+                    $.ajax(self.options.deleteUrl, {
+                        method: 'POST',
+                        data: self.options.images[Object.keys(self.options.images)[0]].extra
+                    })
+                });
+            }
+
             if (this.options.sortUrl) {
                 this.element.on('filesorted', $.proxy(this._onSorted, this));
             }
@@ -81,7 +92,7 @@ require([
 
         isValid: function ()
         {
-            if (this.options.required == false) {
+            if (this.options.required === false) {
                 return true;
             }
 
