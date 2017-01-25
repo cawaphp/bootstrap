@@ -86,6 +86,31 @@ class CollapseContainer extends HtmlContainer
     }
 
     /**
+     * @var bool
+     */
+    private $isCollapsible = true;
+
+    /**
+     * @return bool
+     */
+    public function isCollapsible() : bool
+    {
+        return $this->isCollapsible;
+    }
+
+    /**
+     * @param bool $isCollapsible
+     *
+     * @return $this|self
+     */
+    public function setCollapsible(bool $isCollapsible) : self
+    {
+        $this->isCollapsible = $isCollapsible;
+
+        return $this;
+    }
+
+    /**
      * @return bool
      */
     public function isCollapseIcon() : bool
@@ -117,6 +142,8 @@ class CollapseContainer extends HtmlContainer
      */
     private function handleDisplay(Collapse $collapse, bool $first = false) : Collapse
     {
+        $collapse->setCollapsible($this->isCollapsible());
+
         if ($first || (sizeof($this->elements) == 0 && $this->initialShow == self::INITIAL_SHOW_FIRST)) {
             $collapse->setCollapse(false);
         }

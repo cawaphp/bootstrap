@@ -7,21 +7,28 @@
  * @var string $titleTag
  * @var string $content
  * @var bool $collapse
+ * @var bool $collapsible
+ * @var bool $noBody
  * @var bool $noPanelBody
  */
 ?>
+<?php if (isset($title)) : ?>
 <div class="panel-heading"
      role="tab"
      id="<?= $id ?>-heanding"
+     <?php if ($collapsible) : ?>
      data-toggle="collapse"
      <?= isset($parentId) ? 'data-parent="#' . $parentId . '"' : '' ?>
      data-target="#<?= $id ?>"
+     <?php endif; ?>
      aria-expanded="<?= $collapse ? 'false' : 'true' ?>"
 >
     <<?= $titleTag ?> class="panel-title">
         <?= $title ?>
     </<?= $titleTag ?>>
 </div>
+<?php endif; ?>
+<?php if (!$noBody) : ?>
 <div id="<?= $id ?>"
      class="panel-collapse collapse<?= !$collapse ? ' in' : '' ?>"
      role="tabpanel"
@@ -35,3 +42,4 @@
     </div>
     <?php endif; ?>
 </div>
+<?php endif; ?>

@@ -36,8 +36,10 @@ class Collapse extends PhtmlHtmlContainer
     {
         $this->data = [
             'collapse' => true,
+            'collapsible' => true,
             'id' => null,
             'noPanelBody' => false,
+            'noBody' => false,
             'titleTag' => 'h4'
         ];
 
@@ -116,6 +118,26 @@ class Collapse extends PhtmlHtmlContainer
     /**
      * @return bool
      */
+    public function isCollapsible() : bool
+    {
+        return $this->data['collapsible'];
+    }
+
+    /**
+     * @param bool $isCollapsible
+     *
+     * @return $this|self
+     */
+    public function setCollapsible(bool $isCollapsible) : self
+    {
+        $this->data['collapsible'] = $isCollapsible;
+
+        return $this;
+    }
+
+    /**
+     * @return bool
+     */
     public function isCollapse() : bool
     {
         return $this->data['collapse'];
@@ -161,7 +183,12 @@ class Collapse extends PhtmlHtmlContainer
         if (!$this->data['id']) {
             $this->generateId();
         }
+
         $this->data['content'] = $this->getContent();
+        if (!$this->getContent() && sizeof($this->getElements()) == 0) {
+            $this->data['noBody'] = true;
+        }
+
         if (isset($this->elements[0]) && $this->elements[0] instanceof ListGroup) {
             $this->data['noPanelBody'] = true;
         }
