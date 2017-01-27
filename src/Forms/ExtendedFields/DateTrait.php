@@ -135,5 +135,4 @@ trait DateTrait
 
         return $container;
     }
-
 }

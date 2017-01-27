@@ -106,7 +106,7 @@ class MultipleGroup extends Group
 
         if ($input instanceof AbstractField) {
             $this->resetLabel($input);
-        } else if ($input instanceof Group) {
+        } elseif ($input instanceof Group) {
             foreach ($input->getFields() as $field) {
                 $this->resetLabel($field);
             }

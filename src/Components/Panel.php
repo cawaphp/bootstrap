@@ -160,11 +160,10 @@ class Panel extends HtmlContainer
         } else {
             $container = new Container();
             foreach ($this->container->getElements() as $element) {
-
                 $body = true;
                 if ($element instanceof Table || $element instanceof Grid || $element instanceof ListGroup) {
                     $body = false;
-                } else if ($body && $element instanceof HtmlElement && $element->getTag() == '<table>') {
+                } elseif ($body && $element instanceof HtmlElement && $element->getTag() == '<table>') {
                     $body = false;
                 }
 

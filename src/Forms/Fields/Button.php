@@ -52,7 +52,6 @@ class Button extends \Cawa\Html\Forms\Fields\Button implements ButtonInterface
         return $this;
     }
 
-
     /**
      * @return bool
      */

@@ -112,7 +112,7 @@ trait FieldTrait
             $this->inputGroups[$left][] = (new HtmlContainer('<span>'))
                 ->addClass('input-group-btn')
                 ->add($item);
-        } else if ($item instanceof Checkbox || $item instanceof Radio) {
+        } elseif ($item instanceof Checkbox || $item instanceof Radio) {
             $this->inputGroups[$left][] = (new HtmlContainer('<span>'))
                 ->addClass('input-group-addon')
                 ->add($item->getField());
@@ -173,6 +173,7 @@ trait FieldTrait
                 $fieldWrapper->add($this->getLabel());
             }
             $fieldWrapper->add($inputGroupWrapper);
+
             return $fieldWrapper;
         } else {
             $fieldWrapper = new HtmlContainer('<div>');
@@ -235,7 +236,6 @@ trait FieldTrait
 
             return $container;
         } else {
-
             if (sizeof($this->inputGroups)) {
                 $container = new Container();
                 $container->add($this->layoutInputGroup());

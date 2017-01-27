@@ -180,7 +180,7 @@ class TabContainer extends HtmlElement
     private $activateFirst = true;
 
     /**
-     * @return boolean
+     * @return bool
      */
     public function isActivateFirst() : bool
     {
@@ -188,7 +188,7 @@ class TabContainer extends HtmlElement
     }
 
     /**
-     * @param boolean $activateFirst
+     * @param bool $activateFirst
      *
      * @return TabContainer
      */

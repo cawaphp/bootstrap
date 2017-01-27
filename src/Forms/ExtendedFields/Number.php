@@ -24,7 +24,7 @@ class Number extends \Cawa\Bootstrap\Forms\Fields\Number
     {
         parent::__construct($name, $label);
 
-        $this->addClass("cawa-fields-number");
+        $this->addClass('cawa-fields-number');
 
         $this
             ->addInputGroup(
