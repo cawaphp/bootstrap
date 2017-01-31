@@ -30,11 +30,11 @@ class Panel extends HtmlContainer
     const TYPE_DANGER = 'panel-danger';
 
     /**
-     * @param string $type
      * @param string $title
      * @param string $content
+     * @param string $type
      */
-    public function __construct(string $type = self::TYPE_DEFAULT, string $title = null, string $content = null)
+    public function __construct(string $title = null, string $content = null, string $type = self::TYPE_DEFAULT)
     {
         parent::__construct('<div>', $content);
         $this->addClass(['panel', $type]);
@@ -48,9 +48,9 @@ class Panel extends HtmlContainer
     private $title;
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getTitle() : string
+    public function getTitle()
     {
         return $this->title;
     }
@@ -135,13 +135,14 @@ class Panel extends HtmlContainer
     }
 
     /**
-     * {@inheritdoc}
+     * @return HtmlContainer
      */
-    public function render()
+    protected function renderHeader() : HtmlContainer
     {
-        if ($this->title || $this->title) {
-            $header = (new HtmlContainer('<div>'))
-                ->addClass('panel-heading');
+        $header = (new HtmlContainer('<div>'))
+            ->addClass('panel-heading');
+
+        if ($this->title || $this->buttonGroup) {
 
             if ($this->buttonGroup) {
                 $header->add($this->buttonGroup);
@@ -150,7 +151,18 @@ class Panel extends HtmlContainer
             if ($this->title) {
                 $header->add((new HtmlElement('<h3>', $this->title))->addClass('panel-title'));
             }
+        }
 
+        return $header;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function render()
+    {
+        $header = $this->renderHeader();
+        if (sizeof($header->getElements())) {
             parent::add($header);
         }
 
