@@ -79,6 +79,32 @@ class Column extends \Cawa\Html\Tables\Column
     }
 
     /**
+     * if true: sort ASC, if false: sort DESC, if null: no sort
+     * @var bool
+     */
+    private $defaultSort;
+
+    /**
+     * @return bool
+     */
+    public function isDefaultSort()
+    {
+        return $this->defaultSort;
+    }
+
+    /**
+     * @param bool $defaultSort
+     *
+     * @return $this|self
+     */
+    public function setDefaultSort(bool $defaultSort = null) : self
+    {
+        $this->defaultSort = $defaultSort;
+
+        return $this;
+    }
+
+    /**
      * @param string $sortString
      *
      * @return array

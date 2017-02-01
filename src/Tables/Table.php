@@ -94,6 +94,20 @@ class Table extends \Cawa\Html\Tables\Table
     }
 
     /**
+     * @return string|null
+     */
+    public function getDefaultSort()
+    {
+        foreach ($this->getColumns() as $column) {
+            if (!is_null($column->isDefaultSort())) {
+                return $column->getId() . '-' . ($column->isDefaultSort() ? 'A' : 'D');
+            }
+        }
+
+        return null;
+    }
+
+    /**
      * {@inheritdoc}
      */
     public function add(ViewController ...$elements)

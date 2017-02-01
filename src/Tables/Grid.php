@@ -32,6 +32,7 @@ class Grid extends HtmlContainer
     use TranslatorFactory;
 
     const QUERY_PAGESIZE = 'size';
+    const OPTIONS_ROWSPERPAGE = 'rowsperpage';
 
     /**
      * @param string $stateId
@@ -40,14 +41,18 @@ class Grid extends HtmlContainer
     {
         $this->stateId = $stateId;
 
+        $this->table = new Table();
+
         // default callback to get query param
         $this->argsCallback = function ($item, $arg = null) {
             $query = $this->stateId ? $this->stateId . '_' : '';
+            $default = null;
 
             if ($item instanceof Pagination) {
                 $query .= Pagination::QUERY_PAGE;
             } elseif ($item instanceof Column) {
                 $query .= Table::QUERY_SORT;
+                $default = $this->table->getDefaultSort();
             } elseif (is_string($item)) {
                 $query .= $item;
             }
@@ -55,7 +60,7 @@ class Grid extends HtmlContainer
             if ($arg) {
                 return self::request()->getUri()->addQuery($query, (string) $arg)->get();
             } else {
-                return self::request()->getUri()->getQuery($query);
+                return self::request()->getUri()->getQuery($query) ?? $default;
             }
         };
 
@@ -85,7 +90,6 @@ class Grid extends HtmlContainer
 
         $this->navbar->add($ul);
 
-        $this->table = new Table();
         $this->table->setArgsCallback($this->argsCallback);
         $this->add($this->table);
     }
@@ -100,6 +104,27 @@ class Grid extends HtmlContainer
      */
     private $argsCallback;
 
+    /**
+     * @var array
+     */
+    private $defaults = [
+        self::QUERY_PAGESIZE => 25,
+        self::OPTIONS_ROWSPERPAGE => [25, 50, 75, 100]
+    ];
+
+    /**
+     * @param string $key
+     * @param $value
+     *
+     * @return $this|self
+     */
+    public function setDefault(string $key, $value) : self
+    {
+        $this->defaults[$key] = $value;
+
+        return $this;
+    }
+
     //region Options elements
 
     /**
@@ -108,7 +133,7 @@ class Grid extends HtmlContainer
     private function getRowsPerPageDropdown() : HtmlContainer
     {
         $subMenu = (new HtmlContainer('<ul>'))->addClass('dropdown-menu');
-        foreach ([25, 50, 75, 100] as $count) {
+        foreach ($this->defaults[self::OPTIONS_ROWSPERPAGE] as $count) {
             $href = call_user_func($this->argsCallback, self::QUERY_PAGESIZE, $count);
 
             $li = (new HtmlContainer('<li>'))->add(new Link((string) $count, $href));
@@ -136,14 +161,14 @@ class Grid extends HtmlContainer
     private function getColumnDropdown() : HtmlContainer
     {
         $columnsVisible = [];
-        foreach ($this->getTable()->getColums() as $column) {
+        foreach ($this->getTable()->getColumns() as $column) {
             if ($column->isVisible()) {
                 $columnsVisible[] = $column->getId();
             }
         }
 
         $subMenu = (new HtmlContainer('<ul>'))->addClass('dropdown-menu');
-        foreach ($this->getTable()->getColums() as $column) {
+        foreach ($this->getTable()->getColumns() as $column) {
             if (!$column->isHideable() || !$column->isRenderable()) {
                 continue;
             }
@@ -279,7 +304,12 @@ class Grid extends HtmlContainer
             return Column::getSort($sortString);
         }
 
-        return null;
+        $sort = $this->table->getDefaultSort();
+        if (is_null($sort)) {
+            return null;
+        }
+
+        return Column::getSort($this->table->getDefaultSort());
     }
 
     /**
