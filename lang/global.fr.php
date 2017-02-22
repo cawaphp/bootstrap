@@ -27,5 +27,6 @@ return [
         'expiration' => 'Date d\'expiration',
         'expirationPlaceholder' => 'MM / AA',
         'cvv' => 'Cryptogramme visuel',
+        'save' => '<strong>Sécurisé et rapide :</strong> Mémoriser ma carte bancaire pour ma prochaine commande.',
     ]
 ];

@@ -13,6 +13,7 @@ declare (strict_types = 1);
 
 namespace Cawa\Bootstrap\Forms\ExtendedFields;
 
+use Cawa\Bootstrap\Forms\Fields\Checkbox;
 use Cawa\Bootstrap\Forms\Fieldset;
 use Cawa\Bootstrap\Forms\Group;
 use Cawa\Intl\TranslatorFactory;
@@ -23,8 +24,9 @@ class CreditCardFieldset extends Fieldset
 
     /**
      * @param string $name
+     * @param bool $save
      */
-    public function __construct(string $name = null)
+    public function __construct(string $name = null, bool $save = false)
     {
         self::translator()->addFile(__DIR__ . '/../../../lang/global', 'bootstrap');
 
@@ -44,6 +46,16 @@ class CreditCardFieldset extends Fieldset
                 )
             )
         ;
+
+        if ($save) {
+            $this->add($saveCheckbox = (new Checkbox(
+                $name ? $name . '[save]' : 'saveCard',
+                self::trans('bootstrap.creditcard/save'),
+                '1'))
+            );
+
+            $saveCheckbox->getField()->addClass('cc-save');
+        }
 
         parent::__construct();
     }

@@ -17,8 +17,11 @@
     // margin-bottom
     .row {
         @media (max-width: $screen-xs-max) {
-            > div[class*="col-sm-"] {
+            form.form-horizontal > div[class*="col-sm-"] {
                 display: flex;
+            }
+
+            > div[class*="col-sm-"] {
                 margin-bottom: $line-height-computed;
                 &:last-child {
                     margin-bottom: 0;
@@ -27,8 +30,11 @@
         }
 
         @media (max-width: $screen-sm-max) {
-            > div[class*="col-md-"] {
+            form.form-horizontal & > div[class*="col-md-"] {
                 display: flex;
+            }
+
+            > div[class*="col-md-"] {
                 margin-bottom: $line-height-computed;
                 &:last-child {
                     margin-bottom: 0;
@@ -37,9 +43,11 @@
         }
 
         @media (max-width: $screen-md-max) {
-            > div[class*="col-lg-"] {
+            form.form-horizontal > div[class*="col-lg-"] {
                 display: flex;
+            }
 
+            > div[class*="col-lg-"] {
                 margin-bottom: $line-height-computed;
                 &:last-child {
                     margin-bottom: 0;

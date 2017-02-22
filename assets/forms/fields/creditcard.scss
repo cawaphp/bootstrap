@@ -52,3 +52,48 @@ input.cawa-fields-creditcard {
 
     }
 }
+
+.cc-icon {
+    display: inline-block;
+    background-repeat: no-repeat;
+    width: 24px;
+    height: 24px;
+    background-image: url("#{$creditcard-img}/credit_cards/generic_1.png");
+    background-size: contain;
+
+    &.visa {
+        background-image: url("#{$creditcard-img}/cards/24/visa_24.png");
+    }
+
+    &.mastercard {
+        background-image: url("#{$creditcard-img}/cards/24/mastercard_24.png");
+    }
+
+    &.amex {
+        background-image: url("#{$creditcard-img}/cards/24/american_express_24.png");
+    }
+
+    &.dinersclub {
+        background-image: url("#{$creditcard-img}/cards/24/diners_club_24.png");
+    }
+
+    &.discover {
+        background-image: url("#{$creditcard-img}/cards/24/discover_24.png");
+    }
+
+    &.unionpay {
+        background-image: url("#{$creditcard-img}/cards/24/china_union_pay_24.png");
+    }
+
+    &.jcb {
+        background-image: url("#{$creditcard-img}/cards/24/jcb_24_2.png");
+    }
+
+    &.visaelectron {
+        background-image: url("#{$creditcard-img}/cards/24/visa_electron_24.png");
+    }
+
+    &.maestro {
+        background-image: url("#{$creditcard-img}/cards/24/maestro_24.png");
+    }
+}
