@@ -49,9 +49,34 @@ class ButtonGroup extends AbstractField
     private $values;
 
     /**
+     * @var array
+     */
+    private $disabledValues = [];
+
+    /**
+     * @return array
+     */
+    public function getDisabledValues()
+    {
+        return $this->disabledValues;
+    }
+
+    /**
+     * @param array $disabledValues
+     *
+     * @return self|$this
+     */
+    public function setDisabledValues(array $disabledValues) : self
+    {
+        $this->disabledValues = $disabledValues;
+
+        return $this;
+    }
+
+    /**
      * @return HtmlContainer
      */
-    public function getGroup() : HtmlContainer
+    private function getGroup() : HtmlContainer
     {
         $container = (new HtmlContainer('<div>'))
             ->addAttributes([
@@ -62,6 +87,7 @@ class ButtonGroup extends AbstractField
         foreach ($this->values as $key => $value) {
             $container->add($label = (new HtmlContainer('<label>'))
                 ->addClass('btn btn-default')
+                ->addClass(in_array($key, $this->disabledValues) ? 'disabled' : '')
                 ->add($input = (new HtmlElement('<input>'))
                     ->addAttributes([
                         'name' => $this->getName(),
@@ -69,6 +95,7 @@ class ButtonGroup extends AbstractField
                         'value' => $key,
                         'type' => $this->isMultiple() ? 'checkbox' : 'radio'
                     ])
+                    ->addClass(in_array($key, $this->disabledValues) ? 'disabled' : '')
                     ->setContent($value)
                 )
             );
