@@ -51,7 +51,7 @@ trait DateTrait
     {
         $this->widgetOptions = array_merge_recursive($this->widgetOptions, [
             'plugin' => [
-                'disabledWeekdays' => $weekdays
+                'disabledWeekDays' => $weekdays
             ]
         ]);
 

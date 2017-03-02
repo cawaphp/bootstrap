@@ -21,6 +21,7 @@ require([
 
             // Disabled on touch & non supported device
             if (window.Modernizr.touchevents) {
+                element.closest(".cawa-fields-datetime-group").addClass("init");
                 return;
             }
 
