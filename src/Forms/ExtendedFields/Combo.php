@@ -26,6 +26,12 @@ class Combo extends Select
     public function __construct(string $name, string $label = null, array $options = [])
     {
         $this->widgetOptions = new WidgetOption();
+
+        if (sizeof($options) > 0 && is_array($options[array_keys($options)[0]]) && isset($options[array_keys($options)[0]]['id'])) {
+            $this->widgetOptions->addData('plugin', ['data' => $options]);
+            $options = [];
+        }
+
         parent::__construct($name, $label, $options);
         $this->getField()->addClass('cawa-fields-combo hidden');
     }
@@ -142,6 +148,8 @@ class Combo extends Select
                 }
             }
         }
+
+        $this->widgetOptions->addData('value', $value);
 
         return parent::setValue($value);
     }

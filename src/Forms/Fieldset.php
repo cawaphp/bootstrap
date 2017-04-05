@@ -89,7 +89,7 @@ class Fieldset extends \Cawa\Html\Forms\Fieldset
 
     public function render()
     {
-        if ($this->getGridSize()) {
+        if ($this->getGridSize() && sizeof($this->elements)) {
             /** @var HtmlElement $legend */
             $legend = $this->elements[0];
 

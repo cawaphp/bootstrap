@@ -33,11 +33,19 @@ require([
         _rowDoubleClick: function(event)
         {
             var element = $(event.target);
-            var link = element.closest('tr')
-                .find("a[data-main-action='true']");
+            var links = element.closest('tr')
+                .find("a[data-action-index]")
+                .sort(function(a, b)
+                {
+                    var aIndex = $(a).attr('data-action-index');
+                    var bIndex = $(b).attr('data-action-index');
 
-            if (link.attr("href")) {
-                link.trigger("click");
+                    return aIndex === bIndex ? 0 : (aIndex > bIndex ? 1 : -1);
+                })
+            ;
+
+            if (links.first().attr("href")) {
+                links.first().trigger("click");
             }
         }
     });

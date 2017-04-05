@@ -23,7 +23,7 @@ require([
             var options = self.options.plugin;
 
             // hide searchbox
-            if (self.options.searchBox !== undefined && self.options.searchBox == false) {
+            if (self.options.searchBox !== undefined && self.options.searchBox === false) {
                 options.minimumResultsForSearch = Infinity;
             }
 
@@ -38,7 +38,7 @@ require([
 
                 var keyupCallback = function (event)
                 {
-                    if (element.select2("isOpen") && event.which == 13 && (!element.val() || self._hasValue)) {
+                    if (element.select2("isOpen") && event.which === 13 && (!element.val() || self._hasValue)) {
                         element.val(null).trigger('change');
                         self.options.noResultCreate.call(self, event, $(event.target).val());
                     }
@@ -80,17 +80,34 @@ require([
                 }
             }
 
+
+
             // optgroup displayed on selection
             if (!options.ajax) {
                 options.templateSelection = function (data)
                 {
                     var parent = $(data.element).parent();
-                    if (parent.prop("tagName") == "OPTGROUP") {
+                    if (parent.prop("tagName") === "OPTGROUP") {
                         return parent[0].label + " » " + data.text;
                     } else {
                         return data.text;
                     }
                 };
+            }
+
+            // data
+            if (options.data) {
+
+                options.templateSelection = function (data)
+                {
+                    return data.selectedText || data.text;
+                };
+
+                options.templateResult = function (node)
+                {
+                    return $(
+                        '<span style="padding-left:' + (10 * (node.level ? node.level : 0)) + 'px;">' + node.text + '</span>');
+                }
             }
 
             // css class
@@ -112,7 +129,7 @@ require([
                 options.dropdownParent = bootstrapDialog;
             }
 
-            if (element.prop("multiple") && typeof options.closeOnSelect == "undefined") {
+            if (element.prop("multiple") && typeof options.closeOnSelect === "undefined") {
                 options.closeOnSelect = false;
             }
 
@@ -122,10 +139,16 @@ require([
             // init
             self._select2 = element.select2(options);
 
+
+            // data
+            if (options.data) {
+                self._select2.val(self.options.value).trigger('change');
+            }
+
             // ugly hack : https://github.com/select2/select2/issues/3278
             $(self._select2).parent().find(".select2-container").css('width', '');
 
-            self._hasValue = element.val() !== "";
+            self._hasValue = element.val() !== "" || typeof self.options.value !== "undefined";
             self._select2.removeClass("invisible");
 
             // loading
@@ -145,7 +168,7 @@ require([
                 self._hasValue = true;
 
                 // remove type text on selection
-                if (self.options.searchBox === undefined || self.options.searchBox == true) {
+                if (self.options.searchBox === undefined || self.options.searchBox === true) {
                     $(self._select2).parent().find(".select2-search__field").val('');
                     self.element.select2("trigger", "query");
                 }
@@ -197,7 +220,7 @@ require([
                     var matches = self._matcher(params, child);
 
                     // If there wasn't a match, remove the object in the array
-                    if (matches == null) {
+                    if (matches === null) {
                         match.children.splice(c, 1);
                     }
                 }

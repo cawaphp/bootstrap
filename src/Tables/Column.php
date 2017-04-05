@@ -80,6 +80,7 @@ class Column extends \Cawa\Html\Tables\Column
 
     /**
      * if true: sort ASC, if false: sort DESC, if null: no sort
+     *
      * @var bool
      */
     private $defaultSort;

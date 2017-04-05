@@ -143,7 +143,6 @@ class Panel extends HtmlContainer
             ->addClass('panel-heading');
 
         if ($this->title || $this->buttonGroup) {
-
             if ($this->buttonGroup) {
                 $header->add($this->buttonGroup);
             }
