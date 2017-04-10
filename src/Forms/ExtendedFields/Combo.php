@@ -126,6 +126,14 @@ class Combo extends Select
     }
 
     /**
+     * @return null|string
+     */
+    public function getValue()
+    {
+        return $this->widgetOptions->getData()['value'] ?? parent::getValue();
+    }
+
+    /**
      * {@inheritdoc}
      */
     public function setValue($value) : AbstractField

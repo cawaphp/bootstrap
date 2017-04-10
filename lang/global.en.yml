@@ -1,0 +1,28 @@
+pagination:
+  next: Précédent
+  previouq: Suivant
+
+navbar:
+  toggle: Afficher la navigation
+
+grid:
+  options: Options
+  refresh: Rafraîchir
+  perpage: Ligne par page
+  columns: Colonnes
+  filter: Filtrer
+
+googlePlace:
+  number: Street number
+  street: Street
+  zipcode: Zipcode
+  city: City
+  state: State
+  country: Country
+
+creditcard:
+  number: Card Number
+  expiration: Expiration date
+  expirationPlaceholder: MM / AA
+  cvv: Visual cryptogram (CVV)
+  save: <strong>Secure and fast:</strong> Remember my credit card for my next order
