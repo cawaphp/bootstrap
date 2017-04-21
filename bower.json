@@ -16,7 +16,8 @@
         "node_modules",
         "bower_components",
         "test",
-        "tests"
+        "tests",
+        "src"
     ],
     "license": "GPL-3.0",
     "dependencies": {
@@ -36,6 +37,7 @@
         "confighelper": "git://github.com/AlfonsoML/confighelper.git#^1.8.3",
         "jstree": "git://github.com/tchiotludo/jstree.git#master",
         "jquery.payment": "~3.0",
-        "credit_card_icons": "git://github.com/kristianmandrup/credit_card_icons.git#master"
+        "credit_card_icons": "git://github.com/kristianmandrup/credit_card_icons.git#master",
+        "seiyria-bootstrap-slider": "^9.7.3"
     }
 }
