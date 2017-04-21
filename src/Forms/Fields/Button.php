@@ -68,9 +68,9 @@ class Button extends \Cawa\Html\Forms\Fields\Button implements ButtonInterface
     public function setBlock(bool $block = true) : self
     {
         if ($block) {
-            $this->addClass('btn-block');
+            $this->getField()->addClass('btn-block');
         } else {
-            $this->removeClass('btn-block');
+            $this->getField()->removeClass('btn-block');
         }
 
         return $this;
