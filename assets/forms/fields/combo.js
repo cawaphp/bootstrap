@@ -8,6 +8,7 @@ require([
     $.widget("cawa.fields-combo", $.cawa.widget, {
 
         options: {
+            initSelector: 'select.cawa-fields-combo', // select2 copy class of current element
             plugin: {
                 theme: "bootstrap",
                 language: $.locale()

@@ -43,6 +43,17 @@ $nav-tabs-body-bg: $nav-tabs-active-link-hover-bg !default;
     }
 
 
+    .tabdrop {
+        > ul > li {
+            position: relative;
+
+            ul.dropdown-menu {
+               right: -1px;
+               left: inherit;
+           }
+        }
+    }
+
     ul.dropdown-menu {
         min-width: inherit;
     }

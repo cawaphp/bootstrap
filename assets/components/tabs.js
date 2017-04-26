@@ -38,13 +38,21 @@ $.widget("cawa.tabs", $.cawa.widget, {
     {
         var collection = [];
         this._dropdown.removeClass('hide');
+        var dropdownTabdrop = function (e)
+        {
+            e.stopPropagation();
+            e.preventDefault();
+            $(this).next('ul').toggle();
+        };
+
         this.element
             .find('ul.nav:first-child')
-            .append(this._dropdown.find('li'))
+            .append(this._dropdown.find('> ul.dropdown-menu > li'))
             .find('>li')
             .not('.tabdrop')
             .each(function ()
             {
+                $(this).find('a.dropdown-toggle').off('click', dropdownTabdrop);
                 if (this.offsetTop > 0) {
                     collection.push(this);
                 }
@@ -56,11 +64,13 @@ $.widget("cawa.tabs", $.cawa.widget, {
                 .find('ul')
                 .empty()
                 .append(collection);
-            if (this._dropdown.find('.active').length == 1) {
+            if (this._dropdown.find('.active').length === 1) {
                 this._dropdown.addClass('active');
             } else {
                 this._dropdown.removeClass('active');
             }
+
+            collection.find('a.dropdown-toggle').on('click', dropdownTabdrop);
         } else {
             this._dropdown.addClass('hide');
         }
@@ -79,7 +89,7 @@ $.widget("cawa.tabs", $.cawa.widget, {
         var notify = function ()
         {
             for (var i = 0, cnt = registered.length; i < cnt; i++) {
-                if (typeof registered[i] == 'function') {
+                if (typeof registered[i] === 'function') {
                     registered[i].apply();
                 }
             }
@@ -96,7 +106,7 @@ $.widget("cawa.tabs", $.cawa.widget, {
             unregister: function (fn)
             {
                 for (var i = 0, cnt = registered.length; i < cnt; i++) {
-                    if (registered[i] == fn) {
+                    if (registered[i] === fn) {
                         delete registered[i];
                         break;
                     }

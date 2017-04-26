@@ -151,7 +151,7 @@ require([
             self._getField("lat").val(place.geometry.location.lat());
             self._getField("long").val(place.geometry.location.lng());
 
-            log.debug("Find a location :", place.formatted_address,
+            log.info("Find a location :", place.formatted_address,
                 "(" + place.geometry.location.lat() + ","  + place.geometry.location.lng() + ")"
             );
 

@@ -26,12 +26,12 @@ class Breadcrumb extends Container
     /**
      * @var HtmlContainer
      */
-    private $ol;
+    protected $ol;
 
     /**
      * @var HtmlElement
      */
-    private $schema;
+    protected $schema;
 
     /**
      * @param array $links
@@ -52,10 +52,13 @@ class Breadcrumb extends Container
         $this->ol = new HtmlContainer('<ol>');
         $this->ol->addClass('breadcrumb');
 
-        $last = null;
+        $last = array_keys($links)[sizeof($links) - 1];
         foreach ($links as $uri => $link) {
-            if (!$uri) {
-                $last = $link;
+            if ($uri == $last) {
+                $this->ol->add(
+                    (new HtmlElement('<li>', $link))
+                        ->addClass('active')
+                );
             } else {
                 $this->ol->add(
                     (new HtmlContainer('<li>'))
@@ -64,13 +67,6 @@ class Breadcrumb extends Container
                         )
                 );
             }
-        }
-
-        if ($last) {
-            $this->ol->add(
-                (new HtmlElement('<li>', $last))
-                    ->addClass('active')
-            );
         }
 
         $this->add($this->ol);

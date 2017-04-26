@@ -136,7 +136,7 @@ trait FieldTrait
                 return $container;
             }
 
-            if ($element instanceof HtmlContainer) {
+            if ($element instanceof HtmlContainer || $element instanceof Container) {
                 $return = $this->getFieldContainer($element);
                 if ($return) {
                     return $return;

@@ -150,6 +150,12 @@ class Pagination extends HtmlElement
      */
     public function render()
     {
+        if ($this->page == 0) {
+            $this->setRenderable(false);
+
+            return parent::render();
+        }
+
         $this->ul->clear();
 
         $this->ul->add($this->getLi(max(1, $this->current-1), '&laquo;')->addClass('prev'));
