@@ -22,9 +22,9 @@ $.widget("cawa.tabs", $.cawa.widget, {
             '   <ul class="dropdown-menu">' +
             '   </ul>' +
             '</li>')
-            .prependTo(this.element.find('ul.nav:first-child'));
+            .prependTo(this.element.find('> ul.nav:first-child'));
 
-        if (this.element.find('ul.nav:first-child').parent().is('.tabs-below')) {
+        if (this.element.find('> ul.nav:first-child').parent().is('.tabs-below')) {
             this._dropdown.addClass('dropup');
         }
 
@@ -46,7 +46,7 @@ $.widget("cawa.tabs", $.cawa.widget, {
         };
 
         this.element
-            .find('ul.nav:first-child')
+            .find('> ul.nav:first-child')
             .append(this._dropdown.find('> ul.dropdown-menu > li'))
             .find('>li')
             .not('.tabdrop')

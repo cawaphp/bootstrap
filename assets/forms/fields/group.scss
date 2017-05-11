@@ -1,17 +1,29 @@
 .cawa-fields-group {
-    // padding
-    @media (min-width: $grid-float-breakpoint) {
-        .row:not([class*="-offset-"]) {
-            padding-right: 0;
-        }
+    .row > div[class*="col-"] > label {
+        color: $gray-light;
+    }
 
-        > div[class*="-offset-"] {
-            padding-left: 0;
+    @media (min-width: $screen-sm-min) {
+        .form-horizontal & {
+            > div.row > div[class*="col-md-"] {
+                padding-right: 0;
+            }
+
+            > div.row:last-child {
+                padding-right: 0;
+            }
         }
     }
 
-    .row > div[class*="col-"] > label {
-        color: $gray-light;
+    .form-tabs {
+        margin-left: 0;
+        margin-right: 0;
+
+        .cawa-fields-group {
+            > div.row {
+                margin-right: 0;
+            }
+        }
     }
 
     // margin-bottom

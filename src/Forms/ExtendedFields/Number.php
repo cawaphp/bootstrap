@@ -28,11 +28,11 @@ class Number extends \Cawa\Bootstrap\Forms\Fields\Number
 
         $this
             ->addInputGroup(
-                (new Button('&nbsp;<i class="fa fa-minus"></i>&nbsp;', $type, $size))
+                (new Button('&nbsp;<i class="fa fa-minus"></i>&nbsp;', $type ?: Button::TYPE_DEFAULT, $size))
                     ->addAttribute('data-action', '-'),
                 true)
             ->addInputGroup(
-                (new Button('&nbsp;<i class="fa fa-plus"></i>&nbsp;', $type, $size))
+                (new Button('&nbsp;<i class="fa fa-plus"></i>&nbsp;', $type ?: Button::TYPE_DEFAULT, $size))
                     ->addAttribute('data-action', '+'),
                 false)
         ;

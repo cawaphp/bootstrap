@@ -6,6 +6,10 @@ table.table {
 
     td.row-action a:not(.btn) {
         color: $text-color;
+
+        &.disabled {
+            opacity: 0.5;
+        }
     }
 
     tr.deleted {

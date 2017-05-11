@@ -1,9 +1,10 @@
 require([
     "jquery",
     "../../../lang/fields-combo",
+    "latinize",
     "cawaphp/cawa/assets/widget",
     "select2"
-], function($, locale)
+], function($, locale, latinize)
 {
     $.widget("cawa.fields-combo", $.cawa.widget, {
 
@@ -216,7 +217,11 @@ require([
                 // Check each child of the option
                 for (var c = data.children.length - 1; c >= 0; c--) {
                     var child = data.children[c];
-                    child.parentText += data.parentText + " " + data.text;
+                    if (!child.parentText) {
+                        child.parentText = '';
+                    }
+
+                    child.parentText += data.parentText + " " + (data.text || "");
 
                     var matches = self._matcher(params, child);
 
@@ -240,8 +245,19 @@ require([
             var original = (data.parentText + ' ' + data.text).toUpperCase();
             var term = params.term.toUpperCase();
 
-            // Check if the text contains the term
-            if (original.indexOf(term) > -1) {
+            original = latinize(original);
+            term = latinize(term);
+
+            // Check if all words in term is present
+            var terms = term.split(' ');
+            var count = 0;
+            for (var i = terms.length - 1; i >= 0; i--) {
+                if (original.indexOf(terms[i]) > -1) {
+                    count++;
+                }
+            }
+
+            if (count === terms.length) {
                 return data;
             }
 

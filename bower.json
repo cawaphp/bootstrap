@@ -38,6 +38,7 @@
         "jstree": "git://github.com/tchiotludo/jstree.git#master",
         "jquery.payment": "~3.0",
         "credit_card_icons": "git://github.com/kristianmandrup/credit_card_icons.git#master",
-        "seiyria-bootstrap-slider": "^9.7.3"
+        "seiyria-bootstrap-slider": "^9.7.3",
+        "latinize": "^0.4.0"
     }
 }
