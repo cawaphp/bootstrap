@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-declare (strict_types = 1);
+declare(strict_types = 1);
 
 namespace Cawa\Bootstrap\Forms\ExtendedFields;
 
@@ -46,12 +46,12 @@ class GooglePlace extends Fieldset
      * - postal_code
      * - country
      * - administrative_area_level_1
-     * - administrative_area_level_2
+     * - administrative_area_level_2.
      */
     const TYPE_REGIONS = 'regions';
 
     /**
-     * instructs the Places service to return results that match locality or administrative_area_level_3
+     * instructs the Places service to return results that match locality or administrative_area_level_3.
      */
     const TYPE_CITIES = 'cities';
 

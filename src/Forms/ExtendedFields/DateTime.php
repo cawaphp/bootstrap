@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-declare (strict_types = 1);
+declare(strict_types = 1);
 
 namespace Cawa\Bootstrap\Forms\ExtendedFields;
 
@@ -35,7 +35,7 @@ class DateTime extends \Cawa\Bootstrap\Forms\Fields\DateTime
     public function setMinimunDate(\Cawa\Date\DateTime $date) : self
     {
         $this->widgetOptions = array_merge_recursive($this->widgetOptions, [
-            'minDate' => $date->format('Y-m-d\TH:i:s')
+            'minDate' => $date->format('Y-m-d\TH:i:s'),
         ]);
 
         return $this;

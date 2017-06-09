@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-declare (strict_types=1);
+declare(strict_types = 1);
 
 namespace Cawa\Bootstrap\Forms\ExtendedFields;
 
@@ -37,7 +37,7 @@ class Range extends Text
     }
 
     /**
-     * minimum possible value
+     * minimum possible value.
      *
      * @param float $min
      *
@@ -51,7 +51,7 @@ class Range extends Text
     }
 
     /**
-     * maximum possible value
+     * maximum possible value.
      *
      * @param float $max
      *
@@ -65,7 +65,7 @@ class Range extends Text
     }
 
     /**
-     * increment step
+     * increment step.
      *
      * @param float $step
      *
@@ -95,7 +95,7 @@ class Range extends Text
 
     /**
      * set the orientation.
-     * Accepts 'vertical' or 'horizontal'
+     * Accepts 'vertical' or 'horizontal'.
      *
      * @param string $orientation
      *
@@ -127,7 +127,7 @@ class Range extends Text
     /**
      * selection placement.
      * Accepts: 'before', 'after' or 'none'.
-     * In case of a range slider, the selection will be placed between the handles
+     * In case of a range slider, the selection will be placed between the handles.
      *
      * @param string $selection
      *
@@ -142,7 +142,7 @@ class Range extends Text
 
     /**
      * whether to show the tooltip on drag, hide the tooltip, or always show the tooltip.
-     * Accepts: 'show', 'hide', or 'always'
+     * Accepts: 'show', 'hide', or 'always'.
      *
      * @param string $tooltip
      *
@@ -156,7 +156,7 @@ class Range extends Text
     }
 
     /**
-     * if false show one tootip if true show two tooltips one for each handler
+     * if false show one tootip if true show two tooltips one for each handler.
      *
      * @param bool $tooltipSplit
      *
@@ -187,7 +187,7 @@ class Range extends Text
 
     /**
      * handle shape.
-     * Accepts: 'round', 'square', 'triangle' or 'custom'
+     * Accepts: 'round', 'square', 'triangle' or 'custom'.
      *
      * @param string $handle
      *
@@ -201,7 +201,7 @@ class Range extends Text
     }
 
     /**
-     * whether or not the slider should be reversed
+     * whether or not the slider should be reversed.
      *
      * @param bool $reversed
      *
@@ -215,7 +215,7 @@ class Range extends Text
     }
 
     /**
-     * 'auto'
+     * 'auto'.
      *
      * @param bool $rtl
      *
@@ -229,7 +229,7 @@ class Range extends Text
     }
 
     /**
-     * whether or not the slider is initially enabled
+     * whether or not the slider is initially enabled.
      *
      * @param bool $enabled
      *
@@ -324,7 +324,7 @@ class Range extends Text
 
     /**
      * Used to allow for a user to hover over a given tick to see it's value.
-     * Useful if custom formatter passed in
+     * Useful if custom formatter passed in.
      *
      * @param bool $ticksTooltip
      *

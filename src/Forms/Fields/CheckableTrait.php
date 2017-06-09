@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-declare (strict_types = 1);
+declare(strict_types = 1);
 
 namespace Cawa\Bootstrap\Forms\Fields;
 
@@ -32,7 +32,7 @@ trait CheckableTrait
         $wrapper = (new HtmlContainer('<div>'))
             ->addClass('form-group')
             ->add($container = (new HtmlContainer('<div>'))
-                ->addClass('col-sm-' . (12-$this->getGridSize()) . ' col-sm-offset-' . $this->getGridSize())
+                ->addClass('col-sm-' . (12 - $this->getGridSize()) . ' col-sm-offset-' . $this->getGridSize())
                 ->add($parent));
 
         if ($this->getHelpText()) {

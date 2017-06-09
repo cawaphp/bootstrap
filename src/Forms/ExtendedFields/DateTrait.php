@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-declare (strict_types = 1);
+declare(strict_types = 1);
 
 namespace Cawa\Bootstrap\Forms\ExtendedFields;
 
@@ -51,8 +51,8 @@ trait DateTrait
     {
         $this->widgetOptions = array_merge_recursive($this->widgetOptions, [
             'plugin' => [
-                'disabledWeekDays' => $weekdays
-            ]
+                'disabledWeekDays' => $weekdays,
+            ],
         ]);
 
         return $this;
@@ -67,8 +67,8 @@ trait DateTrait
     {
         $this->widgetOptions = array_merge_recursive($this->widgetOptions, [
             'plugin' => [
-                'step' => $minute
-            ]
+                'step' => $minute,
+            ],
         ]);
 
         return $this;
@@ -83,8 +83,8 @@ trait DateTrait
     {
         $this->widgetOptions = array_merge_recursive($this->widgetOptions, [
             'plugin' => [
-                'inline' => $înline
-            ]
+                'inline' => $înline,
+            ],
         ]);
 
         if ($înline) {
@@ -104,7 +104,7 @@ trait DateTrait
     public function setAllowDates(array $dates = []) : self
     {
         $this->widgetOptions = array_merge_recursive($this->widgetOptions, [
-            'allowDates' => $dates
+            'allowDates' => $dates,
         ]);
 
         return $this;
@@ -118,7 +118,7 @@ trait DateTrait
     public function setHighlightedDates(array $dates = []) : self
     {
         $this->widgetOptions = array_merge_recursive($this->widgetOptions, [
-            'highlightedDates' => $dates
+            'highlightedDates' => $dates,
         ]);
 
         return $this;

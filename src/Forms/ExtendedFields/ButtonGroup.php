@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-declare (strict_types = 1);
+declare(strict_types = 1);
 
 namespace Cawa\Bootstrap\Forms\ExtendedFields;
 
@@ -93,7 +93,7 @@ class ButtonGroup extends AbstractField
                         'name' => $this->getName(),
                         'autocomplete' => 'off',
                         'value' => $key,
-                        'type' => $this->isMultiple() ? 'checkbox' : 'radio'
+                        'type' => $this->isMultiple() ? 'checkbox' : 'radio',
                     ])
                     ->addClass(in_array($key, $this->disabledValues) ? 'disabled' : '')
                     ->setContent($value)
@@ -112,7 +112,7 @@ class ButtonGroup extends AbstractField
     /**
      * {@inheritdoc}
      */
-    public function layout(): Container
+    public function layout() : Container
     {
         $container = $this->fieldTraitLayout();
 

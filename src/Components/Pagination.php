@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-declare (strict_types = 1);
+declare(strict_types = 1);
 
 namespace Cawa\Bootstrap\Components;
 
@@ -92,7 +92,7 @@ class Pagination extends HtmlElement
     /**
      * @return int
      */
-    public function getMaxItem(): int
+    public function getMaxItem() : int
     {
         return $this->maxItem;
     }
@@ -158,21 +158,21 @@ class Pagination extends HtmlElement
 
         $this->ul->clear();
 
-        $this->ul->add($this->getLi(max(1, $this->current-1), '&laquo;')->addClass('prev'));
+        $this->ul->add($this->getLi(max(1, $this->current - 1), '&laquo;')->addClass('prev'));
 
         $min = 1;
         $max = $this->page;
 
         if ($this->page > $this->maxItem) {
-            $min = max(1, $this->current - ($this->maxItem/2));
-            $max = min($this->page, $this->current + ($this->maxItem/2));
+            $min = max(1, $this->current - ($this->maxItem / 2));
+            $max = min($this->page, $this->current + ($this->maxItem / 2));
         }
 
         if ($min - 1 >= 1) {
             $this->ul->add($this->getLi($min + 1, '...'));
         }
 
-        for ($i=$min; $i<=$max; $i++) {
+        for ($i = $min; $i <= $max; $i++) {
             $this->ul->add($this->getLi($i));
         }
 
@@ -180,7 +180,7 @@ class Pagination extends HtmlElement
             $this->ul->add($this->getLi($max + 1, '...'));
         }
 
-        $this->ul->add($this->getLi(min($this->page, $this->current+1), '&raquo;')->addClass('next'));
+        $this->ul->add($this->getLi(min($this->page, $this->current + 1), '&raquo;')->addClass('next'));
 
         $this->setContent($this->ul->render());
 

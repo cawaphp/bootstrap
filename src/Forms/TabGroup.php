@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-declare (strict_types = 1);
+declare(strict_types = 1);
 
 namespace Cawa\Bootstrap\Forms;
 
@@ -36,7 +36,7 @@ class TabGroup extends Group
     private $tabContainer;
 
     /**
-     * Call by Form on populateValue
+     * Call by Form on populateValue.
      *
      * @return array|AbstractField[]
      */
@@ -45,7 +45,7 @@ class TabGroup extends Group
         $return = [];
         foreach ($this->tabContainer->getTabs() as $tab) {
             $return = array_merge($return, $tab->getElements());
-        };
+        }
 
         return $return;
     }

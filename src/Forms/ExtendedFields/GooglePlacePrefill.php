@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-declare (strict_types = 1);
+declare(strict_types = 1);
 
 namespace Cawa\Bootstrap\Forms\ExtendedFields;
 
@@ -50,7 +50,7 @@ class GooglePlacePrefill extends GooglePlace
                     ->setPlaceholder(self::trans('bootstrap.googlePlace/street'))))
             ->add((new Group(Misc::joinUnits([
                     self::trans('bootstrap.googlePlace/zipcode'),
-                    self::trans('bootstrap.googlePlace/city')
+                    self::trans('bootstrap.googlePlace/city'),
                 ])))
                 ->add($this->fields['zipcode'] = (new Text($name . '[zipcode]'))
                     ->setPlaceholder(self::trans('bootstrap.googlePlace/zipcode')))

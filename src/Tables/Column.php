@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-declare (strict_types = 1);
+declare(strict_types = 1);
 
 namespace Cawa\Bootstrap\Tables;
 
@@ -27,7 +27,7 @@ class Column extends \Cawa\Html\Tables\Column
     {
         parent::__construct($id, $name);
 
-        $this->argsCallback =  function (self $caller, string $sort = null) {
+        $this->argsCallback = function (self $caller, string $sort = null) {
             if ($sort) {
                 return Uri::parse()->addQuery(self::QUERY_SORT, $sort)->get();
             } else {
@@ -79,7 +79,7 @@ class Column extends \Cawa\Html\Tables\Column
     }
 
     /**
-     * if true: sort ASC, if false: sort DESC, if null: no sort
+     * if true: sort ASC, if false: sort DESC, if null: no sort.
      *
      * @var bool
      */

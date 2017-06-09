@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-declare (strict_types = 1);
+declare(strict_types = 1);
 
 namespace Cawa\Bootstrap\Tables;
 
@@ -109,7 +109,7 @@ class Grid extends HtmlContainer
      */
     private $defaults = [
         self::QUERY_PAGESIZE => 25,
-        self::OPTIONS_ROWSPERPAGE => [25, 50, 75, 100]
+        self::OPTIONS_ROWSPERPAGE => [25, 50, 75, 100],
     ];
 
     /**
@@ -289,7 +289,7 @@ class Grid extends HtmlContainer
      */
     public function getArgs(string $name, string $type, $default)
     {
-        $var = ($this->stateId ? $this->stateId . '_'  : '') . $name;
+        $var = ($this->stateId ? $this->stateId . '_' : '') . $name;
 
         return self::request()->getQuery($var, $type, $default);
     }

@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-declare (strict_types = 1);
+declare(strict_types = 1);
 
 namespace Cawa\Bootstrap\Forms;
 
@@ -64,7 +64,7 @@ class MultipleGroup extends Group
                     if ($this->container->first() instanceof Group) {
                         foreach (self::request()->getArg($name) ?? [] as $index => $value) {
                             $submitData[$index][$i] = $value;
-                        };
+                        }
                     } else {
                         $submitData = $userInput;
                     }
@@ -189,7 +189,6 @@ class MultipleGroup extends Group
     private $row = 0;
 
     /**
-     * @return void
      */
     private function addRow()
     {

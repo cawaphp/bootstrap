@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-declare (strict_types = 1);
+declare(strict_types = 1);
 
 namespace Cawa\Bootstrap\Components;
 
@@ -40,7 +40,7 @@ class Collapse extends PhtmlHtmlContainer
             'id' => null,
             'noPanelBody' => false,
             'noBody' => false,
-            'titleTag' => 'h4'
+            'titleTag' => 'h4',
         ];
 
         parent::__construct('<div>');

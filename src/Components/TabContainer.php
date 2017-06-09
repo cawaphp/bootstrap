@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-declare (strict_types = 1);
+declare(strict_types = 1);
 
 namespace Cawa\Bootstrap\Components;
 
@@ -220,7 +220,7 @@ class TabContainer extends HtmlElement
     }
 
     /**
-     * Build all elements
+     * Build all elements.
      */
     protected function build()
     {
