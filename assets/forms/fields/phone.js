@@ -1,6 +1,6 @@
 require([
     "jquery",
-    "imports?this=>window!exports?window.intlTelInputUtils!intl-tel-input/build/js/utils.js",
+    "imports-loader?this=>window!exports-loader?window.intlTelInputUtils!intl-tel-input/build/js/utils.js",
     "../../../lang/fields-phone",
     "cawaphp/cawa/assets/widget",
     "intl-tel-input",

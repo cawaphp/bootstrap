@@ -7,7 +7,7 @@ require([
     "bootstrap-fileinput"
 ], function($)
 {
-    $.widget("cawa.fields-image", $.cawa.widget, {
+    $.widget("cawa.fields-file", $.cawa.widget, {
 
         options: {
             plugin: {
@@ -23,10 +23,10 @@ require([
             var self = this;
             var pluginOptions = this.options.plugin;
 
-            if (this.options.images) {
+            if (this.options.files) {
                 pluginOptions.initialPreview = [];
                 pluginOptions.initialPreviewConfig = [];
-                $.forEach(this.options.images, function (value, key)
+                $.forEach(this.options.files, function (value, key)
                 {
                     if (typeof value === "string") {
                         pluginOptions.initialPreview.push('<img src="' + value + '" class="file-preview-image" />');
@@ -59,12 +59,16 @@ require([
             /* Plugins */
             this.element.fileinput(pluginOptions);
 
-            if (this.options.deleteUrl && !this.element.prop("multiple") && !this.options.required) {
+            if (this.options.deleteUrl &&
+                !this.element.prop("multiple") &&
+                !this.options.required &&
+                self.options.files
+            ) {
                 this.element.on('filecleared', function (event)
                 {
                     $.ajax(self.options.deleteUrl, {
                         method: 'POST',
-                        data: self.options.images[Object.keys(self.options.images)[0]].extra
+                        data: self.options.files[Object.keys(self.options.files)[0]].extra
                     })
                 });
             }
@@ -107,7 +111,7 @@ require([
     if ($.validator) {
         $.validator.addMethod("image", function (value, element)
         {
-            return $(element)["fields-image"]("isValid");
+            return $(element)["fields-file"]("isValid");
         }, $.validator.messages.required);
     }
 });
