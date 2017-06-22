@@ -25,6 +25,7 @@ use Cawa\Html\Forms\Fields\AbstractField;
 use Cawa\Renderer\Container;
 use Cawa\Renderer\HtmlContainer;
 use Cawa\Renderer\HtmlElement;
+use Cawa\Renderer\WidgetElement;
 
 /**
  * @mixin AbstractField
@@ -74,7 +75,7 @@ trait FieldTrait
         $helpText->addClass('help-block');
 
         // @see http://getbootstrap.com/css/#forms-help-text
-        if ($this->getField()) {
+        if (!$this instanceof MultipleGroup && $this->getField()) {
             if (!$helpText->getId()) {
                 $helpText->generateId();
             }
@@ -229,7 +230,11 @@ trait FieldTrait
 
             // help wrap
             if ($this->helpText) {
-                $fieldWrapper->add($this->helpText);
+                if ($fieldWrapper instanceof WidgetElement) {
+                    $fieldWrapper->getElement()->add($this->helpText);
+                } else {
+                    $fieldWrapper->add($this->helpText);
+                }
             }
 
             $container->add($fieldWrapper);
