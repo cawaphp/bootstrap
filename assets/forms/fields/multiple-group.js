@@ -64,7 +64,7 @@ require([
 
             this._addListeners(finalClone);
 
-            this.element.find('.input-group:last').after(finalClone);
+            this.element.find('> .input-group:last').after(finalClone);
 
             $(document).trigger("cw.refresh");
 

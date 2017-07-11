@@ -14,13 +14,15 @@ declare(strict_types = 1);
 namespace Cawa\Bootstrap\Forms\ExtendedFields;
 
 use Cawa\Bootstrap\Forms\Fields\FieldTrait;
+use Cawa\Bootstrap\Forms\Form;
+use Cawa\Bootstrap\Properties\ButtonInterface;
 use Cawa\Html\Forms\Fields\AbstractField;
 use Cawa\Html\Forms\FieldsProperties\MultipleTrait;
 use Cawa\Renderer\Container;
 use Cawa\Renderer\HtmlContainer;
 use Cawa\Renderer\HtmlElement;
 
-class ButtonGroup extends AbstractField
+class ButtonGroup extends AbstractField implements ButtonInterface
 {
     use FieldTrait {
         FieldTrait::layout as private fieldTraitLayout;
@@ -74,6 +76,30 @@ class ButtonGroup extends AbstractField
     }
 
     /**
+     * @var string
+     */
+    private $displayType = self::TYPE_DEFAULT;
+
+    /**
+     * @param string $type
+     *
+     * @return $this|self
+     */
+    public function setDisplayType(string $type) : self
+    {
+        $reflection = new \ReflectionClass($this);
+        foreach ($reflection->getConstants() as $key => $value) {
+            if (strpos($key, 'TYPE_') !== false) {
+                $this->getField()->removeClass($value);
+            }
+        }
+
+        $this->displayType = $type;
+
+        return $this;
+    }
+
+    /**
      * @return HtmlContainer
      */
     private function getGroup() : HtmlContainer
@@ -86,7 +112,7 @@ class ButtonGroup extends AbstractField
 
         foreach ($this->values as $key => $value) {
             $container->add($label = (new HtmlContainer('<label>'))
-                ->addClass('btn btn-default')
+                ->addClass('btn ' . $this->displayType)
                 ->addClass(in_array($key, $this->disabledValues) ? 'disabled' : '')
                 ->add($input = (new HtmlElement('<input>'))
                     ->addAttributes([
@@ -99,6 +125,15 @@ class ButtonGroup extends AbstractField
                     ->setContent($value)
                 )
             );
+
+            if ($this->getFieldSize() == Form::SIZE_LARGE) {
+                $label->addClass(self::SIZE_LARGE);
+            }
+
+
+            if ($this->getFieldSize() == Form::SIZE_SMALL) {
+                $label->addClass(self::SIZE_SMALL);
+            }
 
             if ($this->getValue() == $key) {
                 $label->addClass('active');

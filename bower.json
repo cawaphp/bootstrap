@@ -29,7 +29,7 @@
         "jquery-validation": "~1.15",
         "intl-tel-input": "~9.2",
         "jquery-mask-plugin": "^1.14.0",
-        "bootstrap-fileinput": "master",
+        "bootstrap-fileinput": "^4.4.2",
         "google-maps": "^3.2.1",
         "select2": "^4.0.2",
         "select2-bootstrap-theme": "^0.1.0-beta.9",
