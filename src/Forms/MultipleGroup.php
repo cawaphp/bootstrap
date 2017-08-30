@@ -118,6 +118,8 @@ class MultipleGroup extends Group
     /**
      * @param array $values
      *
+     * @throws \InvalidArgumentException
+     *
      * @return $this|self
      */
     public function setValues(array $values) : self

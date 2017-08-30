@@ -29,6 +29,11 @@ class Combo extends Select
 
         if (sizeof($options) > 0 && is_array($options[array_keys($options)[0]]) && isset($options[array_keys($options)[0]]['id'])) {
             $this->widgetOptions->addData('plugin', ['data' => $options]);
+
+            foreach ($options as $option) {
+                $this->options[$option['id']] = $option['text'];
+            }
+
             $options = [];
         }
 

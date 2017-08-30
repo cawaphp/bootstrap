@@ -82,8 +82,6 @@ require([
                 }
             }
 
-
-
             // optgroup displayed on selection
             if (!options.ajax) {
                 options.templateSelection = function (data)
@@ -99,6 +97,10 @@ require([
 
             // data
             if (options.data) {
+                options.escapeMarkup = function (markup)
+                {
+                    return markup;
+                };
 
                 options.templateSelection = function (data)
                 {
@@ -107,8 +109,9 @@ require([
 
                 options.templateResult = function (node)
                 {
-                    return $(
-                        '<span style="padding-left:' + (10 * (node.level ? node.level : 0)) + 'px;">' + node.text + '</span>');
+                    return $('<span style="padding-left:' + (10 * (node.level ? node.level : 0)) + 'px;">' +
+                        node.text +
+                        '</span>');
                 }
             }
 

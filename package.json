@@ -1,0 +1,46 @@
+{
+  "name": "cawaphp-bootstrap",
+  "description": "Сáша Bootstrap",
+  "version": "0.0.1",
+  "keywords": [
+    "cawa",
+    "bootstrap"
+  ],
+  "files": [
+    "assets",
+    "lang"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cawaphp/bootstrap.git"
+  },
+  "author": {
+    "name": "tchiotludo"
+  },
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/cawaphp/bootstrap/issues"
+  },
+  "homepage": "https://github.com/cawaphp/bootstrap#readme",
+  "dependencies": {
+    "moment": "^2.15.0",
+    "moment-timezone": "^0.5.5",
+    "bootstrap-sass": "^3.3.6",
+    "modernizr": "^3.3.1",
+    "jquery-datetimepicker": "^2.5.4",
+    "jquery-validation": "~1.15",
+    "intl-tel-input": "~9.2",
+    "jquery-mask-plugin": "^1.14.0",
+    "bootstrap-fileinput": "^4.4.2",
+    "google-maps": "^3.2.1",
+    "select2": "^4.0.2",
+    "select2-bootstrap-theme": "^0.1.0-beta.9",
+    "ckeditor": "^4.7.2",
+    "confighelper": "git+https://github.com/tchiotludo/confighelper.git#master",
+    "jstree": "git+https://github.com/tchiotludo/jstree.git#master",
+    "jquery.payment": "~3.0",
+    "credit_card_icons": "git+https://github.com/tchiotludo/credit_card_icons.git#master",
+    "bootstrap-slider": "^9.7.3",
+    "latinize": "^0.4.0"
+  }
+}

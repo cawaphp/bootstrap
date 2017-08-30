@@ -52,9 +52,17 @@ class Dropdown extends ViewController
     private $button;
 
     /**
-     * @var Button
+     * @var HtmlContainer
      */
     private $ul;
+
+    /**
+     * @return HtmlContainer
+     */
+    public function getUl() : HtmlContainer
+    {
+        return $this->ul;
+    }
 
     /**
      * @return string
