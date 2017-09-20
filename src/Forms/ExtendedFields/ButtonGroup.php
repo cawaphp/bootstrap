@@ -130,7 +130,6 @@ class ButtonGroup extends AbstractField implements ButtonInterface
                 $label->addClass(self::SIZE_LARGE);
             }
 
-
             if ($this->getFieldSize() == Form::SIZE_SMALL) {
                 $label->addClass(self::SIZE_SMALL);
             }

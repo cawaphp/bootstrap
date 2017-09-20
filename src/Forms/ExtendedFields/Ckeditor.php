@@ -38,7 +38,7 @@ class Ckeditor extends Textarea
     const ENTER_P = 1;
     const ENTER_BR = 2;
     const ENTER_DIV = 3;
-    
+
     /**
      * @param int $mode
      *

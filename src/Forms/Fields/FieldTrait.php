@@ -75,7 +75,7 @@ trait FieldTrait
         $helpText->addClass('help-block');
 
         // @see http://getbootstrap.com/css/#forms-help-text
-        if (!$this instanceof MultipleGroup && $this->getField()) {
+        if (!$this instanceof Group && $this->getField()) {
             if (!$helpText->getId()) {
                 $helpText->generateId();
             }
@@ -230,6 +230,11 @@ trait FieldTrait
 
             // help wrap
             if ($this->helpText) {
+
+                if ($this instanceof Group) {
+                    $this->helpText->addClass('col-md-12');
+                }
+
                 if ($fieldWrapper instanceof WidgetElement) {
                     $fieldWrapper->getElement()->add($this->helpText);
                 } else {
