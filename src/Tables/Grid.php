@@ -209,6 +209,14 @@ class Grid extends HtmlContainer
     private $navbar;
 
     /**
+     * @return Navbar
+     */
+    public function getNavbar() : Navbar
+    {
+        return $this->navbar;
+    }
+
+    /**
      * @var Dropdown
      */
     protected $options;

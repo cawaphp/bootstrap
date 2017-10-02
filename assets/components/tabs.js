@@ -8,6 +8,7 @@ require([
 {
     $.widget("cawa.tabs", $.cawa.widget, {
         options: {
+            initSelector: '.cawa-tabs.responsive',
             text: '&nbsp;<i class="icon-align-justify"></i>'
         },
 

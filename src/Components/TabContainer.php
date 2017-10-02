@@ -29,7 +29,7 @@ class TabContainer extends HtmlElement
     public function __construct()
     {
         parent::__construct('<div>');
-        $this->addClass('cawa-tabs');
+        $this->addClass('cawa-tabs responsive');
 
         $this->header = (new HtmlContainer('<ul>'))
             ->addClass('nav nav-tabs')
@@ -121,6 +121,30 @@ class TabContainer extends HtmlElement
         } else {
             $this->header->removeClass('nav-pills');
             $this->header->addClass('nav-tabs');
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isResponsive() : bool
+    {
+        return $this->hasClass('responsive');
+    }
+
+    /**
+     * @param bool $responsive
+     *
+     * @return $this|self
+     */
+    public function setResponsive(bool $responsive = true) : self
+    {
+        if ($responsive) {
+            $this->addClass('responsive');
+        } else {
+            $this->removeClass('responsive');
         }
 
         return $this;
@@ -237,7 +261,7 @@ class TabContainer extends HtmlElement
             $active = $element->isActive() ? true : $active;
 
             if (!$element->getHref()) {
-                $id = Transliterator::urlize($element->getTitle());
+                $id = Transliterator::urlize(strip_tags($element->getTitle()));
                 $element->setHref('#' . $id);
             }
         }

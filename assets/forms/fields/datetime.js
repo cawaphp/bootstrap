@@ -3,7 +3,7 @@ require([
     "moment",
     "modernizr",
     "cawaphp/cawa/assets/widget",
-    "datetimepicker/build/jquery.datetimepicker.full"
+    "datetimepicker/build/jquery.datetimepicker.full.min"
 ], function($, moment, _, modernizr)
 {
     $.widget("cawa.fields-datetime", $.cawa.widget, {

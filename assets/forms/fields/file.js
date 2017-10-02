@@ -1,10 +1,7 @@
 require([
     "jquery",
     "cawaphp/cawa/assets/widget",
-    "cawaphp/cawa/assets/functions",
-    "bootstrap-fileinput/js/plugins/sortable",
-    "bootstrap-fileinput/js/fileinput",
-    "bootstrap-fileinput"
+    "cawaphp/cawa/assets/functions"
 ], function($)
 {
     $.widget("cawa.fields-file", $.cawa.widget, {
@@ -14,7 +11,8 @@ require([
                 language: $.locale(),
                 showUpload: false,
                 showClose: false,
-                fileActionSettings: {}
+                fileActionSettings: {},
+                theme: 'fa'
             }
         },
 
