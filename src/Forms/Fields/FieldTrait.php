@@ -230,7 +230,6 @@ trait FieldTrait
 
             // help wrap
             if ($this->helpText) {
-
                 if ($this instanceof Group) {
                     $this->helpText->addClass('col-md-12');
                 }
