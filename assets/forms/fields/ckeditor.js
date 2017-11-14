@@ -97,7 +97,7 @@ require([
 
                     { name: 'basicstyles', items: [ 'Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript', '-', 'RemoveFormat' ] },
                     { name: 'paragraph', items: [ 'NumberedList', 'BulletedList', '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight'] },
-                    { name: 'insert', items: ['base64image', 'Blockquote', 'Format'] },
+                    { name: 'insert', items: ['base64image', 'Blockquote', 'Format', 'Table'] },
                     { name: 'links', items: [ 'Link', 'Unlink'] },
                     { name: 'tools', items: [ 'Undo', 'Redo', '-', 'Maximize', /*'ShowBlocks', */'Source'] }
                 ],
