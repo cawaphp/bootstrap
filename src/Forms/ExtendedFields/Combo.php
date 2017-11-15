@@ -164,7 +164,9 @@ class Combo extends Select
             }
         }
 
-        $this->widgetOptions->addData('value', $value);
+        $data = $this->widgetOptions->getData();
+        $data['value'] = $value;
+        $this->widgetOptions->setData($data);
 
         return parent::setValue($value);
     }
