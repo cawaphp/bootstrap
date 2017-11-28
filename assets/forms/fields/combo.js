@@ -68,7 +68,7 @@ require([
 
                     options.templateResult = function (data)
                     {
-                        return data.html;
+                        return data.html || data.text;
                     };
 
                     options.templateSelection = function (data)

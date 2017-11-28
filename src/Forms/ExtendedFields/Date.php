@@ -40,4 +40,20 @@ class Date extends \Cawa\Bootstrap\Forms\Fields\Date
 
         return $this;
     }
+
+    /**
+     * @param int $step
+     *
+     * @return $this|self
+     */
+    public function setStep(int $step) : self
+    {
+        $this->widgetOptions = array_merge_recursive($this->widgetOptions, [
+            'plugin' => [
+                'step' => $step,
+            ]
+        ]);
+
+        return $this;
+    }
 }

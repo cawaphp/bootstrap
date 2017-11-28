@@ -26,4 +26,20 @@ class Time extends \Cawa\Bootstrap\Forms\Fields\Time
         $this->getField()->addClass('cawa-fields-datetime');
         $this->addClass('cawa-fields-datetime-group');
     }
+
+    /**
+     * @param int $step
+     *
+     * @return $this|self
+     */
+    public function setStep(int $step) : self
+    {
+        $this->widgetOptions = array_merge_recursive($this->widgetOptions, [
+            'plugin' => [
+                'step' => $step,
+            ]
+        ]);
+
+        return $this;
+    }
 }
