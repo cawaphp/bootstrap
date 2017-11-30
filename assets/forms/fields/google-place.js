@@ -137,6 +137,8 @@ require([
                 return;
             }
 
+            element.trigger('place.fields-googleplace.cawa', {place: place});
+
             self._resetInput();
             self._value = self.element.val();
 
