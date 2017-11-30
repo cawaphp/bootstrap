@@ -117,6 +117,8 @@ trait FieldTrait
             $this->inputGroups[$left][] = (new HtmlContainer('<span>'))
                 ->addClass('input-group-addon')
                 ->add($item->getField());
+        } elseif ($item instanceof ViewController) {
+            $this->inputGroups[$left][] = $item->addClass('input-group-addon');
         } else {
             $this->inputGroups[$left][] = (new HtmlElement('<span>', $item))
                 ->addClass('input-group-addon');
@@ -225,7 +227,11 @@ trait FieldTrait
 
             // label
             if (!$this->getLabel()) {
-                $fieldWrapper->addClass('col-sm-offset-' . $this->getGridSize());
+                if ($fieldWrapper instanceof WidgetElement) {
+                    $fieldWrapper->getElement()->addClass('col-sm-offset-' . $this->getGridSize());
+                } else {
+                    $fieldWrapper->addClass('col-sm-offset-' . $this->getGridSize());
+                }
             }
 
             // help wrap

@@ -29,7 +29,7 @@ class MultipleGroup extends Group
     /**
      * @param string $label
      */
-    public function __construct($label)
+    public function __construct($label = null)
     {
         parent::__construct($label);
 
