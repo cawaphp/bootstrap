@@ -109,9 +109,13 @@ require([
 
                 options.templateResult = function (node)
                 {
-                    return $('<span style="padding-left:' + (10 * (node.level ? node.level : 0)) + 'px;">' +
-                        node.text +
-                        '</span>');
+                    if (node.html) {
+                        return $(node.html)
+                    } else {
+                        return $('<span style="padding-left:' + (10 * (node.level ? node.level : 0)) + 'px;">' +
+                            node.text +
+                            '</span>');
+                    }
                 }
             }
 

@@ -50,7 +50,7 @@ class Alert extends HtmlElement
      *
      * @return $this|self
      */
-    public function setDismissible(bool $dismissible = true)
+    public function setDismissible(bool $dismissible = true) : self
     {
         if ($dismissible) {
             $this->addClass('alert-dismissible');

@@ -66,6 +66,10 @@
             @include navbar-vertical-align($input-height-base);
         }
 
+        .checkbox {
+            margin-right: 10px;
+        }
+
         .pagination-sm {
             margin-top: 10px;
         }

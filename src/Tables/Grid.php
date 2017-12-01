@@ -17,9 +17,11 @@ use Cawa\App\HttpFactory;
 use Cawa\Bootstrap\Components\Dropdown;
 use Cawa\Bootstrap\Components\Navbar;
 use Cawa\Bootstrap\Components\Pagination;
+use Cawa\Bootstrap\Forms\Fields\Checkbox;
 use Cawa\Bootstrap\Forms\Fields\Submit;
 use Cawa\Bootstrap\Forms\Form;
 use Cawa\Html\Forms\Fields\AbstractField;
+use Cawa\Html\Forms\Fields\Radio;
 use Cawa\Html\Link;
 use Cawa\Intl\TranslatorFactory;
 use Cawa\Net\Uri;
@@ -379,7 +381,7 @@ class Grid extends HtmlContainer
             Uri::parse($this->filtersForm->getAction())->removeQuery($filter->getName())->get()
         );
 
-        if ($filter->getLabel()) {
+        if ($filter->getLabel() && !$filter instanceof Radio && !$filter instanceof Checkbox) {
             $filter->getLabel()->addClass('sr-only');
         }
 
