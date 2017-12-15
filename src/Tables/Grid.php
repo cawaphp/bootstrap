@@ -20,6 +20,7 @@ use Cawa\Bootstrap\Components\Pagination;
 use Cawa\Bootstrap\Forms\Fields\Checkbox;
 use Cawa\Bootstrap\Forms\Fields\Submit;
 use Cawa\Bootstrap\Forms\Form;
+use Cawa\Bootstrap\Properties\ClonableTrait;
 use Cawa\Html\Forms\Fields\AbstractField;
 use Cawa\Html\Forms\Fields\Radio;
 use Cawa\Html\Link;
@@ -32,6 +33,7 @@ class Grid extends HtmlContainer
 {
     use HttpFactory;
     use TranslatorFactory;
+    use ClonableTrait;
 
     const QUERY_PAGESIZE = 'size';
     const OPTIONS_ROWSPERPAGE = 'rowsperpage';
@@ -404,9 +406,7 @@ class Grid extends HtmlContainer
         $data = $this->getTable()->getData();
         $this->getTable()->setData([]);
 
-        /* @var Grid $clone */
-        $deepcopy = new DeepCopy();
-        $clone = $deepcopy->copy($this);
+        $clone = $this->clone();
 
         $clone->getTable()->setData($data);
 

@@ -15,6 +15,7 @@ namespace Cawa\Bootstrap\Forms;
 
 use Cawa\App\HttpFactory;
 use Cawa\Bootstrap\Components\ButtonLink;
+use Cawa\Bootstrap\Properties\ClonableTrait;
 use Cawa\Controller\ViewController;
 use Cawa\Html\Forms\Fields\AbstractField;
 use Cawa\Renderer\HtmlContainer;
@@ -25,6 +26,7 @@ use DeepCopy\DeepCopy;
 class MultipleGroup extends Group
 {
     use HttpFactory;
+    use ClonableTrait;
 
     /**
      * @param string $label
@@ -251,9 +253,8 @@ class MultipleGroup extends Group
      */
     public function render()
     {
-        $deepcopy = new DeepCopy();
-        /** @var MultipleGroup $clone */
-        $clone = $deepcopy->copy($this);
+        $clone = $this->clone();
+
         $fullRender = $clone->parentRender();
 
         $this->newContainer->getOptions()->addData('clone', $fullRender);

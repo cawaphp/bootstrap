@@ -13,13 +13,14 @@ declare(strict_types = 1);
 
 namespace Cawa\Bootstrap\Forms;
 
+use Cawa\Bootstrap\Properties\ClonableTrait;
 use Cawa\Html\Forms\Fields\AbstractField;
 use Cawa\Html\Forms\Group;
-use DeepCopy\DeepCopy;
 
 class Form extends \Cawa\Html\Forms\Form
 {
     use BootstrapPropertiesTrait;
+    use ClonableTrait;
 
     /**
      * @see http://getbootstrap.com/css/#forms-example
@@ -107,9 +108,7 @@ class Form extends \Cawa\Html\Forms\Form
      */
     public function render()
     {
-        /* @var \Cawa\Bootstrap\Forms\Form $clone */
-        $deepcopy = new DeepCopy();
-        $clone = $deepcopy->copy($this);
+        $clone = $this->clone();
 
         return $clone->renderClone();
     }
@@ -127,9 +126,7 @@ class Form extends \Cawa\Html\Forms\Form
      */
     public function renderOuter() : array
     {
-        /* @var \Cawa\Bootstrap\Forms\Form $clone */
-        $deepcopy = new DeepCopy();
-        $clone = $deepcopy->copy($this);
+        $clone = $this->clone();
 
         return $clone->renderOuterClone();
     }
@@ -147,9 +144,7 @@ class Form extends \Cawa\Html\Forms\Form
      */
     public function export() : array
     {
-        /* @var \Cawa\Bootstrap\Forms\Form $clone */
-        $deepcopy = new DeepCopy();
-        $clone = $deepcopy->copy($this);
+        $clone = $this->clone();
 
         $clone->alterBeforeRender();
 
