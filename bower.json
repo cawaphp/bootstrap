@@ -19,7 +19,7 @@
         "tests",
         "src"
     ],
-    "license": "GPL-3.0",
+    "license": "GPL-3.0-only",
     "dependencies": {
         "moment": "^2.15.0",
         "moment-timezone": "^0.5.5",
