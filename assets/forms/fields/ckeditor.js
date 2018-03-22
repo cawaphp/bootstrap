@@ -126,6 +126,26 @@ require([
                 this._instance = ckeditor.replace(element[0], options);
             }
 
+            // @see https://ckeditor.com/old/forums/Support/Issue-with-Twitter-Bootstrap
+            // @see https://stackoverflow.com/questions/22637455/how-to-use-ckeditor-in-a-bootstrap-modal
+            var fixBootstrapModal;
+            $(document).bindFirst('focusin.modal', fixBootstrapModal = function(e)
+            {
+                if (
+                    $(e.target.parentNode).hasClass('cke_dialog_ui_input_select') ||
+                    $(e.target.parentNode).hasClass('cke_dialog_ui_input_textarea') ||
+                    $(e.target.parentNode).hasClass('cke_dialog_ui_input_text')
+                ) {
+                    e.preventDefault();
+                    e.stopImmediatePropagation();
+                }
+            });
+
+            self.addDestroyCallback(function()
+            {
+                $(document).off('focusin.modal', fixBootstrapModal);
+            });
+
             this._instance.on("blur", this._instance.updateElement);
             this._instance.on("change", this._instance.updateElement);
             this._instance.on("paste", this._instance.updateElement);
@@ -196,5 +216,3 @@ require([
         }
     });
 });
-
-
