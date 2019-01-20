@@ -45,7 +45,7 @@
         "credit_card_icons": "git://github.com/kristianmandrup/credit_card_icons.git#master",
         "seiyria-bootstrap-slider": "^9.7.3",
         "latinize": "^0.4.0",
-        "Sortable": "sortablejs#^1.6.0",
+        "Sortable": "sortablejs#1.7.0",
         "jquery-simplecolorpicker": "^0.3.1",
         "sweetalert2": "^7.12.3"
     }
