@@ -36,6 +36,7 @@ require([
             var self = this;
 
             GoogleMapsLoader.KEY = this.options.key;
+            GoogleMapsLoader.VERSION = '3.37';
             GoogleMapsLoader.LIBRARIES = ['geometry', 'places'];
             GoogleMapsLoader.LANGUAGE = $.locale();
 
